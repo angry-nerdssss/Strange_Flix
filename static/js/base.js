@@ -11,4 +11,24 @@ window.addEventListener("scroll", function(event) {
     }
 }); 
 
+// hideLoginForm();
 
+function hideBothForm(){
+    $(".login-form-container")[0].style.visibility = "hidden";
+    console.log("loginform hidden");
+    $(".registration-form-container")[0].style.visibility = "hidden";
+    console.log("regform hidden");
+}
+
+function showLoginForm() {
+    hideBothForm();
+    $(".login-form-container")[0].style.visibility = "visible";
+    console.log("loginform visible");
+}
+
+
+function showRegisterationForm(){
+    hideBothForm();
+    $(".registration-form-container")[0].style.visibility = "visible";
+    console.log("regform visible");
+}

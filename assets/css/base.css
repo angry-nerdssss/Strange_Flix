@@ -1,5 +1,5 @@
 /* background = #252525 */
-/* danger = red */
+/* primary = red */
 /* secondary = #af0404 */
 /* third = #414141 */
 
@@ -12,6 +12,8 @@ body{
     background-color: #252525;
     /* background-image: url(''); */
 }
+
+
 
 
 /* ---------------custom bootstrap */
@@ -50,31 +52,26 @@ body{
     color: red;
 }
 
-.btn-danger{
+.btn-primary{
     background-color: red;
 }
 
-.btn-danger:hover{
-    color: #fff;
-    background-color: red;
-    border-color: red;
-}
-
-
-.btn-outline-danger{
+.btn-outline-primary{
     color: red;
     border-color: red;
 }
 
-.btn-outline-danger:hover{
+.btn-outline-primary:hover{
     color: #fff;
     background-color: red;
     border-color: red;
 }
 
+.btn-outline-primary:active {
+    outline-color: red;
+}
 
-
-.pressed-danger{
+.pressed-primary{
     color: #af0404;
     border-color: red;
 }
@@ -93,50 +90,5 @@ body{
 }
 
 
-
-/* form-styles */
-
-.login-form-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    visibility: hidden;
-}
-
-.registration-form-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    visibility: hidden;
-}
-
-.form-div{
-    padding: 5% 10%;
-    background-color: black ;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10rem;
-    width: 70%;
-    color: rgb(211, 203, 203);
-    border-radius: 1%;
-    position: relative;
-}
-
-.form-control{
-    background-color: #414141;
-    color: rgb(211, 203, 203);
-}
-
-.form-control:focus{
-    color: black;
-    background-color: gray;
-    border-color: white;
-}
-
-.form-heading{
-    color: red;
-}
 
 
