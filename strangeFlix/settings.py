@@ -39,6 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+        'django.contrib.sites',
+         #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #providers
+       'allauth.socialaccount.providers.facebook',
+         'allauth.socialaccount.providers.google',
+         'social_django'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'strangeFlix.urls'
@@ -64,10 +75,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                    'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'strangeFlix.wsgi.application'
 
@@ -76,9 +98,12 @@ WSGI_APPLICATION = 'strangeFlix.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+      'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'StrangeFlix',
+        'USER' : 'postgres',
+        'PASSWORD' : '995687',
+        'HOST' : 'localhost'
     }
 }
 
@@ -124,3 +149,17 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL="/"
+
+#for email verification
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER="omkantmishra21@gmail.com"
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_PASSWORD="Omkant@21"
+
+SOCIAL_AUTH_FACEBOOK_KEY = '378217680014942'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '5f0ad5044ddf357932259542e34cfef9'  # App 
