@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/subscription.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section id="sub-plan">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h1>Plan 1</h1>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lorem ipsum doler sit amet</h3>
+                    <ul>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                    </ul>
+                </div>
+                <button class="btn btn-outline-danger sub-btn">Subscribe</button>
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h1>Plan 1</h1>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Lorem ipsum doler sit amet</h3>
+                    <ul>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                    </ul>
+                </div>
+                <button class="btn btn-outline-danger sub-btn">Subscribe</button>
+
+            </div>
+        </div>
+    </div>
+</section>
+    
+
+{% endblock %}

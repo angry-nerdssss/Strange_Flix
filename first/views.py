@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 
+
 def index(request) :
      return render(request,"index.html");
 
@@ -68,3 +69,8 @@ def register(request):
         return('/')  
     else :
         return render(request,'reg.html')
+
+
+
+def subscription(request):
+    return render(request,"subscription.html")
