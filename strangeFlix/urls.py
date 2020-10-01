@@ -18,11 +18,12 @@ from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
+from django_email_verification import urls as mail_urls
 
 urlpatterns = [
       path('',include('first.urls')),
     path('admin/', admin.site.urls),
      path('accounts/', include('allauth.urls')),
-     
+     path('email/', include(mail_urls)),
     path('oauth/', include('social_django.urls', namespace='social')),
 ]

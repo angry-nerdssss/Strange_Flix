@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_email_verification',
     #providers
        'allauth.socialaccount.providers.facebook',
          'allauth.socialaccount.providers.google',
-         'social_django'
+         'social_django',
 ]
 
 MIDDLEWARE = [
@@ -160,6 +161,21 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_PASSWORD="Omkant@21"
+
+
+EMAIL_ACTIVE_FIELD = 'is_active'
+EMAIL_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_ADDRESS = 'omkantmishra21@gmail.com'
+EMAIL_FROM_ADDRESS = 'omkantmishra21@gmail.com'
+EMAIL_PASSWORD = "bxtklkjhkuwobeev" # os.environ['password_key'] suggested
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+EMAIL_MAIL_HTML = 'mail_body.html'
+#EMAIL_MAIL_PLAIN = 'mail_body.txt'
+EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
+
+
 
 SOCIAL_AUTH_FACEBOOK_KEY = '702462980620837'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '4cefdda15584d359846b691e1912a1ed'  # App 

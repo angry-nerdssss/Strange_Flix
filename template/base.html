@@ -53,6 +53,8 @@
             <div class="form-div">
               <h3 class="form-heading">Login</h3>
               <form action="/login" method="post">
+                {% csrf_token %}
+                
                 <div class="form-group">
                   <label for="email">Enter your email</label>
                   <input type="email" name="email" class="form-control">
@@ -86,17 +88,19 @@
             <div class="form-div">
               <h3 class="form-heading">Register</h3>
               <form action="/register" method="post">
+                {% csrf_token %}
+                
                 <div class="form-group">
                   <label for="email">Enter your email</label>
                   <input type="email" name="email" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="password">Enter your password</label>
-                  <input type="password" name="password" class="form-control">
+                  <input type="password" name="password1" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="password">Confirm password</label>
-                  <input type="password" name="confirm-password" class="form-control">
+                  <input type="password" name="password2" class="form-control">
                 </div>
                 <button class="btn btn-danger submit-btn">Submit</button>
               </form>
