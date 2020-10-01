@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
 
+
 def index(request) :
      return render(request,"index.html");
 
@@ -69,3 +70,8 @@ def register(request):
         return('/')  
     else :
         return render(request,'reg.html')
+
+
+
+def subscription(request):
+    return render(request,"subscription.html")
