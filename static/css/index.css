@@ -9,7 +9,7 @@
     width: 100%;
 }
 
-.carousel-item, .carousel-inner{
+#top-carousel .carousel-item,#top-carousel  .carousel-inner{
     width: 100%;
     border-radius: 0.5rem;
     background-color: rgb(17, 16, 16);
@@ -26,4 +26,45 @@
 
 .carousel-indicators{
     z-index: 2;
+}
+
+
+
+
+/* Movies */
+
+.small-carousel-heading{
+    color: aliceblue;
+    margin-left: 7%;
+}
+
+.movie-row{
+    margin: 0 5%;
+}
+
+.movie-img-container{
+    background-color: aqua;
+    width: fit-content;
+}
+
+.movie-icon{
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.movie-icon:hover{
+    height: 110%;
+    width: 110%;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+#movie-carousel1 .carousel-control-prev, #movie-carousel1 .carousel-control-next{
+    width: 5rem;
 }
