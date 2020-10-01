@@ -27,18 +27,18 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" >
                 <i class="fa fa-bars fa-lg"></i>
             </button>
-            <a class="navbar-brand" href="#">STRANGEFLIX</a>
+            <a class="navbar-brand" href="">STRANGEFLIX</a>
           
             <div class="collapse navbar-collapse" id="main-nav">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="">Link</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  <a class="nav-link disabled" href="" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
               </ul>
       
@@ -67,7 +67,7 @@
                 </div>
                 <button class="btn btn-danger submit-btn">Submit</button>
               </form>
-              <button class="btn btn-outline-danger register-btn" onClick="showRegisterationForm()">Register</button>
+              <button class="btn btn-outline-danger change-btn" onClick="showRegisterationForm()">Register</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
               <div>
                 <h3>
@@ -100,7 +100,7 @@
                 </div>
                 <button class="btn btn-danger submit-btn">Submit</button>
               </form>
-              <button class="btn btn-outline-danger register-btn" onClick="showLoginForm()">Login</button>
+              <button class="btn btn-outline-danger change-btn" onClick="showLoginForm()">Login</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
               <button ><a href="{% provider_login_url "google" %}">Google login</a></button>
               <button ><a href="{% url 'social:begin' 'facebook' %}">Facebook login</a></button>
