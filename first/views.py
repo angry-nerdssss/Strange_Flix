@@ -6,10 +6,13 @@ from django.contrib.auth.models import User, auth
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+from django_email_verification import sendConfirm
 
 
 def index(request) :
      return render(request,"index.html");
+
 
 
 
@@ -42,6 +45,7 @@ def logout(request) :
 
 def register(request):
     if request.method == 'POST' :
+        
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -52,14 +56,22 @@ def register(request):
                messages.info(request,'email taken already')
                return redirect('register')
             else :
-                user =User.objects.create_user(email=email,password=password1)
+                #user =User.objects.create_user(email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
-                user.save()
+                #user.save()
+                user = get_user_model().objects.create(password=password1, email=email)
+                sendConfirm(user)
+                
                 print('user created')
-                return redirect('login') 
+                return redirect('index') 
         else :
             messages.info(request,'password not matching')
             return redirect('register')
         return('/')  
     else :
         return render(request,'reg.html')
+
+
+
+def subscription(request):
+    return render(request,"subscription.html")
