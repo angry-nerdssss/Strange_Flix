@@ -16,10 +16,10 @@ def index(request) :
 
 def login(request) :
      if request.method == 'POST' :
-         username = request.POST['username']
+         email = request.POST['email']
          password = request.POST['password']
           # by writing this we are checking whether the entered username and password are of the same user or not 
-         user = auth.authenticate(username=username,password=password)
+         user = auth.authenticate(email=email,password=password)
          if user is not None :
              request.session['member_id'] = user.id
              auth.login(request,user)
@@ -42,22 +42,17 @@ def logout(request) :
 
 def register(request):
     if request.method == 'POST' :
-        username = request.POST['username']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         # by writing this condition we are checking that if password1 and password2 are equal or not 
         if password1==password2 :
-            # by writing this condition we are checking that if this username is already registered or not
-            if User.objects.filter(username=username).exists() :
-               messages.info(request,'Username Taken')
-               return redirect('register')
             # by writing this condition we are checking that if this email is already registered or not
-            elif User.objects.filter(email=email).exists() :
+            if User.objects.filter(email=email).exists() :
                messages.info(request,'email taken already')
                return redirect('register')
             else :
-                user =User.objects.create_user(username=username,email=email,password=password1)
+                user =User.objects.create_user(email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
                 user.save()
                 print('user created')

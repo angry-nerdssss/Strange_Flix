@@ -1,5 +1,6 @@
 {% load static %}
-
+{% load socialaccount %}
+{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,7 +41,9 @@
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
               </ul>
-              <button id="sign-in-button" class="btn btn-lg btn-outline-danger" onclick="showLoginForm()">Sign In</button>
+      
+                <button id="sign-in-button"   class="btn btn-lg btn-outline-danger" onclick="showLoginForm()">Sign In</button>
+ 
             </div>
           </nav>
 
@@ -66,6 +69,13 @@
               </form>
               <button class="btn btn-outline-danger register-btn" onClick="showRegisterationForm()">Register</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
+              <div>
+                <h3>
+                    {% for message in messages %}
+                    {{message}}
+                    {% endfor %}
+                </h3>
+            </div>
             </div>
           </div>
 
@@ -92,6 +102,15 @@
               </form>
               <button class="btn btn-outline-danger register-btn" onClick="showLoginForm()">Login</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
+              <button ><a href="{% provider_login_url "google" %}">Google login</a></button>
+              <button ><a href="{% url 'social:begin' 'facebook' %}">Facebook login</a></button>
+              <div>
+                <h3>
+                    {% for message in messages %}
+                    {{message}}
+                    {% endfor %}
+                </h3>
+            </div>
             </div>
           </div>
 
