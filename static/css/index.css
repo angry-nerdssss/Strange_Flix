@@ -1,10 +1,42 @@
-#carousal-section{
+.top-carousel-div{
+    width: 100%;
     margin-top: 7rem;
-    padding: 1rem 2rem;
+    padding: 0 5%;
+    margin-bottom: 5%;
 }
 
-.carousal-main-div{
-    background-color: aqua;
+.slide{
     width: 100%;
-    height: 500px;
+}
+
+.carousel-item, .carousel-inner{
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: rgb(17, 16, 16);
+}
+
+
+.image-div{
+    text-align: right;
+    margin-right: 0;
+    width: fit-content;
+}
+
+/* .side-content{
+    width: 50%;
+    text-align: right;
+    color: white;
+    z-index: 0;
+    display: inline;
+    background: linear-gradient(to left, rgba(0,0,0,1) 100%,rgba(0,0,0,0) 0%);
+} */
+
+.carousel-img{
+    margin-right: 0;
+    /* height: 100%; */
+    width: auto;
+}
+
+.carousel-indicators{
+    z-index: 2;
 }
