@@ -25,7 +25,40 @@
                     </ul>
                 </div>
                 <button class="btn btn-outline-danger sub-btn">Subscribe</button>
+                <div id="paypal-button-container"></div>
+                <script src="https://www.paypal.com/sdk/js?client-id=AWbxQPbRkjrmAqYUDegrLZ_CiOy3H0-mTAJBIAzCgaM913ZttWPtYGpxBZRv2I_CiKuZ7PswSSbH4yj6&currency=USD"></script>
 
+                <script>
+                    // Render the PayPal button into #paypal-button-container
+                    paypal.Buttons({
+                        style: {
+                            color:  'blue',
+                            shape:  'pill',
+                            label:  'pay',
+                            height: 40
+                        },
+                        // Set up the transaction
+                        createOrder: function(data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: '0.99'
+                                    }
+                                }]
+                            });
+                        },
+            
+                        // Finalize the transaction
+                        onApprove: function(data, actions) {
+                            return actions.order.capture().then(function(details) {
+                                // Show a success message to the buyer
+                                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                            });
+                        }
+            
+            
+                    }).render('#paypal-button-container');
+                </script>
             </div>
         </div>
         <div class="col-sm-12 col-md-6">
