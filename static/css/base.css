@@ -14,6 +14,7 @@ body{
 }
 
 
+
 /* ---------------custom bootstrap */
 
 
@@ -151,4 +152,43 @@ body{
     width: 5rem;
     margin-top: 1rem;
     margin-right: 0.5rem;
+}
+
+/* footer */
+
+.touch{
+    padding: 7% 15% 0 15%;
+    background-color: black;
+}
+
+h3{
+    color: white;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+
+.contact-us-btn{
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.container-fluid{
+    text-align: center;
+    padding: 3%;
+}
+
+.footer-icon{
+    margin: 3% 5%;
+    color: #414141;
+}
+
+.footer-icon:hover{
+    color: #af0404;
+    transform: scale(1.2);
+}
+
+.col-lg-4{
+    padding: 1rem;
 }
