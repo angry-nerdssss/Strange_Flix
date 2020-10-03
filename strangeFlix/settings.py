@@ -49,6 +49,8 @@ INSTALLED_APPS = [
        'allauth.socialaccount.providers.facebook',
          'allauth.socialaccount.providers.google',
          'social_django',
+         'youtube_video',
+           'embed_video',
 ]
 
 MIDDLEWARE = [
@@ -172,7 +174,7 @@ EMAIL_PASSWORD = "bxtklkjhkuwobeev" # os.environ['password_key'] suggested
 EMAIL_MAIL_SUBJECT = 'Confirm your email'
 EMAIL_MAIL_HTML = 'mail_body.html'
 #EMAIL_MAIL_PLAIN = 'mail_body.txt'
-EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+EMAIL_PAGE_TEMPLATE = 'index.html'
 EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
 
 
