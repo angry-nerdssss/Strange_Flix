@@ -9,12 +9,6 @@ window.addEventListener("scroll", function(event) {
     }else{
         document.querySelector(".dark-bar").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
     }
-
-    // if(window.innerHeight + this.scrollY >= document.body.offsetHeight){
-    //     console.log("at bottom");
-    //     $(".touch")[0].animate({opacity : "1"});
-    // }
-
 }); 
 
 // hideLoginForm();

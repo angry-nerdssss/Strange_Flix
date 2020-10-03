@@ -74,3 +74,6 @@ def register(request):
 
 def subscription(request):
     return render(request,"subscription.html")
+
+def video(request):
+    return render(request,"video.html")
