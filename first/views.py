@@ -75,3 +75,10 @@ def register(request):
 
 def subscription(request):
     return render(request,"subscription.html")
+
+def video_upload_choice(request):
+    return render(request,"video_upload_choice.html")
+
+def video(request):
+    return render(request,"video.html")
+

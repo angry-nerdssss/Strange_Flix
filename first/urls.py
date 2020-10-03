@@ -5,8 +5,13 @@ from . import views
 urlpatterns=[
  
     path('',views.index,name='index'),
-        path('register',views.register,name='register'),
+    path('register',views.register,name='register'),
     path('login',views.login,name='login'),
     path('logout',views.logout,name='logout'),
-    path('subscription', views.subscription, name='subscription')
+    path('subscription', views.subscription, name='subscription'),
+
+    path('video_upload_choice', views.video_upload_choice, name='video_upload_choice'),
+
+    path('video', views.video, name='video')
+
 ]

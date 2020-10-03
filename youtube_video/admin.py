@@ -5,4 +5,4 @@ from .models import Item
 class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
 
-admin.site.register(MyModel, MyModelAdmin)
+admin.site.register(Item, MyModelAdmin)
