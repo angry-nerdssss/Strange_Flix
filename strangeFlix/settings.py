@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'youtube_video',
+    'video_embed',
         'django.contrib.sites',
          #allauth
     'allauth',
