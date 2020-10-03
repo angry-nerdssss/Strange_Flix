@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <!-- video player css -->
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
+    <!-- my css -->
+    <link rel="stylesheet" href="{% static 'css/video.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- video player -->
+    <section class="video-section">
+        <div class="container-fluid video-div">
+            <video id="videoPlayer" class="video-js vjs-big-play-centered"  data-setup='{}'>
+                <source src="{% static 'videos/v.mp4' %}" type="video/mp4" />
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+            <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+            <script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
+            <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
+        </div>
+        <div class="video-actions-div">
+            <h3 class="video-title">Video title</h3>
+            <h6 class="video-info">Category | Language | Date | Rating</h6>
+            <h6 class="video-content">Divided by time, united by a tragic incident. In a bittersweet reunion, seven middle-aged friends take a walk down the memory lane at the least expected place.</h6>
+            <br><br>
+
+            <div class="reactions">
+                <i class="fa fa-thumbs-up reaction-icon" aria-hidden="true"></i> 200
+                <i class="fa fa-thumbs-down reaction-icon" aria-hidden="true"></i> 1
+                <i class="fa fa-share-alt reaction-icon" aria-hidden="true"></i> SHARE
+            </div>
+             
+        </div>
+    </section>
+
+
+
+{% endblock %}

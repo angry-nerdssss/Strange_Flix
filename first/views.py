@@ -78,3 +78,7 @@ def subscription(request):
 
 def video_upload_choice(request):
     return render(request,"video_upload_choice.html")
+
+def video(request):
+    return render(request,"video.html")
+

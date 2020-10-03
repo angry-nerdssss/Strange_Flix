@@ -1,9 +1,227 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% endblock %}
 
 {% block content %}
 
+    <div class="top-carousel-div">
+        <div id="top-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#top-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#top-carousel" data-slide-to="1"></li>
+                <li data-target="#top-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="image-div">
+                        <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                    </div>
+                    <div class="side-content">
+                        <!-- to be filled with lines -->
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="image-div">
+                        <div class="image-div">
+                            <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                        </div>
+                        <div class="side-content">
+                            <!-- to be filled with lines -->
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="image-div">
+                        <div class="image-div">
+                            <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                        </div>
+                        <div class="side-content">
+                            <!-- to be filled with lines -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#top-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#top-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
 
+
+    <div class="carousel-movies">
+        <div id="movie-carousel1" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    
+                    <div class="row movie-row">
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row movie-row">                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#movie-carousel1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#movie-carousel1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="feature">
+        <div class="row feature-row">
+            <div class="col-md-6">
+                <div class="feature-info">
+                    <h1>Watch anytime anywhere</h1>
+                    <h4>Stream unlimited videos on your phone, tablet, laptop, and TV.</h4>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-image-box">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row feature-row">
+            <div class="col-md-6">
+                <div class="feature-info">
+                    <h1>Watch anytime anywhere</h1>
+                    <h4>Stream unlimited videos on your phone, tablet, laptop, and TV.</h4>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-image-box">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row feature-row">
+            <div class="col-md-6">
+                <div class="feature-info">
+                    <h1>Watch anytime anywhere</h1>
+                    <h4>Stream unlimited videos on your phone, tablet, laptop, and TV.</h4>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-image">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- faqs -->
+
+        <div class="faqs">
+
+            <h1 class="faq-heading">Frequently Asked Questions</h1>
+
+            <div class="btn collapse-btn" data-toggle="collapse" href="#q1">
+                <h2 class="ques">Lorem ipsum doler sit amet ?</h2>
+                <!-- <h1 class="add-icon">+</h1> -->
+            </div>
+            <div class="collapse" id="q1">
+                <div class="faq-ans">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+
+            <div class="btn collapse-btn" data-toggle="collapse" href="#q2">
+                <h2 class="ques">Lorem ipsum doler sit amet ?</h2>
+                <!-- <h1 class="add-icon">+</h1> -->
+            </div>
+            <div class="collapse" id="q2">
+                <div class="faq-ans">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 
 {% endblock %}
