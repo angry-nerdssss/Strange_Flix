@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 from django_email_verification import urls as mail_urls
 
 urlpatterns = [
+    path('', include('youtube_video.urls')),
       path('first/',include('first.urls')),
     path('admin/', admin.site.urls),
      path('accounts/', include('allauth.urls')),
      path('email/', include(mail_urls)),
     path('oauth/', include('social_django.urls', namespace='social')),
-    path('youtube_video/', include('youtube_video.urls')),
+    
 ]
