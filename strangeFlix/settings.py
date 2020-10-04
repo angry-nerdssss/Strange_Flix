@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'youtube_video',
-    'video_embed',
+    'embed_video',
+    
         'django.contrib.sites',
          #allauth
     'allauth',
@@ -128,7 +129,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    
+    'django.core.context_processors.request',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

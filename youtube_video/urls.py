@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns=[
  
-    path('yvideo',views.yvideo,name='yvideo'),
+    path('',views.yvideo,name='yvideo'),
     
 ]

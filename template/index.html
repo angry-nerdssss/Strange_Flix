@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+
 {% block css %}
 
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -99,6 +101,19 @@
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
+                    </div>
+                    <div class="row movie-row">
+                        {% for i in obj %}
+                        <div class="col-sm-2">
+                            <div class="movie-img-container">
+                                <a href="{% url 'youtube_video:play_this_youtube' url=i.video.url %}">
+                                    
+                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image" ></a>
+                    
+                            </div>
+
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -225,3 +240,4 @@
     
 
 {% endblock %}
+
