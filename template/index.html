@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
 
+{% load static %}
+{% load youtube_thumbnail %}
 
 
 {% block css %}
@@ -65,53 +66,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     
-                    <div class="row movie-row">
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="row movie-row">
                         {% for i in obj %}
                         <div class="col-sm-2">
                             <div class="movie-img-container">
-                                <a href="{% url 'youtube_video:play_this_youtube' url=i.video.url %}">
+                                <a href="{% url 'play_yvideo' i.id %}">
                                     
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image" ></a>
-                    
+                            <img  src="{% youtube_thumbnail_url  'https://www.youtube.com/embed/7lfFZs50JHM' %}" alt="avenger image" ></a>
                             </div>
-
                         </div>
                         {% endfor %}
                     </div>
