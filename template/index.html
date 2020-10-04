@@ -107,8 +107,26 @@
                         <div class="col-sm-2">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
+                               
+                                <img class="movie-icon" id="y_thumbnail" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v"  alt="avenger image" >
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                        
+                                        document.getElementById('y_thumbnail').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
                                     
-                                <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image" ></a>
+                                        
+                                </script></a>
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                    </script>
                             </div>
                         </div>
                         {% endfor %}

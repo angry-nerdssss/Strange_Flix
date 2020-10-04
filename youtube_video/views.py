@@ -8,4 +8,5 @@ def yvideo(request):
 
 def play_this_youtube(request,id):
     item = get_object_or_404(Item,pk = id)
+    #print(f"***********{item.video.Thumbnail}**************")
     return render(request,'youtube_video_player.html',{'new_url':item.video})
