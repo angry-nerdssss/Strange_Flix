@@ -3,12 +3,13 @@
 }
 
 .video-div{
-    height: fit-content;
-    padding: 0;
+    width: 100%;
+    height: 60%;
 }
 
 .video-js, .vjs-big-play-centered{
     width: 100%;
+    padding-top: 50%;
 }
 
 .video-actions-div{
