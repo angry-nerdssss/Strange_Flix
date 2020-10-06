@@ -178,7 +178,6 @@
                                     }
                                     document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
                                 </script></a>
-                            
                             </div>
                         </div>
                         {% endfor %}
@@ -198,32 +197,7 @@
     </div>
 
     <div class="feature">
-        <div class="row feature-row">
-            <div class="col-md-6">
-                <div class="feature-info">
-                    <h1>Watch anytime anywhere</h1>
-                    <h4>Stream unlimited videos on your phone, tablet, laptop, and TV.</h4>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="feature-image-box">
-                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="row feature-row">
-            <div class="col-md-6">
-                <div class="feature-info">
-                    <h1>Watch anytime anywhere</h1>
-                    <h4>Stream unlimited videos on your phone, tablet, laptop, and TV.</h4>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="feature-image-box">
-                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
-                </div>
-            </div>
-        </div>
+        
         <div class="row feature-row">
             <div class="col-md-6">
                 <div class="feature-info">
@@ -233,7 +207,7 @@
             </div>
             <div class="col-md-6">
                 <div class="feature-image">
-                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
+                    <img src="{% static 'images/mobile.jpg' %}" alt="">
                 </div>
             </div>
         </div>
