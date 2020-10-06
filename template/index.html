@@ -60,102 +60,85 @@
     </div>
 
 
+    <!-- Popular movies carousel -->
     <div class="carousel-movies">
+        <h3 class="carousel-heading">Popular movies</h1>
         <div id="movie-carousel1" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     
                     <div class="row movie-row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                     </div>
-                    <div class="row movie-row">
-                        {% for i in obj %}
-                        <div class="col-sm-2">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_yvideo' i.id %}">
-                               
-                                <img class="movie-icon" id="{{i.video}}" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v"  alt="avenger image" >
-                                <script type="text/javascript">
-                                    function youtube_parser(url){
-                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-                                        var match = url.match(regExp);
-                                        return (match&&match[7].length==11)? match[7] : false;
-                                    }
-                                    document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
-                                </script></a>
-                            
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
+                    
                 </div>
                 <div class="carousel-item">
                     <div class="row movie-row">                        
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
                         </div>
                         
-                        <div class="col-sm-2">
+                        <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <img class="movie-icon" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v" alt="avenger image">
                             </div>
@@ -168,6 +151,46 @@
                 <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#movie-carousel1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Popular movies carousel -->
+    <div class="carousel-movies">
+        <h3 class="carousel-heading">Popular Youtube Videos</h1>
+        <div id="movie-carousel2" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row movie-row">
+                        {% for i in obj %}
+                        <div class="col-sm-4 col-lg-2 col">
+                            <div class="movie-img-container">
+                                <a href="{% url 'play_yvideo' i.id %}">
+                               
+                                <img class="movie-icon" id="{{i.video}}" src=""  alt="avenger image" >
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                    document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                </script></a>
+                            
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div> 
+                </div>
+                
+            </div>
+            <a class="carousel-control-prev" href="#movie-carousel2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#movie-carousel2" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>

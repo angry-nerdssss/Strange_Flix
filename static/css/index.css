@@ -28,14 +28,15 @@
     z-index: 2;
 }
 
-.movie-img-container{
-    width: 100%;
-    height: fit-content;
-}
+
 
 
 
 /* Movies */
+
+.carousel-movies{
+    margin-bottom: 3%;
+}
 
 .small-carousel-heading{
     color: aliceblue;
@@ -43,11 +44,11 @@
 }
 
 .movie-row{
-    margin: 5% 5%;
+    margin: 0 5%;
 }
 
 .movie-img-container{
-    width: fit-content;
+    width: 100%;
 }
 
 .movie-icon{
@@ -67,8 +68,18 @@
     cursor: pointer;
 }
 
-#movie-carousel1 .carousel-control-prev, #movie-carousel1 .carousel-control-next{
+.carousel-movies .carousel-control-prev, .carousel-movies .carousel-control-next{
     width: 5rem;
+}
+
+.col{
+    padding: 1%;
+}
+
+.carousel-heading{
+    margin: 1% 6%;
+    color: white;
+    text-align: left;
 }
 
 /* css for features */
