@@ -126,7 +126,7 @@ body{
     background-color: black ;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10rem;
+    margin-top: 7rem;
     width: 70%;
     color: rgb(211, 203, 203);
     border-radius: 1%;
@@ -190,5 +190,10 @@ h3{
 }
 
 .col-lg-4{
+    padding: 1rem;
+    margin: 0;
+}
+
+.col-lg-12{
     padding: 1rem;
 }

@@ -28,6 +28,10 @@
     z-index: 2;
 }
 
+.movie-img-container{
+    width: 100%;
+    height: fit-content;
+}
 
 
 

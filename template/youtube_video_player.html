@@ -15,11 +15,10 @@
     <!-- video player -->
     <section class="video-section">
         <div class="video-div">
-            <!-- <div class="wrapper"> -->
-                <iframe src="{{new_url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <!-- </div> -->
-            
             <script type="text/javascript" src="{% static 'js/youtube_video_player.js' %}"></script>
+            
+                <iframe src="{{new_url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
         </div>
         <div class="video-actions-div">
             <h3 class="video-title">Video title</h3>
