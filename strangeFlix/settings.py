@@ -34,15 +34,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-        'first.apps.FirstConfig',
+    'first.apps.FirstConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party add
     'youtube_video',
     'embed_video',
+    'taggit',
     
         'django.contrib.sites',
          #allauth
