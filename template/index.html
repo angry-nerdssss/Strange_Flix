@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load youtube_thumbnail %}
+
 
 
 {% block css %}
@@ -68,12 +68,25 @@
                     
                    
                     <div class="row movie-row">
-                        {% for i in obj %}
+                        {% for i in items %}
                         <div class="col-sm-2">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
+                               
+                                <img class="movie-icon" id="{{i.video}}" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v"  alt="avenger image" >
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                        
+                                        document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
                                     
-                            <img  src="{% youtube_thumbnail_url  'https://www.youtube.com/embed/7lfFZs50JHM' %}" alt="avenger image" ></a>
+
+                                        
+                                </script></a>
+                              
                             </div>
                         </div>
                         {% endfor %}
