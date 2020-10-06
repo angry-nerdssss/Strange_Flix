@@ -18,15 +18,20 @@
             <div class="wrapper">
                 
   
-                <iframe width="560" height="315" src="{{new_url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="{{item.video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             
             <script type="text/javascript" src="{% static 'js/youtube_video_player.js' %}"></script>
         </div>
         <div class="video-actions-div">
-            <h3 class="video-title">Video title</h3>
-            <h6 class="video-info">Category | Language | Date | Rating</h6>
-            <h6 class="video-content">Divided by time, united by a tragic incident. In a bittersweet reunion, seven middle-aged friends take a walk down the memory lane at the least expected place.</h6>
+            <h3 class="video-title">{{item.title}}</h3>
+            <h6 class="video-info">{{item.category}} | {{item.publish_date}} | Rating</h6>
+            <div style="display:flex">
+                {% for tag in item.tags.all %}
+                <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                {% endfor %}
+            </div>
+            <h6 class="video-content">{{item.desciption}}</h6>
             <br><br>
 
             <div class="reactions">
