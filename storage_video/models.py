@@ -7,6 +7,7 @@ from datetime import date
 
 class Video(models.Model):
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
+    poster= models.FileField(upload_to='images/', null=True, verbose_name="")
     title=models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     publish_date= models.DateField(auto_now_add=True)
@@ -15,5 +16,3 @@ class Video(models.Model):
     tags = TaggableManager()
     def __str__(self):
         return self.title + ": " + str(self.videofile)
-
-

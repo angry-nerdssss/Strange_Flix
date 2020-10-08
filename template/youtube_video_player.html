@@ -25,9 +25,11 @@
         </div>
         <div class="video-actions-div">
             <h3 class="video-title">{{item.title}}</h3>
+
             <h6 class="video-info">
                 {{item.category}} | Language | {{item.publish_date}} | Rating</h6>
             <h6 class="video-content">{{item.description}}</h6>
+
             <br><br>
             <div style="display:flex">
                 {% for tag in post.tags.all %}

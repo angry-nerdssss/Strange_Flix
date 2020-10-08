@@ -4,6 +4,7 @@ from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from datetime import date
 
+
 class Item(models.Model):
     video = models.URLField(max_length=200)  # same like models.URLField()
     title = models.CharField(max_length=100)

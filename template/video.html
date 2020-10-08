@@ -15,7 +15,7 @@
     <section class="video-section">
         <div class="container-fluid video-div">
             <video id="videoPlayer" class="video-js vjs-big-play-centered"  data-setup='{}'>
-                <source src="{% static 'videos/v.mp4' %}" type="video/mp4" />
+                <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
@@ -27,9 +27,9 @@
             <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
         </div>
         <div class="video-actions-div">
-            <h3 class="video-title">Video title</h3>
-            <h6 class="video-info">Category | Language | Date | Rating</h6>
-            <h6 class="video-content">Divided by time, united by a tragic incident. In a bittersweet reunion, seven middle-aged friends take a walk down the memory lane at the least expected place.</h6>
+            <h3 class="video-title">{{video.title}}</h3>
+            <h6 class="video-info">{{video.category}} | Language | {{video.publish_date}} | Rating</h6>
+            <h6 class="video-content">{{video.description}}</h6>
             <br><br>
 
             <div class="reactions">

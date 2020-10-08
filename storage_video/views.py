@@ -1,60 +1,50 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Item
 from django.template.defaultfilters import slugify
-from .forms import ItemForm
 from taggit.models import Tag
+from .models import Video
+from .forms import VideoForm
 
-def yvideo(request):
-    items=Item.objects.all()
-    context={
-        'items':items,
-    }
-    return render(request,'index.html',context)
-
-def play_this_youtube(request,id):
-    item = get_object_or_404(Item,pk = id)
-    context={
-        'item':item,
-    }
-    #print(f"***********{item.video.Thumbnail}**************")
-    return render(request,'youtube_video_player.html',context)
-
-def yvideo_upload_view(request):
-    items = Item.objects.order_by('-publish_date')
-    common_tags = Item.tags.most_common()[:4]
-    form = ItemForm(request.POST)
+def svideo_upload_view(request):
+    videos=Video.objects.order_by('-publish_date')
+    common_tags = Video.tags.most_common()[:4]
+    form= VideoForm(request.POST,request.FILES)
     if form.is_valid():
-        newitem = form.save(commit=False)
-        newitem.slug = slugify(newitem.title)
-        newitem.save()
+        newvideo = form.save(commit=False)
+        newvideo.slug = slugify(newvideo.title)
+        newvideo.save()
         form.save_m2m()
-    context={
-        'items':items,
-        'common_tags':common_tags,
-        'form':form,
+    context= {'videos': videos,
+              'common_tags':common_tags,
+              'form': form,
+              }
+    return render(request, 'svideo_upload.html', context)
 
-    }
-    return render(request,'yvideo_upload.html',context)
 
-def yvideo_detail_view(request,slug):
-    item = get_object_or_404(Item, slug=slug)
+
+
+def svideo_detail_view(request,slug):
+    video = get_object_or_404(Video, slug=slug)
     context = {
-        'item':item,
+        'video':video,
     }
-    return render(request, 'yvideo_detail.html', context)
+    return render(request, 'svideo_detail.html', context)
 
 
-def yvideo_tagged(request,slug):
+def svideo_tagged(request,slug):
     tag = get_object_or_404(Tag,slug=slug)
-    common_tags = Item.tags.most_common()[:4]
-    items = Item.objects.filter(tags=tag)
+    common_tags = Video.tags.most_common()[:4]
+    videos = Video.objects.filter(tags=tag)
     context={
         'tag':tag,
-         'common_tags':common_tags,
-        'items':items,
+        'common_tags':common_tags,
+        'videos':videos,
         
     }
-    return render(request,'yvideo_upload.html',context)
+    return render(request,'svideo_upload.html',context)
 
-        
-
+def video(request,id):
+    video =get_object_or_404(Video,pk=id)
+    context={
+        'video':video,
+    }
+    return render(request,'video.html',context)

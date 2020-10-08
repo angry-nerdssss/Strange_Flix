@@ -1,6 +1,8 @@
 from django.contrib import admin
 from embed_video.admin import AdminVideoMixin
-from .models import Item
+
+from .models import Video
 
 
-admin.site.register(Item)
+admin.site.register(Video)
+

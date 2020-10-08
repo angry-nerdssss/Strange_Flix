@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-        'first.apps.FirstConfig',
+    'first.apps.FirstConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party add
     'youtube_video',
     'embed_video',
     'storage_video',
@@ -111,6 +112,7 @@ DATABASES = {
         'USER' : 'postgres',
         'PASSWORD' : '995687',
         'HOST' : 'localhost'
+
     }
 }
 
@@ -159,6 +161,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL="/"

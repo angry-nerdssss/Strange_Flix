@@ -14,19 +14,18 @@
         }
             
             document.getElementById('{{item.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{item.video}}")+'/default.jpg');
-        
 
             
     </script></a>
 
-<div class="form-group">
-    <label>{{item.description}}</label>
-    <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
-</div>
+
+
 
 {% for tag in item.tags.all %}
 <a href="#" class="badge badge-info" >{{ tag }}</a>
 {% endfor %}
 <p>{{item.category}}</p>
 <p>{{item.publish_date}}</p>
+
 {% endblock content %} 
+
