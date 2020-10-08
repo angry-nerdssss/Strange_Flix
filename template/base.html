@@ -19,6 +19,9 @@
         <!-- my css -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
+        <!-- button css -->
+        <link rel="stylesheet" href="{% static 'css/button.css' %}">
+
         {% block css %}
 
         {% endblock %}
@@ -80,19 +83,24 @@
               </form>
               <button class="btn btn-outline-danger change-btn" onClick="showRegisterationForm()">Register</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
+              <div class="col-sm-8 col-lg-6 social-btn">
+                <a class="btn btn-block btn-social btn-google" href="{% provider_login_url "google" %}"><i class="fab fa-google"></i>Google login</a>
+              </div>
+              <div class="col-sm-8 col-lg-6 social-btn">
+                <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook"></i>Facebook login</a>
+              </div>
               <div>
                 <h3>
                     {% for message in messages %}
                     {{message}}
                     {% endfor %}
                 </h3>
-            </div>
+              </div>
             </div>
           </div>
 
 
           <!-- registration form -->
-
           <div class="registration-form-container">
             <div class="form-div">
               <h3 class="form-heading">Register</h3>
@@ -115,15 +123,20 @@
               </form>
               <button class="btn btn-outline-danger change-btn" onClick="showLoginForm()">Login</button>
               <button class="btn btn-outline-dark cancel-btn" onclick="hideBothForm()">Cancel</button>
-              <button ><a href="{% provider_login_url "google" %}">Google login</a></button>
-              <button ><a href="{% url 'social:begin' 'facebook' %}">Facebook login</a></button>
+              <br>
+              <div class="col-sm-8 col-lg-6 social-btn">
+                <a class="btn btn-block btn-social btn-google" href="{% provider_login_url "google" %}"><i class="fab fa-google"></i>Google login</a>
+              </div>
+              <div class="col-sm-8 col-lg-6 social-btn">
+                <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook"></i>Facebook login</a>
+              </div>
               <div>
                 <h3>
                     {% for message in messages %}
                     {{message}}
                     {% endfor %}
                 </h3>
-            </div>
+              </div>
             </div>
           </div>
 
