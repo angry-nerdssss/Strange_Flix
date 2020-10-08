@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'youtube_video',
     'embed_video',
+    'storage_video',
     
         'django.contrib.sites',
          #allauth
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                     'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -187,3 +189,5 @@ EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
 SOCIAL_AUTH_FACEBOOK_KEY = '702462980620837'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '4cefdda15584d359846b691e1912a1ed'  # App 
 
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"
