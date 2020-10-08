@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'youtube_video',
     'embed_video',
     'taggit',
+    'storage_video',
     
         'django.contrib.sites',
          #allauth
@@ -83,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                     'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -106,10 +108,11 @@ WSGI_APPLICATION = 'strangeFlix.wsgi.application'
 DATABASES = {
       'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'StrangeFlix',
-        'USER' : 'postgres',
-        'PASSWORD' : '1234',
-        'HOST' : 'localhost'
+        'NAME': 'Strange_Flix',
+        'USER' : 'om',
+        'PASSWORD' : 'omkantmishra',
+        'HOST' : 'database-1.cwkceqkggw1z.us-east-1.rds.amazonaws.com',
+        'PORT' : '5432',
     }
 }
 
@@ -158,6 +161,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL="/"
