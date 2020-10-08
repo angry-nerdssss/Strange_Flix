@@ -19,6 +19,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
 from django_email_verification import urls as mail_urls
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', include('youtube_video.urls')),
@@ -27,5 +29,6 @@ urlpatterns = [
      path('accounts/', include('allauth.urls')),
      path('email/', include(mail_urls)),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('storage_video/',include('storage_video.urls')),
     
-]
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

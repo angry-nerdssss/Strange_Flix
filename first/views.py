@@ -8,10 +8,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
-
+from storage_video.models import Video
+from youtube_video.models import Item
 
 def index(request) :
-     return render(request,"index.html");
+    items = Item.objects.all()
+    videos = Video.objects.all()
+    context = {
+        'items':items,
+        'videos':videos,
+    }
+    return render(request,"index.html",context)
 
 
 

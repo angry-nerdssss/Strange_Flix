@@ -16,7 +16,7 @@ def play_this_youtube(request,id):
     context={
         'item':item,
     }
-    #print(f"****{item.video.Thumbnail}*****")
+    #print(f"***********{item.video.Thumbnail}**************")
     return render(request,'youtube_video_player.html',context)
 
 def yvideo_upload_view(request):
@@ -55,3 +55,6 @@ def yvideo_tagged(request,slug):
         
     }
     return render(request,'yvideo_upload.html',context)
+
+        
+

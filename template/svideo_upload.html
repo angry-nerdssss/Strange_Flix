@@ -1,0 +1,79 @@
+{% extends 'base_yvideo_upload.html' %}
+
+{% block content %}
+        <div class="container pt-5">
+            <form enctype="multipart/form-data" method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Video</label>
+                    
+                    <input type="file" class="form-control" id="myFile" name="videofile" placeholder="Add video here" >
+                </div>
+                <div class="form-group">
+                    <label>Poster</label>
+                    
+                    <input type="file" class="form-control" id="myFile" name="poster" placeholder="Add poster image here" >
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Add title">
+                </div>
+
+                
+                <div class="form-group col-md-12">
+                    <label for="mobile">Category:</label>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <input type="checkbox" id="cb1" name="category">
+                            <label for="cb1">Movies</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <input type="checkbox" id="cb2" name="category">
+                            <label for="cb2">tv shows</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <input type="checkbox" id="cb3" name="category">
+                            <label for="cb3">web series</label>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tags</label>
+                    <input type="text" data-role="tagsinput" class="form-control" name="tags">
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <p>Common Tags: 
+            {% for mt in common_tags %}
+                <a href="#" class="badge badge-success">{{mt}}</a>
+            {% endfor %}
+            </p>
+            <div class="row mb-2 posts">
+                    {% for video in videos %}
+                    <div class="col-md-6">
+                        <div class="cards">
+                            <div class="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <h3 class="my-1"><a href="{% url 's_detail' video.slug %}">{{video.title}}</a></h3>
+                                    <div style="display:flex">
+                                        {% for tag in video.tags.all %}
+                                        <a href="{% url 's_tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <p class="mb-auto">{{video.category}}</p>
+                                    <p class="mb-auto text-muted">{{video.publish_date}}</p>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>    
+{% endblock content %}

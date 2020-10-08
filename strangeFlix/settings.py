@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     #third party add
     'youtube_video',
     'embed_video',
-    'taggit',
+    'storage_video',
     
         'django.contrib.sites',
          #allauth
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
        'allauth.socialaccount.providers.facebook',
          'allauth.socialaccount.providers.google',
          'social_django',
+        'taggit',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                     'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -110,7 +112,8 @@ DATABASES = {
         'NAME': 'StrangeFlix',
         'USER' : 'postgres',
         'PASSWORD' : '1234',
-        'HOST' : 'localhost'
+        'HOST' : 'localhost',
+
     }
 }
 
@@ -160,6 +163,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"
+
 SITE_ID = 1
 LOGIN_REDIRECT_URL="/"
 
@@ -188,3 +194,6 @@ EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '702462980620837'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '4cefdda15584d359846b691e1912a1ed'  # App 
+
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"

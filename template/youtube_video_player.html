@@ -21,14 +21,17 @@
         </div>
         <div class="video-actions-div">
             <h3 class="video-title">{{item.title}}</h3>
-            <h6 class="video-info">{{item.category}} | {{item.publish_date}} | Rating</h6>
+
+            <h6 class="video-info">
+                {{item.category}} | Language | {{item.publish_date}} | Rating</h6>
+            <h6 class="video-content">{{item.description}}</h6>
+
+            <br><br>
             <div style="display:flex">
-                {% for tag in item.tags.all %}
+                {% for tag in post.tags.all %}
                 <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
                 {% endfor %}
             </div>
-            <h6 class="video-content">{{item.desciption}}</h6>
-            <br><br>
 
             <div class="reactions">
                 <i class="fa fa-thumbs-up reaction-icon" aria-hidden="true"></i> 200

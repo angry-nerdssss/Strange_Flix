@@ -1,6 +1,7 @@
 {% extends 'base_yvideo_upload.html' %}
 
 {% block content %}
+
 <h2>{{item.title}}</h2>
 <a href="{% url 'play_yvideo' item.id %}">
                                
@@ -13,14 +14,18 @@
         }
             
             document.getElementById('{{item.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{item.video}}")+'/default.jpg');
-        
+
             
     </script></a>
+
+
+
 
 {% for tag in item.tags.all %}
 <a href="#" class="badge badge-info" >{{ tag }}</a>
 {% endfor %}
 <p>{{item.category}}</p>
 <p>{{item.publish_date}}</p>
-<h6 class="video-content">{{item.desciption}}</h6>
-{% endblock content %}     
+
+{% endblock content %} 
+
