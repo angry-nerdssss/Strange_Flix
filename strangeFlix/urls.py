@@ -23,8 +23,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', include('youtube_video.urls')),
-      path('first/',include('first.urls')),
+    path('youtube_video/', include('youtube_video.urls')),
+      path('',include('first.urls')),
     path('admin/', admin.site.urls),
      path('accounts/', include('allauth.urls')),
      path('email/', include(mail_urls)),

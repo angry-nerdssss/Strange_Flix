@@ -15,7 +15,7 @@
     <section class="video-section">
         <div class="container-fluid video-div">
             <video id="videoPlayer" class="video-js vjs-big-play-centered"  data-setup='{}'>
-                <source src="{% static 'videos/{{video.videofile}}' %}" type="video/mp4" />
+                <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that

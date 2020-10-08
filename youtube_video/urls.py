@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns=[
  
-    path('',views.yvideo,name='yvideo'),
+    #path('',views.yvideo,name='yvideo'),
     path('video/<int:id>/', views.play_this_youtube,name='play_yvideo'),
     path('tag/<slug:slug>/',views.yvideo_tagged,name='tagged'),
     path('detail/<slug:slug>/',views.yvideo_detail_view,name='detail'),

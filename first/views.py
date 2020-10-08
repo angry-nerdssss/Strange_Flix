@@ -8,10 +8,16 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
-
-
+from youtube_video.models import Item
+from storage_video.models import Video
 def index(request) :
-     return render(request,"index.html");
+    items=Item.objects.all()
+    videos=Video.objects.all()
+    context={
+        'items':items,
+        'videos':videos,
+    }
+    return render(request,'index.html',context)
 
 
 
@@ -79,6 +85,5 @@ def subscription(request):
 def video_upload_choice(request):
     return render(request,"video_upload_choice.html")
 
-def video(request):
-    return render(request,"video.html")
+
 

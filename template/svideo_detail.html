@@ -4,7 +4,8 @@
 <h2>{{video.title}}</h2>
 <a href="{% url 'play_svideo' video.id %}">
                                
-    <img class="movie-icon" src="{{video.poster}}" >
+    <img class="movie-icon" src='{{ MEDIA_URL }}{{ video.poster }}' >
+ 
     </a>
 
 {% for tag in video.tags.all %}
@@ -13,4 +14,4 @@
 <p>{{video.category}}</p>
 <p>{{video.publish_date}}</p>
 <h6 class="video-content">{{video.desciption}}</h6>
-{% endblock content %}     
+{% endblock content %}
