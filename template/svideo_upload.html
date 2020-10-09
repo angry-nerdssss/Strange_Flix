@@ -1,18 +1,23 @@
 {% extends 'base_yvideo_upload.html' %}
+{% load static %}
 
 {% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/addvideo.css' %}">
+
         <div class="container pt-5">
+            <h1>STRANGEFLIX</h1>
+            <h3>Add Youtube Video</h3>
             <form enctype="multipart/form-data" method="POST" action="">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label>Video</label>
-                    
-                    <input type="file" class="form-control" id="myFile" name="videofile" placeholder="Add video here" >
+                    <label>Video</label><br>
+                    <input type="file" id="myFile" name="videofile" placeholder="Add video here" >
                 </div>
                 <div class="form-group">
-                    <label>Poster</label>
+                    <label>Poster</label><br>
                     
-                    <input type="file" class="form-control" id="myFile" name="poster" placeholder="Add poster image here" >
+                    <input type="file" id="myFile" name="poster" placeholder="Add poster image here" >
                 </div>
                 <div class="form-group">
                     <label>Title</label>
@@ -48,11 +53,11 @@
                     <label>Description</label>
                     <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-outline-danger btn-lg">Submit</button>
             </form>
             <p>Common Tags: 
             {% for mt in common_tags %}
-                <a href="#" class="badge badge-success">{{mt}}</a>
+                <a href="#" class="badge badge-danger">{{mt}}</a>
             {% endfor %}
             </p>
             <div class="row mb-2 posts">
@@ -64,7 +69,7 @@
                                     <h3 class="my-1"><a href="{% url 's_detail' video.slug %}">{{video.title}}</a></h3>
                                     <div style="display:flex">
                                         {% for tag in video.tags.all %}
-                                        <a href="{% url 's_tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                                        <a href="{% url 's_tagged' tag.slug %}" class="mr-1 badge badge-dark">#{{ tag }}</a>
                                         {% endfor %}
                                     </div>
                                     <p class="mb-auto">{{video.category}}</p>
