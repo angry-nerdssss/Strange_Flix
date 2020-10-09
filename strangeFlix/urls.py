@@ -31,4 +31,4 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
     path('storage_video/',include('storage_video.urls')),
     
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+]

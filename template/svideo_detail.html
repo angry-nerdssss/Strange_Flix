@@ -4,7 +4,7 @@
 <h2>{{video.title}}</h2>
 <a href="{% url 'play_svideo' video.id %}">
                                
-    <img class="movie-icon" src='{{ MEDIA_URL }}{{ video.poster }}' >
+    <img class="movie-icon" src='{{ video.poster }}' >
  
     </a>
 

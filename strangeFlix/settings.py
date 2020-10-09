@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #third party add
+    #third party app
     'youtube_video',
     'embed_video',
     'taggit',
     'storage_video',
+    'storages',
     
         'django.contrib.sites',
          #allauth
@@ -119,10 +120,10 @@ DATABASES = {
 DATABASES = {
       'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Strange_Flix',
-        'USER' : 'om',
-        'PASSWORD' : 'omkantmishra',
-        'HOST' : 'database-1.cwkceqkggw1z.us-east-1.rds.amazonaws.com',
+        'NAME': 'Strange_Flix2',
+        'USER' : 'puneet',
+        'PASSWORD' : 'puneetsharma',
+        'HOST' : 'database-1.cyswelz2ulw1.us-east-2.rds.amazonaws.com',
         'PORT' : '5432',
     }
 }
@@ -165,15 +166,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+'''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+'''
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
-MEDIA_URL= "/media/"
+#MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+#MEDIA_URL= "/static/media"
+
+#pras
+
+
+#dennis
+#MEDIA_URL = '/images/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL="/"
@@ -203,3 +212,34 @@ EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '702462980620837'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '4cefdda15584d359846b691e1912a1ed'  # App 
+
+#s3 bucket configuration
+AWS_ACCESS_KEY_ID = 'AKIATAILZLNSG2PGXAF5'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'strange-flix2-bucket1'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_OBJECT_PARAMETERS = {'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT','CacheControl': 'max-age=86400'}
+AWS_S3_CUSTOM_DOMAIN =f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+#
+STATIC_LOCATION = 'static'
+
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'strangeFlix.storage_backends.StaticStorage'
+#AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+MEDIAFILES_LOCATION='media'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+DEFAULT_FILES_STORAGE='strangeFlix.storage_backends.MediaStorage'
+
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+'''
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+https://strange-flix2-bucket1.s3.us-east-2.amazonaws.com/media/videos/The+Chainsmokers+-+Closer+(Lyric)+ft.+Halsey+-+YouTube.mp4
+https://strange-flix2-bucket1.s3.us-east-2.amazonaws.com/media/videos/The_Chainsmokers_-_Closer_Lyric_ft._Halsey_-_YouTube_2QJPal1.mp4
+https://strange-flix2-bucket1.s3.amazonaws.com/media/videos/The_Chainsmokers_-_Closer_Lyric_ft._Halsey_-_YouTube_2QJPal1.mp4
+https://strange-flix2-bucket1.s3.us-east-2.amazonaws.com/media/images/l.jpg
+https://strange-flix2-bucket1.s3.us-east-2.amazonaws.com/media/images/t.jpg
+'''
