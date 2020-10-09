@@ -78,11 +78,17 @@ body{
     border-color: red;
 }
 
-
-
 .pressed-danger{
     color: #af0404;
     border-color: red;
+}
+
+.btn-outline-dark{
+    margin-right: 1rem;
+}
+
+.btn-outline-dark:hover{
+    background-color: #414141;
 }
 
 .navbar-toggler{
