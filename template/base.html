@@ -56,9 +56,11 @@
                   <a class="nav-link" href="{% url 'add_storage_video' %}"  >add svideo</a>
                 </li>
               </ul>
-      
-                <button id="sign-in-button"   class="btn btn-lg btn-outline-danger" onclick="showLoginForm()">Sign In</button>
- 
+              <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-dark" type="submit">Search</button><br>
+              </form>
+                <button id="sign-in-button" class="btn btn-outline-danger" onclick="showLoginForm()">Sign In</button>
             </div>
           </nav>
 
