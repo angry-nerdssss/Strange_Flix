@@ -88,9 +88,8 @@ def feedback(request):
     }
     return render(request,'feedback.html',context)
 
-# by writing we are applying the condition that if user is logged in then only call feedback function
-@login_required(login_url='login')
-def feedback(request) :#this function is to take feedback
+##this function is to take feedback
+def feedback(request) :
     name = request.POST['name']
     email = request.POST['email']
     subject = request.POST['subject']

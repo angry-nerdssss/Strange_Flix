@@ -85,7 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                    'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
                 'django.template.context_processors.media',
             ],
