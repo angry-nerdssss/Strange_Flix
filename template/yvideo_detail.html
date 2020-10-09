@@ -1,31 +1,34 @@
 {% extends 'base_yvideo_upload.html' %}
+{% load static %}
 
 {% block content %}
 
 <h2>{{item.title}}</h2>
-<a href="{% url 'play_yvideo' item.id %}">
+
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
+    <div class="card shadow">
+        <img id="{{item.video}}" class="card-img-top" alt="Icon">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            {% for tag in item.tags.all %}
+            <a href="#" class="badge badge-danger" >{{ tag }}</a>
+            {% endfor %}
+            <p>{{item.category}}</p>
+            <p>{{item.publish_date}}</p>
+            <a href="{% url 'play_yvideo' item.id %}" class="btn btn-outline-danger">Play</a>
+        </div>
+    </div>
+
                                
-    <img class="movie-icon" id="{{item.video}}" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/4655/674655-v"  alt="avenger image" >
     <script type="text/javascript">
         function youtube_parser(url){
             var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
             var match = url.match(regExp);
             return (match&&match[7].length==11)? match[7] : false;
         }
-            
-            document.getElementById('{{item.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{item.video}}")+'/default.jpg');
-
-            
-    </script></a>
-
-
-
-
-{% for tag in item.tags.all %}
-<a href="#" class="badge badge-info" >{{ tag }}</a>
-{% endfor %}
-<p>{{item.category}}</p>
-<p>{{item.publish_date}}</p>
+        document.getElementById('{{item.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{item.video}}")+'/default.jpg');
+    </script>
 
 {% endblock content %} 
 

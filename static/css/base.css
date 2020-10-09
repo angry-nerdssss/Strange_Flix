@@ -51,6 +51,11 @@ body{
     color: red;
 }
 
+.badge{
+    background-color: red;
+    color: white;
+}
+
 .btn-danger{
     background-color: red;
 }
