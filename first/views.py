@@ -10,7 +10,9 @@ from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
 from storage_video.models import Video
 from youtube_video.models import Item
+from .models import Feedback
 
+#this function is to render to the main page when the user first searches for the site
 def index(request) :
     items = Item.objects.all()
     videos = Video.objects.all()
@@ -20,10 +22,7 @@ def index(request) :
     }
     return render(request,"index.html",context)
 
-
-
-
-
+#this function is to set login conditions and functionality
 def login(request) :
      if request.method == 'POST' :
          email = request.POST['email']
@@ -42,14 +41,13 @@ def login(request) :
          return render(request,"login.html")
 
 
-
+#this function is used to get user logged out
 def logout(request) :
     auth.logout(request)
     request.session['member_id'] = 0
     return redirect('/')
 
-
-
+##this function is to set register conditions and functionality
 def register(request):
     if request.method == 'POST' :
         
@@ -79,13 +77,27 @@ def register(request):
         return render(request,'reg.html')
 
 
-
+#this function will simply reder you to subscription page
 def subscription(request):
     return render(request,"subscription.html")
 
-def video_upload_choice(request):
-    return render(request,"video_upload_choice.html")
+def feedback(request):
+    feedbacks=Feedback.objects.all()
+    context={
+        'feedbacks':feedbacks,
+    }
+    return render(request,'feedback.html',context)
 
-def video(request):
-    return render(request,"video.html")
+# by writing we are applying the condition that if user is logged in then only call feedback function
+@login_required(login_url='login')
+def feedback(request) :#this function is to take feedback
+    name = request.POST['name']
+    email = request.POST['email']
+    subject = request.POST['subject']
+    message = request.POST['message']
+    feed = Feedback(name=name,email=email,subject=subject,message=message)
+    # by writing this only we are hitting the database to store the information
+    feed.save()
+    
+    return redirect('index')
 

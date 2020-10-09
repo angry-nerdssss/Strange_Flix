@@ -4,7 +4,7 @@ from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from datetime import date
 
-
+#this model is to save all the details of the uploaded video from the admin
 class Video(models.Model):
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
     poster= models.FileField(upload_to='images/', null=True, verbose_name="")
