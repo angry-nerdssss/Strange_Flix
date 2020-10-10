@@ -4,21 +4,15 @@ from django.template.defaultfilters import slugify
 from .forms import ItemForm
 from taggit.models import Tag
 
-def yvideo(request):
-    items=Item.objects.all()
-    context={
-        'items':items,
-    }
-    return render(request,'index.html',context)
-
+#this function is to play the selected video
 def play_this_youtube(request,id):
     item = get_object_or_404(Item,pk = id)
     context={
         'item':item,
     }
-    #print(f"***********{item.video.Thumbnail}**************")
     return render(request,'youtube_video_player.html',context)
 
+#this function is to upload the svideo_upload.html file when the user fills the form to upload video
 def yvideo_upload_view(request):
     items = Item.objects.order_by('-publish_date')
     common_tags = Item.tags.most_common()[:4]
@@ -36,6 +30,7 @@ def yvideo_upload_view(request):
     }
     return render(request,'yvideo_upload.html',context)
 
+#this function is to redirect the admin to the page to the page where he can see details of the selected video from the list
 def yvideo_detail_view(request,slug):
     item = get_object_or_404(Item, slug=slug)
     context = {
@@ -43,7 +38,7 @@ def yvideo_detail_view(request,slug):
     }
     return render(request, 'yvideo_detail.html', context)
 
-
+#this function is to show videos as per the selected common tags 
 def yvideo_tagged(request,slug):
     tag = get_object_or_404(Tag,slug=slug)
     common_tags = Item.tags.most_common()[:4]

@@ -9,30 +9,19 @@
     
     <div class="feedback">
         <h1 class="feedback-heading">Feedbacks</h1>
-
-        <div class="btn collapse-btn" data-toggle="collapse" href="#q1">
-            <h2 class="title">Feedback title</h2>
-            <!-- <h1 class="add-icon">+</h1> -->
-        </div>
-        <div class="collapse" id="q1">
-            <div class="feedback-ans">
-                <p>User email</p>
-                <p>user name</p>
-                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+        {% for feedback in feedbacks %}
+            <div class="btn collapse-btn" data-toggle="collapse" href="#f{{feedback.id}}">
+                <h2 class="title">{{feedback.subject}}</h2>
+                <!-- <h1 class="add-icon">+</h1> -->
             </div>
-        </div>
-
-        <div class="btn collapse-btn" data-toggle="collapse" href="#q2">
-            <h2 class="title">Feedback title</h2>
-            <!-- <h1 class="add-icon">+</h1> -->
-        </div>
-        <div class="collapse" id="q2">
-            <div class="feedback-ans">
-                <p>User email</p>
-                <p>user name</p>
-                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+            <div class="collapse" id="f{{feedback.id}}">
+                <div class="feedback-ans">
+                    <p>{{feedback.email}}</p>
+                    <p>{{feedback.name}}</p>
+                    <p>{{feedback.message}}</p>
+                </div>
             </div>
-        </div>
+        {% endfor%}
     </div>
 
 {% endblock content %}

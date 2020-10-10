@@ -11,7 +11,20 @@
 {% endblock %}
 
 {% block content %}
+{% if showRegister == True %}
+<script>
+    showRegisterationForm();
+    console.log("register form");
+</script>
+{% endif  %}
+{% if showLogin == True %}
+<script>
+    showLoginForm();
+    console.log("login form");
+</script>
+{% endif %}
 
+   
     <div class="top-carousel-div">
         <div id="top-carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -243,7 +256,6 @@
         </div>
     </div>
 
-    
 
 {% endblock %}
 

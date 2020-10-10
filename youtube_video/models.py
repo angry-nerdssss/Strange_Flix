@@ -4,9 +4,9 @@ from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from datetime import date
 
-
+#this model is to save all the details of the uploaded youtube video embed links from the admin
 class Item(models.Model):
-    video = models.URLField(max_length=200)  # same like models.URLField()
+    video = models.URLField(max_length=200)
     title = models.CharField(max_length=100)
     description = models.TextField()
     category = models.CharField(max_length=100)
