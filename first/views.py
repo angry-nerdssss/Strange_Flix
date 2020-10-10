@@ -28,7 +28,7 @@ def index(request) :
 #this function is to set login conditions and functionality
 def login(request) :
      if request.method == 'POST' :
-         username = request.POST['email']
+         username = request.POST['username']
          password = request.POST['password']
           # by writing this we are checking whether the entered username and password are of the same user or not 
          user = auth.authenticate(username=username,password=password)
@@ -38,13 +38,13 @@ def login(request) :
          else :
              messages.info(request,'invalid credentials')
              context={
-                    'showRegister':True,
-                    'showLogin':False,
+                    'showRegister':False,
+                    'showLogin':True,
                }
              return render(request,'index.html',context)
             
      else :
-         return render(request,"login.html")
+         return redirect('index')
 
 
 #this function is used to get user logged out
@@ -72,7 +72,7 @@ def register(request):
                }
                return render(request,'index.html',context)
             elif User.objects.filter(username=username).exists() :
-               messages.info(request,'email taken already')
+               messages.info(request,'username taken already')
                context={
                     'showRegister':True,
                     'showLogin':False,
@@ -80,14 +80,18 @@ def register(request):
                }
                return render(request,'index.html',context)
             else :
-                #user =User.objects.create_user(email=email,password=password1)
+                user =User.objects.create_user(username=username,email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
-                #user.save()
-                user = get_user_model().objects.create(username=username,password=password1,email=email)
+                user.save()
+                #user = get_user_model().objects.create(username=username,password=password1,email=email)
                 sendConfirm(user)
-                
                 print('user created')
-                return redirect('index') 
+                messages.info(request,'Please check your e-mail')
+                context={
+                    'showRegister':True,
+                    'showLogin':False,
+               }
+            return render(request,'index.html',context)
         else :
             messages.info(request,'password not matching')
             context={

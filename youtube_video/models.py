@@ -3,7 +3,8 @@ from django.db import models
 from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from datetime import date
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 #this model is to save all the details of the uploaded youtube video embed links from the admin
 class Item(models.Model):
     video = models.URLField(max_length=200)
@@ -13,6 +14,7 @@ class Item(models.Model):
     publish_date = models.DateField(auto_now_add=True)
     slug= models.SlugField(unique=True,max_length=100)
     tags = TaggableManager()
+    comments = GenericRelation(Comment)
     def __str__(self):
             return self.video
 

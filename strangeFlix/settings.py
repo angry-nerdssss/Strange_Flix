@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'storage_video',
     'social_django',
     'taggit',
-        
+    'comment',
     #allauth
     'allauth',
     'allauth.account',
@@ -186,3 +186,9 @@ SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')  # App
 
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
+
+
+#for comments flagging
+COMMENT_FLAGS_ALLOWED = 2
+COMMENT_SHOW_FLAGGED = True
+LOGIN_URL = 'login'  # or actual url

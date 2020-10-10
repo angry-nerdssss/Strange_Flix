@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load comment_tags %}  {# Loading the template tag #}
 
 {% block css %}
     <!-- video player css -->
@@ -37,7 +38,8 @@
                 <i class="fa fa-thumbs-down reaction-icon" aria-hidden="true"></i> 1
                 <i class="fa fa-share-alt reaction-icon" aria-hidden="true"></i> SHARE
             </div>
-             
+            {% render_comments video request %}  {# Render all the comments belong to the passed object "obj" #}
+
         </div>
     </section>
 

@@ -16,5 +16,6 @@ urlpatterns = [
      path('email/', include(mail_urls)),#for sending emails
     path('oauth/', include('social_django.urls', namespace='social')),#for social logins
     path('storage_video/',include('storage_video.urls')),#urls of storage_video app
+    path('comment/', include('comment.urls')),#urls of commenting functionalities
     
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
