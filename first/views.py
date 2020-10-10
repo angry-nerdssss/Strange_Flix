@@ -89,3 +89,5 @@ def video_upload_choice(request):
 def video(request):
     return render(request,"video.html")
 
+def about(request):
+    return render(request,"about.html")

@@ -10,6 +10,6 @@ urlpatterns=[
     path('logout',views.logout,name='logout'),
     path('subscription', views.subscription, name='subscription'),
     path('video_upload_choice', views.video_upload_choice, name='video_upload_choice'),
-   
+    path('about_us', views.about, name = 'about_us')
 
 ]
