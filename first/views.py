@@ -82,7 +82,6 @@ def register(request):
                 user =User.objects.create_user(username=username,email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
                 user.save()
-                #user = get_user_model().objects.create(username=username,password=password1,email=email)
                 sendConfirm(user)
                 print('user created')
                 messages.info(request,'Please check your e-mail')
@@ -127,5 +126,6 @@ def get_feedback(request) :
     
     return redirect('show_feedback')
 
+#this function is to take user to about.html page
 def about(request):
     return render(request,"about.html")
