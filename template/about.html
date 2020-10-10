@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock css %}
+
+{% block content %}
+    
+    <div class="about-us">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <img src="{% static 'images/puneet.jpg' %}" class="card-img-top" alt="Puneet">
+                    <div class="card-body">
+                      <h5 class="card-title">Puneet Sharma</h5>
+                      <p class="card-text"><i class="fa fa-phone" aria-hidden="true"></i>+91 9170445750</p>
+                      <p class="card-text"><i class="fa fa-envelope-o" aria-hidden="true"></i> puneet5may@gmail.com</p>
+                      <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Allahabad, India</p>
+                      <p class="card-text">Currently pursuing B.Tech in CSE. from MNNIT, Allahabad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <img src="{% static 'images/om.jpeg' %}" class="card-img-top" alt="Puneet">
+                    <div class="card-body">
+                      <h5 class="card-title">Om kant Mishra</h5>
+                      <p class="card-text"><i class="fa fa-phone" aria-hidden="true"></i>+91 7355572451</p>
+                      <p class="card-text"><i class="fa fa-envelope-o" aria-hidden="true"></i> omkantmishra12@gmail.com</p>
+                      <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Allahabad, India</p>
+                      <p class="card-text">Currently pursuing B.Tech in IT. from MNNIT, Allahabad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <img src="{% static 'images/prashant.jpeg' %}" class="card-img-top" alt="Puneet">
+                    <div class="card-body">
+                      <h5 class="card-title">Prashant Kumar Pal</h5>
+                      <p class="card-text"><i class="fa fa-phone" aria-hidden="true"></i>+91 6388981216</p>
+                      <p class="card-text"><i class="fa fa-envelope-o" aria-hidden="true"></i> prashantpal0388@gmail.com</p>
+                      <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>Allahabad, India</p>
+                      <p class="card-text">Currently pursuing B.Tech in CSE. from MNNIT, Allahabad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

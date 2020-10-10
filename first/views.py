@@ -37,7 +37,11 @@ def login(request) :
              return redirect('/')
          else :
              messages.info(request,'invalid credentials')
-             return redirect('index.html',)
+             context={
+                    'showRegister':True,
+                    'showLogin':False,
+               }
+             return render(request,'index.html',context)
             
      else :
          return render(request,"login.html")
@@ -64,9 +68,17 @@ def register(request):
                context={
                     'showRegister':True,
                     'showLogin':False,
-                    'messages':messages,
+                    
                }
-               return render('index.html',context)
+               return render(request,'index.html',context)
+            elif User.objects.filter(username=username).exists() :
+               messages.info(request,'email taken already')
+               context={
+                    'showRegister':True,
+                    'showLogin':False,
+                    
+               }
+               return render(request,'index.html',context)
             else :
                 #user =User.objects.create_user(email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
@@ -78,7 +90,12 @@ def register(request):
                 return redirect('index') 
         else :
             messages.info(request,'password not matching')
-            return redirect('register')
+            context={
+                    'showRegister':True,
+                    'showLogin':False,
+                    
+               }
+            return render(request,'index.html',context)
         return('/')  
     else :
         return render(request,'reg.html')
@@ -88,15 +105,15 @@ def register(request):
 def subscription(request):
     return render(request,"subscription.html")
 
-def feedback(request):
-    feedbacks=Feedback.objects.all()
+def show_feedback(request):
+    feedbacks=Feedback.objects.order_by('-publish_date')
     context={
         'feedbacks':feedbacks,
     }
     return render(request,'feedback.html',context)
 
 ##this function is to take feedback
-def feedback(request) :
+def get_feedback(request) :
     name = request.POST['name']
     email = request.POST['email']
     subject = request.POST['subject']
@@ -105,5 +122,7 @@ def feedback(request) :
     # by writing this only we are hitting the database to store the information
     feed.save()
     
-    return redirect('index')
+    return redirect('show_feedback')
 
+def about(request):
+    return render(request,"about.html")

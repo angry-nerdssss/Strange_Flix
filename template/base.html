@@ -45,11 +45,7 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
                 </li>
-                {% if  user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Hello!<span class="sr-only">(current)</span></a>
-                        </li>
-                        {%endif%}
+                
                 <li class="nav-item">
                   <a class="nav-link" href="">Link</a>
                 </li>
@@ -64,7 +60,19 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button class="btn btn-outline-dark" type="submit">Search</button><br>
               </form>
+              {% if  user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Hello! {{user.username}}<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="logout">LOGOUT<span class="sr-only">(current)</span></a>
+                  </li>
+                  
+                
+                        
+              {% else %}
                 <button id="sign-in-button" class="btn btn-outline-danger" onclick="showLoginForm()">Sign In</button>
+              {%endif%}
             </div>
           </nav>
 
@@ -78,8 +86,9 @@
                 {% csrf_token %}
                 
                 <div class="form-group">
-                  <label for="email">Enter your email</label>
-                  <input type="email" name="email" class="form-control">
+                  <label for="username">Your username</label>
+                  <input type="text" name="username" class="form-control">
+                  
                 </div>
                 <div class="form-group">
                   <label for="password">Enter your password</label>
@@ -101,6 +110,7 @@
               </div>
               <div>
                 <h3>
+                  
                     {% for message in messages %}
                     {{message}}
                     {% endfor %}
@@ -116,7 +126,11 @@
               <h3 class="form-heading">Register</h3>
               <form action="/register" method="post">
                 {% csrf_token %}
-                
+                <div class="form-group">
+                  <label for="username">Enter your username</label>
+                  <input type="text" name="username" class="form-control">
+                  
+                </div>
                 <div class="form-group">
                   <label for="email">Enter your email</label>
                   <input type="email" name="email" class="form-control">
@@ -187,6 +201,7 @@
               <a href=""><i class="footer-icon fab fa-instagram" aria-hidden="true"></i></a>
               <a href=""><i class="footer-icon fas fa-envelope" aria-hidden="true"></i></a><br>
               © Copyright {% now "Y" %} Strangeflix
+              <a href="about_us" class="btn btn-outline-danger btn-lg contact-us-btn">About Us</a>
             </div>
         </div>
       </section>
