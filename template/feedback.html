@@ -1,0 +1,38 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+{% endblock css %}
+
+{% block content %}
+    
+    <div class="feedback">
+        <h1 class="feedback-heading">Feedbacks</h1>
+
+        <div class="btn collapse-btn" data-toggle="collapse" href="#q1">
+            <h2 class="title">Feedback title</h2>
+            <!-- <h1 class="add-icon">+</h1> -->
+        </div>
+        <div class="collapse" id="q1">
+            <div class="feedback-ans">
+                <p>User email</p>
+                <p>user name</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+            </div>
+        </div>
+
+        <div class="btn collapse-btn" data-toggle="collapse" href="#q2">
+            <h2 class="title">Feedback title</h2>
+            <!-- <h1 class="add-icon">+</h1> -->
+        </div>
+        <div class="collapse" id="q2">
+            <div class="feedback-ans">
+                <p>User email</p>
+                <p>user name</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
