@@ -14,12 +14,16 @@
 {% if showRegister == True %}
 <script>
     showRegisterationForm();
+    hideLoginMsg();
+    showRegMsg();
     console.log("register form");
 </script>
 {% endif  %}
 {% if showLogin == True %}
 <script>
     showLoginForm();
+    hideRegMsg();
+    showLoginMsg();
     console.log("login form");
 </script>
 {% endif %}

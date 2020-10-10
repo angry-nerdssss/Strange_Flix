@@ -168,7 +168,11 @@ body{
 .social-btn{
     margin-left: 0;
     margin-top: 1rem;
-    padding: 0;
+    padding: 0 16px;
+}
+
+.msg{
+    color: red;
 }
 
 /* footer */

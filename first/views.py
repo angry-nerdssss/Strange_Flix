@@ -76,7 +76,6 @@ def register(request):
                context={
                     'showRegister':True,
                     'showLogin':False,
-                    
                }
                return render(request,'index.html',context)
             else :
