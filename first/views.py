@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
-
 from django.contrib.auth.models import User, auth
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
@@ -16,7 +15,11 @@ from .models import Feedback
 def index(request) :
     items = Item.objects.all()
     videos = Video.objects.all()
+    showRegister=False
+    showLogin=False
     context = {
+        'showRegister':showRegister,
+        'showLogin':showLogin,
         'items':items,
         'videos':videos,
     }
@@ -25,17 +28,16 @@ def index(request) :
 #this function is to set login conditions and functionality
 def login(request) :
      if request.method == 'POST' :
-         email = request.POST['email']
+         username = request.POST['email']
          password = request.POST['password']
           # by writing this we are checking whether the entered username and password are of the same user or not 
-         user = auth.authenticate(email=email,password=password)
+         user = auth.authenticate(username=username,password=password)
          if user is not None :
-             request.session['member_id'] = user.id
              auth.login(request,user)
              return redirect('/')
          else :
              messages.info(request,'invalid credentials')
-             return redirect('login')
+             return redirect('index.html',)
             
      else :
          return render(request,"login.html")
@@ -50,7 +52,7 @@ def logout(request) :
 ##this function is to set register conditions and functionality
 def register(request):
     if request.method == 'POST' :
-        
+        username=request.POST['username']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -59,12 +61,17 @@ def register(request):
             # by writing this condition we are checking that if this email is already registered or not
             if User.objects.filter(email=email).exists() :
                messages.info(request,'email taken already')
-               return redirect('register')
+               context={
+                    'showRegister':True,
+                    'showLogin':False,
+                    'messages':messages,
+               }
+               return render('index.html',context)
             else :
                 #user =User.objects.create_user(email=email,password=password1)
                 # by writing this only we are hitting the database to store the information
                 #user.save()
-                user = get_user_model().objects.create(password=password1, email=email)
+                user = get_user_model().objects.create(username=username,password=password1,email=email)
                 sendConfirm(user)
                 
                 print('user created')
