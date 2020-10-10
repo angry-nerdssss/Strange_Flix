@@ -72,11 +72,10 @@ def register(request):
                }
                return render(request,'index.html',context)
             elif User.objects.filter(username=username).exists() :
-               messages.info(request,'email taken already')
+               messages.info(request,'username taken already')
                context={
                     'showRegister':True,
                     'showLogin':False,
-                    
                }
                return render(request,'index.html',context)
             else :
