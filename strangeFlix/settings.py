@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+     'storage_video',
     #third party add
     'youtube_video',
     'embed_video',
-    'storage_video',
+   
     'social_django',
     'taggit',
     'comment',
