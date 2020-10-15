@@ -34,6 +34,7 @@ function showRegisterationForm(){
 }
 
 function showLoginMsg(){
+    debugger
     $("#login-msg").style.visibility = "visible";
     console.log("visible login msg");
     hideRegMsg();

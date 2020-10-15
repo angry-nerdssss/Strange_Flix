@@ -49,11 +49,12 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
     'comment',
+    'django_email_verification',
     #allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django_email_verification',
+    
     #providers
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
