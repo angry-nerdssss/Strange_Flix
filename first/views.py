@@ -44,7 +44,11 @@ def login(request) :
              return render(request,'index.html',context)
             
      else :
-         return redirect('index')
+         context={
+                    'showRegister':False,
+                    'showLogin':True,
+               }
+         return render(request,'index.html',context)
 
 
 #this function is used to get user logged out

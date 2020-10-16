@@ -33,11 +33,43 @@
                 {% endfor %}
             </div>
 
-            <div class="reactions">
-                <i class="fa fa-thumbs-up reaction-icon" aria-hidden="true"></i> 200
-                <i class="fa fa-thumbs-down reaction-icon" aria-hidden="true"></i> 1
-                <i class="fa fa-share-alt reaction-icon" aria-hidden="true"></i> SHARE
-            </div>
+            <div class="text-left">
+                <span class="pointer">
+                   {% if request.user in item.likes.users.all%}
+                   <!-- already liked-->
+                   <a href={% url 'requirement_item_vote' item_id=item.pk opition='like' %}> <i
+                      data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                      class="like fas fa-thumbs-up pr-2">
+                   <span>{{item.get_total_likes}}</span>
+                   </i>
+                   </a>
+                   {% else %}
+                   <!--not liked-->
+                   <a href={% url 'requirement_item_vote' item_id=item.pk opition='like' %}><i
+                      data-toggle="tooltip" data-placement="bottom" title="Like"
+                      class="default-icon fas fa-thumbs-up pr-2">
+                   <span>{% if item.get_total_likes  %}{{item.get_total_likes}} {% else %} 0
+                   {% endif %}</span></i>
+                   </a>
+                   {% endif %}
+                </span>
+                <span class="ml-3 pointer">
+                {% if request.user in item.dis_likes.users.all %}
+                <a href={% url 'requirement_item_vote' item_id=item.pk opition='dis_like' %}><i
+                   data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                   class="dislike fas fa-thumbs-down pr-2">
+                <span>{{item.get_total_dis_likes}}</span></i>
+                </a>
+                {% else %}
+                <a href={% url 'requirement_item_vote' item_id=item.pk opition='dis_like' %}><i
+                   data-toggle="tooltip" data-placement="bottom" title="i dislike this "
+                   class="default-icon fas fa-thumbs-down pr-2">
+                <span>{% if  item.get_total_dis_likes %}{{item.get_total_dis_likes}}
+                {% else %} 0 {% endif %}</span></i>
+                </a>
+                {% endif %}
+                </span>
+             </div>
             {% render_comments item request %}  {# Render all the comments belong to the passed object "obj" #}
 
         </div>

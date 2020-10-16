@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Item
+from .models import Item,Like,Dislike
 from django.template.defaultfilters import slugify
 from .forms import ItemForm
 from taggit.models import Tag
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import View
 
 #this function is to play the selected video
 def play_this_youtube(request,id):
@@ -53,3 +57,45 @@ def yvideo_tagged(request,slug):
 
         
 
+
+class UpdateItemVote(LoginRequiredMixin, View):
+    #login_url = '/login/'
+    #redirect_field_name = 'next'
+
+    def get(self, request, *args, **kwargs):
+
+        item_id = self.kwargs.get('item_id', None)
+        opition = self.kwargs.get('opition', None) # like or dislike button clicked
+
+        item = get_object_or_404(Item, id=item_id)
+
+        try:
+            # If child DisLike model doesnot exit then create
+            item.dis_likes
+        except Item.dis_likes.RelatedObjectDoesNotExist as identifier:
+            Dislike.objects.create(item = item)
+
+        try:
+            # If child Like model doesnot exit then create
+            item.likes
+        except Item.likes.RelatedObjectDoesNotExist as identifier:
+            Like.objects.create(item = item)
+
+        if opition.lower() == 'like':
+
+            if request.user in item.likes.users.all():
+                item.likes.users.remove(request.user)
+            else:    
+                item.likes.users.add(request.user)
+                item.dis_likes.users.remove(request.user)
+
+        elif opition.lower() == 'dis_like':
+
+            if request.user in item.dis_likes.users.all():
+                item.dis_likes.users.remove(request.user)
+            else:    
+                item.dis_likes.users.add(request.user)
+                item.likes.users.remove(request.user)
+        else:
+            return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))
+        return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))

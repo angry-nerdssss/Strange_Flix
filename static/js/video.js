@@ -13,3 +13,4 @@ player.ready(function() {
     enableModifiersForNumbers: false
   });
 });
+player.currentTime(20);
