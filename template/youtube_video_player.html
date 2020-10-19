@@ -28,7 +28,7 @@
 
             <br><br>
             <div style="display:flex">
-                {% for tag in post.tags.all %}
+                {% for tag in item.tags.all %}
                 <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
                 {% endfor %}
             </div>

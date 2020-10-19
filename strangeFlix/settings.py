@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
     'comment',
+    'crispy_forms',
     'django_email_verification',
     #allauth
     'allauth',
@@ -166,7 +167,7 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL="/login/"
+LOGIN_REDIRECT_URL="/"
 
 #for email verification
 EMAIL_ACTIVE_FIELD = 'is_active'

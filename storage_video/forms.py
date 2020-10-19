@@ -11,6 +11,7 @@ class VideoForm(forms.ModelForm):
             'poster',
             'title',
             'category',
+            'genre',
             'tags',
             'description',
         ]

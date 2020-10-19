@@ -59,9 +59,8 @@ def yvideo_tagged(request,slug):
 
 
 class UpdateItemVote(LoginRequiredMixin, View):
-    #login_url = '/login/'
-    #redirect_field_name = 'next'
-
+    
+    
     def get(self, request, *args, **kwargs):
 
         item_id = self.kwargs.get('item_id', None)

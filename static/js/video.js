@@ -13,4 +13,4 @@ player.ready(function() {
     enableModifiersForNumbers: false
   });
 });
-player.currentTime(20);
+player.currentTime(200);

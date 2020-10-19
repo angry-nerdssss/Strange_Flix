@@ -24,24 +24,20 @@
                 </div>
 
                 
-                <div class="form-group col-md-12">
-                    <label for="mobile">Category:</label>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <input type="checkbox" id="cb1" name="category">
-                            <label for="cb1">Movies</label>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <input type="checkbox" id="cb2" name="category">
-                            <label for="cb2">tv shows</label>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <input type="checkbox" id="cb3" name="category">
-                            <label for="cb3">web series</label>
-                        </div>
-                        
-                    </div>
+                <div >
+                    <label for="mobile">Category</label>
+                    <div class="form-control">
+                  {{form.category}}
+                  </div>
                 </div>
+                <br>
+                <div>
+                  <label for="mobile">Genre</label>
+                  <div class="form-control">
+                    {{form.genre}}
+                    </div>
+                 </div>
+                 <br>
 
                 <div class="form-group">
                     <label>Tags</label>

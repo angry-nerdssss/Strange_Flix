@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.template.defaultfilters import slugify
 from taggit.models import Tag
-from .models import Video
+from .models import Video,Like,Dislike
 from .forms import VideoForm
- 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import View
 #this function is to upload the svideo_upload.html file when the user fills the form to upload video
 def svideo_upload_view(request):
     videos=Video.objects.order_by('-publish_date')#we are showing all the uploaded videos according to their publish dates
@@ -50,3 +53,44 @@ def video(request,id):
         'video':video,
     }
     return render(request,'video.html',context)
+
+class UpdateVideoVote(LoginRequiredMixin, View):
+    
+    login_url = '/login/'
+    def get(self, request, *args, **kwargs):
+
+        video_id = self.kwargs.get('video_id', None)
+        opition = self.kwargs.get('opition', None) # like or dislike button clicked
+
+        video = get_object_or_404(Video, id=video_id)
+
+        try:
+            # If child DisLike model doesnot exit then create
+            video.dis_likes
+        except Video.dis_likes.RelatedObjectDoesNotExist as identifier:
+            Dislike.objects.create(video = video)
+
+        try:
+            # If child Like model doesnot exit then create
+            video.likes
+        except Video.likes.RelatedObjectDoesNotExist as identifier:
+            Like.objects.create(video = video)
+
+        if opition.lower() == 'like':
+
+            if request.user in video.likes.users.all():
+                video.likes.users.remove(request.user)
+            else:    
+                video.likes.users.add(request.user)
+                video.dis_likes.users.remove(request.user)
+
+        elif opition.lower() == 'dis_like':
+
+            if request.user in video.dis_likes.users.all():
+                video.dis_likes.users.remove(request.user)
+            else:    
+                video.dis_likes.users.add(request.user)
+                video.likes.users.remove(request.user)
+        else:
+            return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
+        return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
