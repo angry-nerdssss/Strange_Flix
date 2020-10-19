@@ -9,6 +9,7 @@ class ItemForm(forms.ModelForm):
             'video',
             'title',
             'category',
+            'genre',
             'tags',
             'description',
         ]

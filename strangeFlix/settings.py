@@ -114,9 +114,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'StrangeFlix',
         'USER' : 'postgres',
-        'PASSWORD' : '1234',
+        'PASSWORD' : '995687',
         'HOST' : 'localhost',
-        'PORT' : '54324'
+        'PORT' : '5432'
     }
 }
 
@@ -166,7 +166,7 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL="/login/"
+LOGIN_REDIRECT_URL="/"
 
 #for email verification
 EMAIL_ACTIVE_FIELD = 'is_active'
