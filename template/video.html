@@ -3,8 +3,8 @@
 {% load comment_tags %}  {# Loading the template tag #}
 
 {% block css %}
-    <!-- video player css -->
-    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+    <!-- video.js css -->
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" /><!-- this is vjs css -->
 
     <!-- my css -->
     <link rel="stylesheet" href="{% static 'css/video.css' %}">
@@ -15,17 +15,16 @@
     <!-- video player -->
     <section class="video-section">
         <div class="video-div">
-            <video id="videoPlayer" class="video-js vjs-big-play-centered"  data-setup='{}'>
+            <video id="videoPlayer" class="video-js vjs-big-play-centered" controls preload="auto" data-setup='{}'>
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'>
-                <p class="vjs-no-js">
+                <!-- <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
                     <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
+                </p> -->
             </video>
-            <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
-            <script src="{% static 'js/hotkeys.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
+            
+            <!-- <script type="text/javascript" src="{% static 'js/video.js' %}"></script> -->
         </div>
         <div class="video-actions-div">
             <h3 class="video-title">{{video.title}}</h3>
@@ -76,5 +75,9 @@
     </section>
 
 
-
 {% endblock %}
+
+{% block javascript %}
+    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+    <script src="{% static 'js/hotkeys.js' %}"></script>
+{% endblock javascript %}

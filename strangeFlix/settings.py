@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
     'comment',
-    'crispy_forms',
     'django_email_verification',
     # allauth
     'allauth',
@@ -114,7 +113,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'StrangeFlix',
         'USER': 'postgres',
-        'PASSWORD': '995687',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
     }
 }
