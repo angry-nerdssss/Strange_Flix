@@ -17,11 +17,13 @@ def index(request) :
     videos = Video.objects.all()
     showRegister=False
     showLogin=False
+    
     context = {
         'showRegister':showRegister,
         'showLogin':showLogin,
         'items':items,
         'videos':videos,
+        
     }
     return render(request,"index.html",context)
 
