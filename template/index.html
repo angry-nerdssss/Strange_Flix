@@ -86,81 +86,46 @@
                 <div class="carousel-item active">
 
                     <div class="row movie-row">
+                       
+                        {% for video in videos|slice:":6" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                <a href="{% url 'play_svideo' video.id %}">
+                                <img class="movie-icon" id="{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                </a>
                             </div>
+                            <script type="text/javascript">
+                                document.getElementById('{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+                            </script>
                         </div>
+                      
+                           
+                        {% endfor %}
                         
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
+                    
                     </div>
                     
                 </div>
                 <div class="carousel-item">
                     <div class="row movie-row">                        
+                      
+                        {% for video in videos|slice:"6:" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                <a href="{% url 'play_svideo' video.id %}">
+                                <img class="movie-icon" id="{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                </a>
                             </div>
+                            <script type="text/javascript">
+                                document.getElementById('{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+                            </script>
                         </div>
+                      
+                           
+                        {% endfor %}
+                       
                         
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
