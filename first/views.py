@@ -19,11 +19,17 @@ def index(request):
     videos = Video.objects.all()
     showRegister = False
     showLogin = False
+    recommended_items = Item.objects.order_by('-likes')
+    recommended_items = recommended_items.order_by('-publish_date')
+    recommended_videos = Video.objects.order_by('-likes')
+    recommended_videos = recommended_videos.order_by('-publish_date')
     context = {
         'showRegister': showRegister,
         'showLogin': showLogin,
         'items': items,
         'videos': videos,
+        'recommended_items': recommended_items,
+        'recommended_videos': recommended_videos,
     }
     return render(request, "index.html", context)
 
