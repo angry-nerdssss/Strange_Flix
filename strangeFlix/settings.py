@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
     'comment',
-    'crispy_forms',
     'django_email_verification',
     'static',
 
