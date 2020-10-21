@@ -70,11 +70,7 @@ class UpdateVideoVote(LoginRequiredMixin, View):
         except Video.dis_likes.RelatedObjectDoesNotExist as identifier:
             Dislike.objects.create(video = video)
 
-        try:
-            # If child Like model doesnot exit then create
-            video.likes
-        except Video.likes.RelatedObjectDoesNotExist as identifier:
-            Like.objects.create(video = video)
+        
 
         if opition.lower() == 'like':
 

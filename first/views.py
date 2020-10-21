@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
@@ -9,7 +10,7 @@ from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
 from storage_video.models import Video
 from youtube_video.models import Item
-from .models import Feedback
+from .models import Feedback,Subscription
 
 # this function is to render to the main page when the user first searches for the site
 
@@ -19,11 +20,37 @@ def index(request):
     videos = Video.objects.all()
     showRegister = False
     showLogin = False
+    recommended_items=Item.objects.order_by('-likes')
+    recommended_items=recommended_items.order_by('-publish_date')
+    recommended_videos=Video.objects.order_by('-likes')
+    recommended_videos=recommended_videos.order_by('-publish_date')
+    
+    paid=False
+    try:
+        current_user=User.objects.get(username=request.user.username)
+    except:
+        context = {
+        'showRegister': showRegister,
+        'showLogin': showLogin,
+        'items': items,
+        'videos': videos,
+        'recommended_items':recommended_items,
+        'recommended_videos':recommended_videos,
+        'paid':paid,
+        }
+        return render(request, "index.html", context)
+    
+    subscription=Subscription.objects.get(user=request.user)
+    if subscription.paid == 'True' :
+        paid=True
     context = {
         'showRegister': showRegister,
         'showLogin': showLogin,
         'items': items,
         'videos': videos,
+        'recommended_items':recommended_items,
+        'recommended_videos':recommended_videos,
+        'paid':paid,
     }
     return render(request, "index.html", context)
 
@@ -93,6 +120,8 @@ def register(request):
                     username=username, email=email, password=password1)
                 # by writing this only we are hitting the database to store the information
                 user.save()
+                subscription = Subscription.objects.create(user=user)
+                subscription.save()
                 sendConfirm(user)
                 print('user created')
                 messages.info(request, 'Please check your e-mail')
@@ -145,3 +174,9 @@ def get_feedback(request):
 
 def about(request):
     return render(request, "about.html")
+
+def subscribed_user(request):
+    subscription=Subscription.objects.get(user=request.user)
+    subscription.paid=True
+    subscription.save()
+    return redirect('index')

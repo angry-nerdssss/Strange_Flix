@@ -10,5 +10,6 @@ urlpatterns=[
     path('subscription', views.subscription, name='subscription'),#to call the subscription page to accept any subscription
     path('about_us', views.about, name = 'about_us'),
     path('feedback',views.get_feedback,name='feedback'),
-    path('showfeedback', views.show_feedback, name = 'show_feedback')
+    path('showfeedback', views.show_feedback, name = 'show_feedback'),
+    path('subscribed_user',views.subscribed_user,name='subscribed_user'),
 ]

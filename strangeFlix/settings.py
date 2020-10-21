@@ -44,12 +44,11 @@ INSTALLED_APPS = [
     # third party add
     'youtube_video',
     'embed_video',
-
     'social_django',
     'taggit',
     'comment',
-    'crispy_forms',
     'django_email_verification',
+    
     # allauth
     'allauth',
     'allauth.account',
@@ -110,13 +109,13 @@ WSGI_APPLICATION = 'strangeFlix.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'StrangeFlix',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'POST':'54324'
+        'NAME': 'StrangeFlix_new2',
+        'USER' : 'postgres',
+        'PASSWORD' : '1234',
+        'HOST' : 'localhost',
+        'PORT' : '54324'
     }
 }
 
