@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'comment',
     'crispy_forms',
     'django_email_verification',
+    'static',
+
     # allauth
     'allauth',
     'allauth.account',
