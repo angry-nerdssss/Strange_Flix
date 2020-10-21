@@ -77,6 +77,11 @@
         </div>
     </div>
 
+    
+
+
+    
+
 
     <!-- Popular movies carousel -->
     <div class="carousel-movies">
@@ -147,7 +152,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row movie-row">
-                        {% for i in items %}
+                        {% for i in items|slice:":6" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
@@ -164,6 +169,32 @@
                         </div>
                         {% endfor %}
                     </div> 
+                </div>
+                <div class="carousel-item">
+                    <div class="row movie-row">                        
+                      
+                        {% for i in items|slice:"6:" %}
+                        <div class="col-sm-4 col-lg-2 col">
+                            <div class="movie-img-container">
+                                <a href="{% url 'play_yvideo' i.id %}">
+                                <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                    document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                </script></a>
+                            </div>
+                        </div>
+                      
+                           
+                        {% endfor %}
+                       
+                        
+                       
+                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#movie-carousel2" role="button" data-slide="prev">
