@@ -28,7 +28,7 @@
 </script>
 {% endif %}
 
-
+   
     <div class="top-carousel-div">
         <div id="top-carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -91,81 +91,46 @@
                 <div class="carousel-item active">
 
                     <div class="row movie-row">
+                       
+                        {% for video in videos|slice:":6" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                <a href="{% url 'play_svideo' video.id %}">
+                                <img class="movie-icon" id="{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                </a>
                             </div>
+                            <script type="text/javascript">
+                                document.getElementById('{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+                            </script>
                         </div>
+                      
+                           
+                        {% endfor %}
                         
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
+                    
                     </div>
                     
                 </div>
                 <div class="carousel-item">
                     <div class="row movie-row">                        
+                      
+                        {% for video in videos|slice:"6:" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                <a href="{% url 'play_svideo' video.id %}">
+                                <img class="movie-icon" id="{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
+                                </a>
                             </div>
+                            <script type="text/javascript">
+                                document.getElementById('{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+                            </script>
                         </div>
+                      
+                           
+                        {% endfor %}
+                       
                         
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <img class="movie-icon" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -194,7 +159,7 @@
                                 <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
                                 <script type="text/javascript">
                                     function youtube_parser(url){
-                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var regExp = /^.((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]).*/;
                                         var match = url.match(regExp);
                                         return (match&&match[7].length==11)? match[7] : false;
                                     }
@@ -215,7 +180,7 @@
                                 <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
                                 <script type="text/javascript">
                                     function youtube_parser(url){
-                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var regExp = /^.((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]).*/;
                                         var match = url.match(regExp);
                                         return (match&&match[7].length==11)? match[7] : false;
                                     }
@@ -353,4 +318,3 @@
 
 
 {% endblock %}
-

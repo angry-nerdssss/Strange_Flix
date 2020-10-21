@@ -24,7 +24,6 @@
                 </p> -->
             </video>
             
-            <!-- <script type="text/javascript" src="{% static 'js/video.js' %}"></script> -->
         </div>
         <div class="video-actions-div">
             <h3 class="video-title">{{video.title}}</h3>
@@ -80,4 +79,6 @@
 {% block javascript %}
     <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
     <script src="{% static 'js/hotkeys.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
+
 {% endblock javascript %}
