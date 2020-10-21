@@ -69,6 +69,9 @@
                 </a>
                 {% endif %}
                 </span>
+                <a href= "{% url 'favourite_yvideo' item.id %}"><i
+                    data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                    class="dislike fas fa-heart pr-2"></i></a>
              </div>
             {% render_comments item request %}  {# Render all the comments belong to the passed object "obj" #}
 

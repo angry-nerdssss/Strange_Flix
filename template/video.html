@@ -21,10 +21,9 @@
         <div class="video-div">
             <video id="videoPlayer" class="video-js vjs-big-play-centered" controls preload="auto" data-setup='{}'>
                 <!-- <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'> -->
-                <source src='/media/videos/Happier720.mkv' type='video/mp4' label = "720P" selected="true">
-                <source src='/media/videos/Happier360.mkv' type='video/mp4' label = "366P">
-                <source src='/media/videos/Happier144.mkv' type='video/mp4' label = "144P">
-                
+                <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "720P" selected="true">
+                <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "366P">
+                <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "144P">
                 
             </video>
             
@@ -71,6 +70,9 @@
                 </a>
                 {% endif %}
                 </span>
+                <a href= "{% url 'favourite_svideo' video.id %}"><i
+                    data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                    class="dislike fas fa-heart pr-2"></i></a>
              </div>
             {% render_comments video request %}  {# Render all the comments belong to the passed object "obj" #}
 

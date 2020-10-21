@@ -66,6 +66,8 @@ class Video(models.Model):
     slug = models.SlugField(unique=True, max_length=100)
     tags = TaggableManager()
     comments = GenericRelation(Comment)
+    favourite = models.ManyToManyField(
+        User, related_name="fav_svideos", blank=True)
 
     def get_total_likes(self):
         return self.likes.users.count()
