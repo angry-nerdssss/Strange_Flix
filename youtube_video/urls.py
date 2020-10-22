@@ -15,4 +15,5 @@ urlpatterns = [
          views.UpdateItemVote.as_view(), name='requirement_item_vote'),
     path('favourite_yvideo/<int:id>/',
          views.favourite_yvideo, name='favourite_yvideo'),
+    path('deleteyvideo/<int:id>/', views.delete_yvideo, name='delete_yvideo'),
 ]

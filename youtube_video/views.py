@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item, Like, Dislike
+from django.contrib.auth.models import User, auth
 from django.template.defaultfilters import slugify
 from .forms import ItemForm
 from taggit.models import Tag
@@ -108,12 +109,31 @@ class UpdateItemVote(LoginRequiredMixin, View):
 
 def favourite_yvideo(request, id):
     item = get_object_or_404(Item, id=id)
-    # try:
-    #     currentUser = User.objects.get(username=request.user.username)
-    #     video.favourite.add(request.user)
-    # except:
-    #     print("y")
-    #     return redirect('login')
-    item.favourite.add(request.user)
+    try:
+        currentUser = User.objects.get(username=request.user.username)
+
+    except:
+        print("y")
+        return redirect('login')
+
+    if item.favourite.filter(id=request.user.id).exists():
+        item.favourite.remove(request.user)
+
+    else:
+        item.favourite.add(request.user)
 
     return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))
+
+
+# delete view for details
+def delete_yvideo(request, id):
+    # dictionary for initial data with
+    # field names as keys
+    context = {}
+    # fetch the object related to passed id
+    obj = get_object_or_404(Item, id=id)
+    # delete object
+    obj.delete()
+    # after deleting redirect to
+    # home page
+    return HttpResponseRedirect("/")

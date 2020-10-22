@@ -124,3 +124,17 @@ def favourite_svideo(request, id):
         video.favourite.add(request.user)
 
     return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
+
+
+# delete view for details
+def delete_svideo(request, id):
+    # dictionary for initial data with
+    # field names as keys
+    context = {}
+    # fetch the object related to passed id
+    obj = get_object_or_404(Video, id=id)
+    # delete object
+    obj.delete()
+    # after deleting redirect to
+    # home page
+    return HttpResponseRedirect("/")
