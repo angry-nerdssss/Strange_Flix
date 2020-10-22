@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.decorators import login_required
 from taggit.models import Tag
 from .models import Video, Like, Dislike
 from .forms import VideoForm
@@ -109,12 +110,17 @@ class UpdateVideoVote(LoginRequiredMixin, View):
 
 def favourite_svideo(request, id):
     video = get_object_or_404(Video, id=id)
-    # try:
-    #     currentUser = User.objects.get(username=request.user.username)
-    #     video.favourite.add(request.user)
-    # except:
-    #     print("y")
-    #     return redirect('login')
-    video.favourite.add(request.user)
+    try:
+        currentUser = User.objects.get(username=request.user.username)
+
+    except:
+        print("y")
+        return redirect('login')
+
+    if video.favourite.filter(id=request.user.id).exists():
+        video.favourite.remove(request.user)
+
+    else:
+        video.favourite.add(request.user)
 
     return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))

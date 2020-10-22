@@ -40,7 +40,9 @@
                    <!-- already liked-->
                    <a href={% url 'requirement_video_vote' video_id=video.pk opition='like' %}> <i
                       data-toggle="tooltip" data-placement="bottom" title="Unlike"
-                      class="like fas fa-thumbs-up pr-2">
+                      class="like fas fa-thumbs-up pr-2"
+                      style="color:red;"
+                      >
                    <span>{{video.get_total_likes}}</span>
                    </i>
                    </a>
@@ -58,7 +60,8 @@
                 {% if request.user in video.dis_likes.users.all %}
                 <a href={% url 'requirement_video_vote' video_id=video.pk opition='dis_like' %}><i
                    data-toggle="tooltip" data-placement="bottom" title="i dislike this"
-                   class="dislike fas fa-thumbs-down pr-2">
+                   class="dislike fas fa-thumbs-down pr-2"
+                   style="color:red;">
                 <span>{{video.get_total_dis_likes}}</span></i>
                 </a>
                 {% else %}
@@ -70,9 +73,21 @@
                 </a>
                 {% endif %}
                 </span>
-                <a href= "{% url 'favourite_svideo' video.id %}"><i
+                <a  href= "{% url 'favourite_svideo' video.id %}"
+                
+                {% for i in user.fav_svideos.all %}
+                    {% if i.id is video.id %}
+                 
+                     style="color:red;"
+                    {% endif %}
+                    {% endfor %}
+                    ><i
                     data-toggle="tooltip" data-placement="bottom" title="i dislike this"
-                    class="dislike fas fa-heart pr-2"></i></a>
+                    class="dislike fas fa-heart pr-2"></i>
+                    
+                </a>
+
+                  
              </div>
             {% render_comments video request %}  {# Render all the comments belong to the passed object "obj" #}
 

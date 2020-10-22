@@ -217,6 +217,7 @@
 
 
     <!-- Favourite S-videos carousel -->
+    {% if user.is_authenticated %}
     <div class="carousel-movies">
         <h3 class="carousel-heading">favourite storage videos</h1>
         <div id="favourite_svideo" class="carousel slide">
@@ -251,10 +252,12 @@
             </a>
         </div>
     </div>
+    {% endif %}
 
 
 
     <!-- YOutube carousel -->
+
     <div class="carousel-movies">
         <h3 class="carousel-heading">Popular Youtube Videos</h1>
         <div id="movie-carousel2"    data-interval="false" class="carousel slide">
@@ -318,7 +321,9 @@
     </div>
 
 
+
         <!-- Favourite Youtube Videos -->
+        {% if user.is_authenticated %}
         <div class="carousel-movies">
             <h3 class="carousel-heading">Favourite Youtube Videos</h1>
             <div id="movie-carousel2" class="carousel slide">
@@ -355,6 +360,7 @@
                 </a>
             </div>
         </div>
+        {% endif %}
     
 
     <!-- genre 1 -->
