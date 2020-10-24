@@ -153,11 +153,33 @@ def about(request):
     return render(request, "about.html")
 
 
+# Email validation function
+def validateEmail(email):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False
+
+
 def validate_username(request):
     username = request.GET.get('username', None)
+    email = request.GET.get('email', None)
+    email_valid = validateEmail(email)
+    print(email_valid)
+
     data = {
-        'is_taken': User.objects.filter(username__iexact=username).exists()
+        'is_username_taken': User.objects.filter(username__iexact=username).exists(),
+        'is_email_taken': User.objects.filter(email=email).exists() or not email_valid
     }
-    if data['is_taken']:
-        data['error_message'] = 'A user with this username already exists.'
+    print(data)
+    if data['is_username_taken']:
+        data['username_error_message'] = 'A user with this username already exists.'
+    if data['is_email_taken']:
+        data['email_error_message'] = 'Email already registered.'
+        if not email_valid:
+            data['email_error_message'] = 'Email invalid'
+
     return JsonResponse(data)
