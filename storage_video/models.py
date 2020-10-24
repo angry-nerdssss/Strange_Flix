@@ -6,6 +6,7 @@ from datetime import date
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
 # this model is to save all the details of the uploaded video from the admin
+from django.template.defaultfilters import slugify
 
 
 class Video(models.Model):
@@ -66,18 +67,29 @@ class Video(models.Model):
     slug = models.SlugField(unique=True, max_length=100)
     tags = TaggableManager()
     comments = GenericRelation(Comment)
-
-    def get_total_likes(self):
+    likes = models.ManyToManyField(User, related_name='likes')
+    """ def get_total_likes(self):
         return self.likes.users.count()
 
     def get_total_dis_likes(self):
-        return self.dis_likes.users.count()
+        return self.dis_likes.users.count() """
+    @property
+    def total_likes(self):
+        """
+        Likes for the company
+        :return: Integer: Likes for the company
+        """
+        return self.likes.count()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Video, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
 
-class Like(models.Model):
+""" class Like(models.Model):
     users = models.ManyToManyField(
         User, related_name='requirement_video_likes')
     video = models.OneToOneField(
@@ -99,3 +111,4 @@ class Dislike(models.Model):
 
     def __str__(self):
         return str(self.video.title)[:30]
+ """

@@ -85,7 +85,6 @@ def login(request):
 # this function is used to get user logged out
 def logout(request):
     auth.logout(request)
-    request.session['member_id'] = 0
     return redirect('/')
 
 # this function is to set register conditions and functionality

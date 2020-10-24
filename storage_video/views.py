@@ -1,12 +1,19 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaultfilters import slugify
 from taggit.models import Tag
-from .models import Video,Like,Dislike
+from .models import Video
+from first.models import Subscription
 from .forms import VideoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.views.generic import View
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
+from django.views.decorators.http import require_POST
 #this function is to upload the svideo_upload.html file when the user fills the form to upload video
 def svideo_upload_view(request):
     videos=Video.objects.order_by('-publish_date')#we are showing all the uploaded videos according to their publish dates
@@ -48,15 +55,24 @@ def svideo_tagged(request,slug):
 
 #this function is to play the selected video
 def video(request,id):
+    try:
+        current_user=User.objects.get(username=request.user.username)
+    except:
+        return redirect('index')
+    
+    subscription=Subscription.objects.get(user=request.user)
+    if subscription.paid == 'False':
+        return redirect('subscription')
+    
     video =get_object_or_404(Video,pk=id)
     context={
         'video':video,
     }
     return render(request,'video.html',context)
 
-class UpdateVideoVote(LoginRequiredMixin, View):
+""" class UpdateVideoVote(LoginRequiredMixin, View):
     
-    login_url = '/login/'
+    
     def get(self, request, *args, **kwargs):
 
         video_id = self.kwargs.get('video_id', None)
@@ -70,7 +86,11 @@ class UpdateVideoVote(LoginRequiredMixin, View):
         except Video.dis_likes.RelatedObjectDoesNotExist as identifier:
             Dislike.objects.create(video = video)
 
-        
+        try:
+            # If child Like model doesnot exit then create
+            video.likes
+        except Video.likes.RelatedObjectDoesNotExist as identifier:
+            Like.objects.create(video = video)
 
         if opition.lower() == 'like':
 
@@ -89,4 +109,25 @@ class UpdateVideoVote(LoginRequiredMixin, View):
                 video.likes.users.remove(request.user)
         else:
             return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
-        return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
+        return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)])) """
+
+
+@require_POST
+def svideo_like(request):
+    if request.method == 'POST':
+        user = request.user
+        slug = request.POST.get('slug', None)
+        video = get_object_or_404(Video, slug=slug)
+        if video.likes.filter(id=user.id).exists():
+            # user has already liked this video
+            # remove like/user
+            video.likes.remove(user)
+            message = 'You disliked this'
+        else:
+            # add a new like for a video
+            video.likes.add(user)
+            message = 'You liked this'
+
+    ctx = {'likes_count': video.total_likes, 'message': message}
+    # use mimetype instead of content_type if django < 5
+    return HttpResponse(json.dumps(ctx), content_type='application/json')

@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'taggit',
     'comment',
     'django_email_verification',
-    
+    'static',
+
     # allauth
     'allauth',
     'allauth.account',

@@ -60,7 +60,6 @@ def yvideo_tagged(request,slug):
 
 class UpdateItemVote(LoginRequiredMixin, View):
     
-    
     def get(self, request, *args, **kwargs):
 
         item_id = self.kwargs.get('item_id', None)
