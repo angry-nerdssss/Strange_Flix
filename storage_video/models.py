@@ -68,7 +68,17 @@ class Video(models.Model):
     tags = TaggableManager()
     comments = GenericRelation(Comment)
     likes = models.ManyToManyField(User, related_name='likes')
+    dislikes = models.ManyToManyField(User, related_name='dislikes')
+    favourite = models.ManyToManyField(
+        User, related_name="fav_svideos", blank=True)
+    views=models.IntegerField(default=0)
+    
+    
+    
     """ def get_total_likes(self):
+    
+
+    def get_total_likes(self):
         return self.likes.users.count()
 
     def get_total_dis_likes(self):
@@ -80,7 +90,13 @@ class Video(models.Model):
         :return: Integer: Likes for the company
         """
         return self.likes.count()
-
+    @property
+    def total_dislikes(self):
+        """
+        Likes for the company
+        :return: Integer: Likes for the company
+        """
+        return self.dislikes.count()
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Video, self).save(*args, **kwargs)
@@ -89,26 +105,10 @@ class Video(models.Model):
         return self.title
 
 
-""" class Like(models.Model):
-    users = models.ManyToManyField(
-        User, related_name='requirement_video_likes')
-    video = models.OneToOneField(
-        Video, related_name="likes", on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
+class Time(models.Model):
+    username=models.CharField(max_length=200)
+    video_title = models.CharField(max_length=100)
+    currentTime=models.FloatField(default=0.0)
     def __str__(self):
-        return str(self.video.title)[:30]
-
-
-class Dislike(models.Model):
-    users = models.ManyToManyField(
-        User, related_name='requirement_video_dis_likes')
-    video = models.OneToOneField(
-        Video, related_name="dis_likes", on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.video.title)[:30]
- """
+        return str(self.username)

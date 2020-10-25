@@ -12,4 +12,6 @@ urlpatterns=[
     path('feedback',views.get_feedback,name='feedback'),
     path('showfeedback', views.show_feedback, name = 'show_feedback'),
     path('subscribed_user',views.subscribed_user,name='subscribed_user'),
+    path('ajax/validate_username/$',
+         views.validate_username, name='validate_username'),
 ]

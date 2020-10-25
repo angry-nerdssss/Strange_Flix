@@ -1,7 +1,6 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User, auth
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
@@ -20,10 +19,13 @@ def index(request):
     videos = Video.objects.all()
     showRegister = False
     showLogin = False
-    recommended_items=Item.objects.order_by('-likes')
-    recommended_items=recommended_items.order_by('-publish_date')
-    recommended_videos=Video.objects.order_by('-likes')
-    recommended_videos=recommended_videos.order_by('-publish_date')
+    
+
+    recommended_videos1=Video.objects.order_by('-publish_date')[:12]
+    #recommended_videos=recommended_videos.order_by('-publish_date')
+
+    recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
+    recommended_videos = reversed(recommended_videos2)
     
     paid=False
     try:
@@ -34,7 +36,7 @@ def index(request):
         'showLogin': showLogin,
         'items': items,
         'videos': videos,
-        'recommended_items':recommended_items,
+        
         'recommended_videos':recommended_videos,
         'paid':paid,
         }
@@ -48,7 +50,7 @@ def index(request):
         'showLogin': showLogin,
         'items': items,
         'videos': videos,
-        'recommended_items':recommended_items,
+        
         'recommended_videos':recommended_videos,
         'paid':paid,
     }
@@ -179,3 +181,12 @@ def subscribed_user(request):
     subscription.paid=True
     subscription.save()
     return redirect('index')
+
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this username already exists.'
+    return JsonResponse(data)
