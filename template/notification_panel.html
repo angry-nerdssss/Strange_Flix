@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'css/notification_panel.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+        <section class="notification_section">
+            <h1>Flagged Videos Till now are :</h1>
+            <ol>
+                {% for video in videos %}
+                <li> <h3 class="my-1"><a href="{% url 's_detail' video.slug %}">{{video.title}}</a></h3></li>
+                {% endfor %}
+            </ol>
+
+        </section>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+{% endblock  %}

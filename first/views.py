@@ -220,3 +220,10 @@ def validate_username(request):
             data['email_error_message'] = 'Email invalid'
 
     return JsonResponse(data)
+
+
+def notification_panel(request):
+    videos = Video.objects.order_by('-publish_date')
+    context = {'videos': videos,
+               }
+    return render(request, "notification_panel.html", context)
