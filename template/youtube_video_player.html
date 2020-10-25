@@ -79,7 +79,42 @@
                  style="color:blue"
                  {% endif %}
                  ></i>
-         
+
+                 <i id="flag_id" name="{{ item.slug }}"
+                 data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                 class="dislike fas fa-flag pr-2"  
+                 {% if request.user in item.flag.all %}
+                 style="color:red"
+                 {% else %}
+                 style="color:blue"
+                 {% endif %}
+                 ></i>
+
+                 <script>
+                  $('#flag_id').click(function(){
+                    console.log("ajax started 0");
+                      $.ajax({
+                            type: "GET",
+                            url: "{% url 'flag_yvideo' %}",
+                            data: {'title':"{{item.title}}"},
+                            dataType: "json",
+                            success: function(response) {
+                            console.log("ajax started 1");
+                                  if(response.added == true)
+                                  {
+                                    $(flag_id).css("color","red");
+                                  }
+                                  else
+                                  $(flag_id).css("color","blue");
+                                  console.log("ajax started 2");
+                            },
+                            error: function(rs, e) {
+                                    alert(rs.responseText);
+                            }
+                          }); 
+                    })
+                 </script>
+                    
                  </span>
               </div>
                                
