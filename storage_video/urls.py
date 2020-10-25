@@ -14,4 +14,5 @@ urlpatterns=[
          views.favourite_svideo, name='favourite_svideo'),
     path('play/',views.getCurrentTime,name='getCurrentTime'),
     path('increase_views/',views.increase_views,name="increase_views"),
+    path('deletesvideo/<int:id>/', views.delete_svideo, name='delete_svideo'),
 ]

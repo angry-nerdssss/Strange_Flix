@@ -248,3 +248,24 @@ def increase_views(request):
     video.save()
     ctx={}
     return HttpResponse(json.dumps(ctx), content_type='application/json')
+
+
+# delete view for details
+def delete_svideo(request, id):
+    # dictionary for initial data with
+
+    # field names as keys
+
+    # fetch the object related to passed id
+    context = {}
+    obj = get_object_or_404(Video,id=id)
+
+    # delete object
+
+    obj.delete()
+
+    # after deleting redirect to
+
+    # home page
+
+    return HttpResponseRedirect("/")

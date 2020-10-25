@@ -17,6 +17,7 @@
             <p>{{video.category}}</p>
             <p>{{video.publish_date}}</p>
             <a href="{% url 'play_svideo' video.id %}" class="btn btn-outline-danger">Play</a>
+            <a href="{% url 'delete_svideo' video.id %}" class="btn btn-outline-danger">Delete</a>
         </div>
     </div>
 

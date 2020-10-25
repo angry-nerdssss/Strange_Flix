@@ -151,3 +151,27 @@ def yvideo_dislike(request):
     return HttpResponse(json.dumps(ctx), content_type='application/json')
     return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))
 
+
+# delete view for details
+
+def delete_yvideo(request, id):
+
+
+    # dictionary for initial data with
+    
+    # field names as keys​​
+
+    # fetch the object related to passed id
+    context = {}
+    obj = get_object_or_404(Item, id=id)
+
+    # delete object
+
+    obj.delete()
+
+    # after deleting redirect to
+
+    # home page
+
+    return HttpResponseRedirect("/")
+
