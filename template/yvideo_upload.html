@@ -71,5 +71,24 @@
                     </div>
                     {% endfor %}
             </div>
-        </div>    
+        </div>
+
+        <script>
+            setTimeout(function(){
+              console.log("timeout function called")
+              $.ajax({
+                type: "GET",
+                url: "{% url 'increase_yviews' %}",
+                data: {'title':"{{item.title}}"},
+                dataType: "json",
+                success: function(response) {
+                       console.log(response);
+                       console.log("timeout function called 2")
+                 },
+                 error: function(rs, e) {
+                        alert(rs.responseText);
+                 }
+           });
+            },10*1000)
+        </script>
 {% endblock content %}

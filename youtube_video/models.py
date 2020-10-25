@@ -70,6 +70,7 @@ class Item(models.Model):
     dislikes = models.ManyToManyField(User, related_name='ydislikes')
     favourite = models.ManyToManyField(
         User, related_name="fav_yvideos", blank=True)
+    views = models.IntegerField(default=0)
     flag = models.ManyToManyField(
         User, related_name="flag_yvideos", blank=True)
 
