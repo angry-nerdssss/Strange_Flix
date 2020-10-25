@@ -1,0 +1,24 @@
+#sub-plan{
+    margin-top: 10rem;
+    padding: 0 15% 3%;
+}
+
+.card{
+    height: 100%;
+    border-color: whitesmoke;
+    background-color: black;
+    color: rgb(211, 203, 203);
+    border-radius: 0.2rem;
+}
+
+.card-header{
+    height: 25%;
+    border-color: whitesmoke;
+    color: #af0404;
+}
+
+.sub-btn{
+    width: 40%;
+    margin: 5%;
+}
+

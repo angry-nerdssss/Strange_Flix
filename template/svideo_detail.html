@@ -1,0 +1,24 @@
+{% extends 'base_yvideo_upload.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
+    <div class="card shadow">
+        <img src="{{ MEDIA_URL }}{{ video.poster }}" class="card-img-top" alt="Icon">
+        <div class="card-body">
+            <h5 class="card-title">{{video.title}}</h5>
+            {% for tag in video.tags.all %}
+            <a href="#" class="badge badge-danger">{{ tag }}</a>
+            {% endfor %}
+            <p class="card-text">{{video.desciption}}</p>
+            <p>{{video.category}}</p>
+            <p>{{video.publish_date}}</p>
+            <a href="{% url 'play_svideo' video.id %}" class="btn btn-outline-danger">Play</a>
+            <a href="{% url 'delete_svideo' video.id %}" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
+
+{% endblock content %}

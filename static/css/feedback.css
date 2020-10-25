@@ -1,0 +1,59 @@
+/* .feedback{
+    margin-top: 7rem;
+    padding: 5% 15%;
+    color: white;
+} */
+
+body{
+    background-color: black;
+}
+
+.touch{
+    display: none;
+}
+
+.feedback{
+    background-color: black;
+    margin: 0.5rem 0;
+    padding: 7% 20%;
+    color: aliceblue;
+}
+
+.feedback-heading{
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 5%;
+}
+
+.collapse-btn{
+    margin-top:10px;
+    color: aliceblue;
+    text-align: left;
+    width: 100%;
+    background-color: #252525;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-radius: 0;
+}
+
+.collapse-btn:hover{
+    margin-top:10px;
+    color: aliceblue;
+    text-align: left;
+    width: 100%;
+    background-color: #252525;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-radius: 0;
+}
+
+.ques{
+    display: inline-block;
+    width: 90%;
+}
+
+.feedback-ans{
+    color: aliceblue;
+    padding: 5%;
+    margin-top: 2px;
+    background-color: #252525;
+}

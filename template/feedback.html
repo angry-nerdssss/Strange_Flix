@@ -1,0 +1,27 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+{% endblock css %}
+
+{% block content %}
+    
+    <div class="feedback">
+        <h1 class="feedback-heading">Feedbacks</h1>
+        {% for feedback in feedbacks %}
+            <div class="btn collapse-btn" data-toggle="collapse" href="#f{{feedback.id}}">
+                <h2 class="title">{{feedback.subject}}</h2>
+                <!-- <h1 class="add-icon">+</h1> -->
+            </div>
+            <div class="collapse" id="f{{feedback.id}}">
+                <div class="feedback-ans">
+                    <p>{{feedback.email}}</p>
+                    <p>{{feedback.name}}</p>
+                    <p>{{feedback.message}}</p>
+                </div>
+            </div>
+        {% endfor%}
+    </div>
+
+{% endblock content %}
