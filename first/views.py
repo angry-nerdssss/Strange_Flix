@@ -220,3 +220,7 @@ def validate_username(request):
             data['email_error_message'] = 'Email invalid'
 
     return JsonResponse(data)
+
+
+def mycorner(request):
+    return render(request, 'mycorner.html')

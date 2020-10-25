@@ -89,7 +89,7 @@
                     <div class="row movie-row">
                        
                         {% for video in recommended_videos|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="r{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -110,7 +110,7 @@
                     <div class="row movie-row">                        
                       
                         {% for video in videos|slice:"6:12" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="r{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -159,7 +159,7 @@
                     <div class="row movie-row">
                        
                         {% for video in videos|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -181,7 +181,7 @@
                     <div class="row movie-row">                        
                       
                         {% for video in videos|slice:"6:" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -223,7 +223,7 @@
                     <div class="row movie-row">
                        
                         {% for video in user.fav_svideos.all|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="fav_svideo{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -261,7 +261,7 @@
                 <div class="carousel-item active">
                     <div class="row movie-row">
                         {% for i in items|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
                                 <img class="movie-icon" id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -282,7 +282,7 @@
                     <div class="row movie-row">                        
                       
                         {% for i in items|slice:"6:" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
                                 <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -329,7 +329,7 @@
                     <div class="carousel-item active">
                         <div class="row movie-row">
                             {% for i in user.fav_yvideos.all|slice:":6" %}
-                            <div class="col-sm-4 col-lg-2 col">
+                            <div class="col-4 col-lg-2 col">
                                 <div class="movie-img-container">
                                     <a href="{% url 'play_yvideo' i.id %}">
                                         <img class="movie-icon" id="fav_yvideos{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -371,7 +371,7 @@
                 <div class="carousel-item active">
                     <div class="row movie-row">
                         {% for i in items %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
 
                                 <img class="movie-icon" id="" src="{% static 'images/loading.gif' %}"  alt="img" >
@@ -402,7 +402,7 @@
                 <div class="carousel-item active">
                     <div class="row movie-row">
                         {% for i in items %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
 
                                 <img class="movie-icon" id="" src="{% static 'images/loading.gif' %}"  alt="img" >
