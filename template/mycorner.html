@@ -45,7 +45,7 @@
               var match = url.match(regExp);
               return (match&&match[7].length==11)? match[7] : false;
             }
-            document.getElementById('yl{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/default.jpg');
+            document.getElementById('yl{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/maxresdefault.jpg');
           </script>
         {% endfor %}
       </div>
@@ -88,7 +88,7 @@
               var match = url.match(regExp);
               return (match&&match[7].length==11)? match[7] : false;
             }
-            document.getElementById('yf{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/default.jpg');
+            document.getElementById('yf{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/maxresdefault.jpg');
           </script>
         {% endfor %}
       </div>

@@ -13,10 +13,10 @@
       {% for video in videos %}
         <div class="col-6 col-md-4 col-lg-3">
           <div class="poster">
-            <img id="sl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
+            <a href="{% url 'play_svideo' video.id %}"><img id="sl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster"></a>
           </div>
           <div class="info">
-            <a href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+            <a style="text-decoration: none;"  href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
             <p>{{video.views}} views | publishdate </p>
           </div>
         </div>
@@ -27,10 +27,10 @@
       {% for i in items %}
       <div class="col-6 col-md-4 col-lg-3">
         <div class="poster">
-          <img  id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="poster" >
+          <a href="{% url 'play_yvideo' i.id %}"><img  id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="poster" ></a>
         </div>
         <div class="info">
-          <a href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
+          <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
           <p>{{i.views}} views | publishdate </p>
         </div>
       </div>
@@ -40,7 +40,7 @@
             var match = url.match(regExp);
             return (match&&match[7].length==11)? match[7] : false;
         }
-        document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+        document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
     </script> 
    
     {% endfor %}

@@ -89,11 +89,17 @@
                     <div class="row movie-row">
                        
                         {% for video in recommended_videos|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' video.id %}">
-                                <img class="movie-icon" id="r{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a  href="{% url 'play_svideo' video.id %}">
+                                    <img class="movie-icon" id="r{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"> <h6 class="video-title">{{video.title}}</h6></a>
+                                    <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
+                                </div>
                             </div>
                             <script type="text/javascript">
                                 document.getElementById('r{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
@@ -111,18 +117,24 @@
                     <div class="row movie-row">                        
                       
                         {% for i in recommended_items|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_yvideo' i.id %}">
-                                <img class="movie-icon" id="r{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
-                                <script type="text/javascript">
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_yvideo' i.id %}">
+                                        <img class="movie-icon" id="r{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="video thumbnail" >
+                                    <script type="text/javascript">
                                     function youtube_parser(url){
                                         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
                                         var match = url.match(regExp);
                                         return (match&&match[7].length==11)? match[7] : false;
                                     }
-                                    document.getElementById('r{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                    document.getElementById('r{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
                                 </script></a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"> <h6 class="video-title">{{i.title}}</h6></a>
+                                    <p class="video-info">{{i.views}} views | {{i.publish_date}} </p>
+                                </div>
                             </div>
                         </div>
                       
@@ -162,11 +174,17 @@
                     <div class="row movie-row">
                        
                         {% for video in videos|slice:":6" %}
-                        <div class="col-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' video.id %}">
-                                <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_svideo' video.id %}">
+                                    <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"> <h6 class="video-title">{{video.title}}</h6></a>
+                                    <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
+                                </div>
                             </div>
                             <script type="text/javascript">
                                 document.getElementById('p{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
@@ -183,12 +201,18 @@
                 <div class="carousel-item">
                     <div class="row movie-row">                        
                       
-                        {% for video in videos|slice:"6:" %}
-                        <div class="col-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' video.id %}">
-                                <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
+                        {% for video in videos|slice:"6:12" %}
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_svideo' video.id %}">
+                                    <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <a   style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"> <h6 class="video-title">{{video.title}}</h6></a>
+                                    <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
+                                </div>
                             </div>
                             <script type="text/javascript">
                                 document.getElementById('p{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
@@ -226,11 +250,17 @@
                     <div class="row movie-row">
                        
                         {% for video in user.fav_svideos.all|slice:":6" %}
-                        <div class="col-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' video.id %}">
-                                <img class="movie-icon" id="fav_svideo{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_svideo' video.id %}">
+                                    <img class="movie-icon" id="fav_svideo{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"><h6 class="video-title">{{video.title}}</h6></a>
+                                    <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
+                                </div>
                             </div>
                             <script type="text/javascript">
                                 document.getElementById('fav_svideo{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
@@ -264,18 +294,24 @@
                 <div class="carousel-item active">
                     <div class="row movie-row">
                         {% for i in items|slice:":6" %}
-                        <div class="col-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_yvideo' i.id %}">
-                                <img class="movie-icon" id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
-                                <script type="text/javascript">
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_yvideo' i.id %}">
+                                        <img class="movie-icon" id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="video thumbnail" >
+                                    <script type="text/javascript">
                                     function youtube_parser(url){
                                         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
                                         var match = url.match(regExp);
                                         return (match&&match[7].length==11)? match[7] : false;
                                     }
-                                    document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                    document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
                                 </script></a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}">  <h6 class="video-title">{{i.title}}</h6></a>
+                                    <p class="video-info">{{i.views}} views | {{i.publish_date}} </p>
+                                </div>
                             </div>
                         </div>
                         {% endfor %}
@@ -284,19 +320,25 @@
                 <div class="carousel-item">
                     <div class="row movie-row">                        
                       
-                        {% for i in items|slice:"6:" %}
-                        <div class="col-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_yvideo' i.id %}">
-                                <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
-                                <script type="text/javascript">
+                        {% for i in items|slice:"6:12" %}
+                        <div class="col-6 col-lg-2 col">
+                            <div class="thumbnail">
+                                <div class="movie-icon-container">
+                                    <a href="{% url 'play_yvideo' i.id %}">
+                                        <img class="movie-icon" id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="video thumbnail" >
+                                    <script type="text/javascript">
                                     function youtube_parser(url){
                                         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
                                         var match = url.match(regExp);
                                         return (match&&match[7].length==11)? match[7] : false;
                                     }
-                                    document.getElementById('{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                    document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
                                 </script></a>
+                                </div>
+                                <div class="info">
+                                    <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h6 class="video-title">{{i.title}}</h6></a>
+                                    <p class="video-info">{{i.views}} views | {{i.publish_date}} </p>
+                                </div>
                             </div>
                         </div>
                       
@@ -332,18 +374,24 @@
                     <div class="carousel-item active">
                         <div class="row movie-row">
                             {% for i in user.fav_yvideos.all|slice:":6" %}
-                            <div class="col-4 col-lg-2 col">
-                                <div class="movie-img-container">
-                                    <a href="{% url 'play_yvideo' i.id %}">
-                                        <img class="movie-icon" id="fav_yvideos{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
+                            <div class="col-6 col-lg-2 col">
+                                <div class="thumbnail">
+                                    <div class="movie-icon-container">
+                                        <a href="{% url 'play_yvideo' i.id %}">
+                                            <img class="movie-icon" id="fav_yvideos{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="video thumbnail" >
                                         <script type="text/javascript">
-                                            function youtube_parser(url){
-                                                var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-                                                var match = url.match(regExp);
-                                                return (match&&match[7].length==11)? match[7] : false;
-                                            }
-                                            document.getElementById('fav_yvideos{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
-                                        </script></a>
+                                        function youtube_parser(url){
+                                            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                            var match = url.match(regExp);
+                                            return (match&&match[7].length==11)? match[7] : false;
+                                        }
+                                        document.getElementById('fav_yvideos{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
+                                    </script></a>
+                                    </div>
+                                    <div class="info">
+                                        <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h6 class="video-title">{{i.title}}</h6></a>
+                                        <p class="video-info">{{i.views}} views | {{i.publish_date}} </p>
+                                    </div>
                                 </div>
                             </div>
                             {% endfor %}
@@ -370,26 +418,32 @@
     {% for  genre in genres %}
     <div class="carousel-movies">
 
-        <a href="{% url 'all_svideos' genre.0 %}"><h3 class="carousel-heading">{{genre.0}}</h3></a>
+        <a  style="text-decoration: none;" href="{% url 'all_svideos' genre.0 %}"><h3 class="carousel-heading">{{genre.0}}</h3></a>
         <div id="genre1" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row movie-row">
-                        {% for i in videos %}
+                        {% for video in videos %}
                       
-                          {% if i.genre == genre.0 %}
+                            {% if video.genre == genre.0 %}
                           
                    
-                          <div class="col-sm-4 col-lg-2 col">
-                            <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' i.id %}">
-                                <img class="movie-icon" id="genr{{i.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
-                            </div>
-                            <script type="text/javascript">
-                                document.getElementById('genr{{i.id}}').setAttribute('src', '{{ MEDIA_URL }}{{i.poster}}');
-                            </script>
-                        </div>
+                            <div class="col-6 col-lg-2 col">
+                                    <div class="thumbnail">
+                                        <div class="movie-icon-container">
+                                            <a href="{% url 'play_svideo' video.id %}">
+                                                <img class="movie-icon" id="genr{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"><h6 class="video-title">{{video.title}}</h6></a>
+                                            <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        document.getElementById('genr{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+                                    </script>
+                                </div>
                         {% endif %}
                         {% endfor %}
                     </div> 
@@ -429,9 +483,7 @@
         <!-- faqs -->
 
         <div class="faqs">
-            {% if paid == True %}
             <h1 class="faq-heading">Frequently Asked Questions</h1>
-            {%endif%}
             <div class="btn collapse-btn" data-toggle="collapse" href="#q1">
                 <h2 class="ques">Lorem ipsum doler sit amet ?</h2>
                 <!-- <h1 class="add-icon">+</h1> -->
