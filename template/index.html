@@ -367,7 +367,7 @@
     {% for  genre in genres %}
     <div class="carousel-movies">
 
-        <h3 class="carousel-heading">{{genre.0}}</h3>
+        <a href="{% url 'all_svideos' genre.0 %}"><h3 class="carousel-heading">{{genre.0}}</h3></a>
         <div id="genre1" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -391,11 +391,11 @@
                     </div> 
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#genre1" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="{{genre.0}}" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#genre1" role="button" data-slide="next">
+            <a class="carousel-control-next" href="{{genre.0}}" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
