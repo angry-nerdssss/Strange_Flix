@@ -10,7 +10,7 @@ from django_email_verification import sendConfirm
 from storage_video.models import Video
 from youtube_video.models import Item
 from .models import Feedback, Subscription
-
+from taggit.models import Tag
 # this function is to render to the main page when the user first searches for the site
 
 
@@ -307,8 +307,81 @@ def liked_videos_page(request):
     return render(request, 'allVideos.html', context)
 
 
-def update_variable(value):
+strings = []
+def subString(Str,n):
+    
+    for l in range(1,n + 1):
+        for i in range(n - l + 1):
+            j = i + l - 1
+            util_string=""
+            for k in range(i,j + 1):
+                util_string=util_string+Str[k]
+                
+                
+            if len(util_string)>1 :
+                strings.append(util_string)
+                print(util_string)
+            
 
-    count = value
+def search(request):
+    if request.method=='POST':
+        video_name=request.POST['video_name']
 
-    return count
+        #main_video=Video.objects.get(title__iexact=video_name) 
+        #related_video=Video.objects.filter(title__istartswith=video_name)
+        subString(video_name,len(video_name))
+        queryset = Video.objects.none()
+
+        for string in strings :
+            queryset |=Video.objects.filter(title__icontains=string)
+        recommended_video = reversed(queryset)
+
+        queryset = Item.objects.none()
+        for string in strings :
+            queryset |=Item.objects.filter(title__icontains=string)
+        queryset.distinct()
+        recommended_item = reversed(queryset)
+
+        ctx={
+            'videos':recommended_video,
+            'items':recommended_item
+        }
+        return render(request,'all_svideos.html',ctx)
+        """
+        main_item=Item.objects.get(title__iexact=video_name) 
+        recommends_item=Item.objects.filter(title__istartswith=video_name)
+        """
+
+def search_tag(request,slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    print(tag.name)
+    videos=Video.objects.filter(tags=tag)
+    items=Item.objects.filter(tags=tag)
+    context={
+        'tag':tag,
+        'videos':videos,
+        'items':items,
+    }
+    return render(request,'all_svideos.html',context)
+
+def search_tagbyname(request):
+    tag=request.POST['tag_name']
+    all_videos=Video.objects.all()
+    queryset=Video.objects.none()
+    for video in all_videos:
+        if video.tags.filter(name=tag).exists():
+            queryset |=Video.objects.filter(id=video.id)
+    videos=queryset
+
+    all_items=Item.objects.all()
+    queryset=Item.objects.none()
+    for item in all_items:
+        if item.tags.filter(name=tag).exists():
+            queryset |=Item.objects.filter(id=item.id)
+    items=queryset
+    context={
+        'tag':tag,
+        'videos':videos,
+        'items':items,
+    }
+    return render(request,'all_svideos.html',context)

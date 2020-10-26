@@ -21,4 +21,8 @@ urlpatterns = [
     path('mycorner', views.mycorner, name='mycorner'),
     path('mycorner/liked_videos_page',
          views.liked_videos_page, name='liked_videos_page'),
+    path('search',views.search,name='search'),
+    path('search_tag/<slug:slug>/', views.search_tag, name='search_tag'),
+    path('search_tagbyname', views.search_tagbyname, name='search_tagbyname'),
+    #path('search_tag2/<slug:slug>/', views.search_tag2, name='search_tag2'),
 ]
