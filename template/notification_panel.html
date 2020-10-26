@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'css/notification_panel.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+        <section class="notification_section">
+            <h1 >Flagged Videos Till now are  :</h1>
+           
+            <ol type="1" >
+                {% for video in videos %}
+           
+                    {% if video.total_flag > 0 %}
+                    <li>
+                     <a class="video-link"  href="{% url 's_detail' video.slug %}">{{video.title}} [{{ video.total_flag}}]</a>
+                    </li>
+                    {% endif %}
+                 
+                {% endfor %}
+            </ol>
+
+        </section>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+{% endblock  %}

@@ -14,6 +14,7 @@ body{
 }
 
 
+
 /* ---------------custom bootstrap */
 
 
@@ -27,7 +28,7 @@ body{
     position: fixed;
     top: 0;
     overflow: hidden;
-    z-index: 2;
+    z-index: 4;
     width: 100%;
 }
 
@@ -48,6 +49,11 @@ body{
 
 .navbar-brand:hover{
     color: red;
+}
+
+.badge{
+    background-color: red;
+    color: white;
 }
 
 .btn-danger{
@@ -72,11 +78,17 @@ body{
     border-color: red;
 }
 
-
-
 .pressed-danger{
     color: #af0404;
     border-color: red;
+}
+
+.btn-outline-dark{
+    margin-right: 1rem;
+}
+
+.btn-outline-dark:hover{
+    background-color: #414141;
 }
 
 .navbar-toggler{
@@ -97,19 +109,27 @@ body{
 /* form-styles */
 
 .login-form-container{
+    top: 0;
+    left: 0;
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 5;
     visibility: hidden;
+    background-color: rgb(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.5px);
 }
 
 .registration-form-container{
+    top: 0;
+    left: 0;
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 5;
     visibility: hidden;
+    background-color: rgb(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.5px);
 }
 
 .form-div{
@@ -117,7 +137,7 @@ body{
     background-color: black ;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10rem;
+    margin-top: 4rem;
     width: 70%;
     color: rgb(211, 203, 203);
     border-radius: 1%;
@@ -139,4 +159,62 @@ body{
     color: red;
 }
 
+.cancel-btn, .change-btn, .submit-btn{
+    width: 5rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+}
 
+.social-btn{
+    margin-left: 0;
+    margin-top: 1rem;
+    padding: 0 16px;
+}
+
+.msg{
+    color: red;
+}
+
+/* footer */
+
+.touch{
+    padding: 7% 15% 0 15%;
+    background-color: black;
+}
+
+h3{
+    color: white;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+
+.contact-us-btn{
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.container-fluid{
+    text-align: center;
+    padding: 3%;
+}
+
+.footer-icon{
+    margin: 3% 5%;
+    color: #414141;
+}
+
+.footer-icon:hover{
+    color: #af0404;
+    transform: scale(1.2);
+}
+
+.col-lg-4{
+    padding: 10px;
+    margin: 0;
+}
+
+.col-lg-12{
+    padding: 10px;
+}

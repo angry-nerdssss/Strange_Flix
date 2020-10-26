@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load comment_tags %}  {# Loading the template tag #}
+{% block css %}
+    <!-- video player css -->
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
+    <!-- my css -->
+    <link rel="stylesheet" href="{% static 'css/video.css' %}">
+    <link rel="stylesheet" href="{% static 'css/youtube_video_player.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- video player -->
+    <section class="video-section">
+        <div class="video-div">
+            <script type="text/javascript" src="{% static 'js/youtube_video_player.js' %}"></script>
+            
+            <iframe src="{{item.video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-actions-div">
+            <h3 class="video-title">{{item.title}}</h3>
+
+            <h6 class="video-info">
+                {{item.category}} | Language | {{item.publish_date}} | Rating</h6>
+            <h6 class="video-content">{{item.description}}</h6>
+
+        <br>
+            <div style="display:flex">
+                {% for tag in item.tags.all %}
+                <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                {% endfor %}
+            </div>
+<br>
+            <div class="text-left">
+                <span class="pointer">
+                   
+                    {% if request.user in item.likes.all %}
+                    <i id="like" name="{{ item.slug }}"
+                    data-toggle="tooltip" data-placement="bottom" title="i like this"
+                    class="like fas fa-thumbs-up pr-2"
+                    style="color:red">
+                 <span id="like_count">{{item.total_likes}}</span>
+                 
+                 </i>
+                 {% else %}
+                    <i id="like" name="{{ item.slug }}"
+                       data-toggle="tooltip" data-placement="bottom" title="i like this"
+                       class="like fas fa-thumbs-up pr-2"
+                       style="color:blue">
+                    <span id="like_count">{{item.total_likes}}</span>
+                    
+                    </i>
+                    {% endif %}
+                    
+                    {% if request.user in item.dislikes.all %}
+                    <i id="dislike" name="{{ item.slug }}"
+                 data-toggle="tooltip" data-placement="bottom" title="i dislike this "
+                 class="default-icon fas fa-thumbs-down pr-2"  style="color:red">
+              <span id="dislike_count">{{item.total_dislikes}}</span>
+              </i>
+              {% else %}
+                    <i id="dislike" name="{{ item.slug }}"
+                    data-toggle="tooltip" data-placement="bottom" title="i dislike this "
+                    class="default-icon fas fa-thumbs-down pr-2"  style="color:blue">
+                 <span id="dislike_count">{{item.total_dislikes}}</span>
+                 </i>
+                 {% endif %}
+                 
+                 <i id="favourite_id" name="{{ item.slug }}"
+
+                 data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                 
+                 class="dislike fas fa-heart pr-2"  
+                 {% if request.user in item.favourite.all %}
+                 style="color:red"
+                 {% else %}
+                 style="color:blue"
+                 {% endif %}
+                 ></i>
+
+                 <i id="flag_id" name="{{ item.slug }}"
+                 data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                 class="dislike fas fa-flag pr-2"  
+                 {% if request.user in item.flag.all %}
+                 style="color:red"
+                 {% else %}
+                 style="color:blue"
+                 {% endif %}
+                 ></i>
+
+                 <script>
+                  $('#flag_id').click(function(){
+                    console.log("ajax started 0");
+                      $.ajax({
+                            type: "GET",
+                            url: "{% url 'flag_yvideo' %}",
+                            data: {'title':"{{item.title}}"},
+                            dataType: "json",
+                            success: function(response) {
+                            console.log("ajax started 1");
+                                  if(response.added == true)
+                                  {
+                                    $(flag_id).css("color","red");
+                                  }
+                                  else
+                                  $(flag_id).css("color","blue");
+                                  console.log("ajax started 2");
+                            },
+                            error: function(rs, e) {
+                                    alert(rs.responseText);
+                            }
+                          }); 
+                    })
+                 </script>
+                    
+                 </span>
+              </div>
+                               
+            
+  
+<script>
+  
+  $('#favourite_id').click(function(){
+    console.log("ajax started 0");
+      $.ajax({
+               
+               type: "GET",
+               url: "{% url 'favourite_yvideo' %}",
+               data: {'title':"{{item.title}}"},
+               dataType: "json",
+               success: function(response) {
+                console.log("ajax started 1");
+                      if(response.added == true)
+                      {
+                        $(favourite_id).css("color","red");
+                      }
+                      else
+                      $(favourite_id).css("color","blue");
+                      console.log("ajax started 2");
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    })
+  </script>
+                   
+          
+ <script>
+     var like_count = document.getElementById('like_count');
+     var dislike_count = document.getElementById('dislike_count');
+     var like=document.getElementById('like');
+     var dislike=document.getElementById('dislike');
+ $('#like').click(function(){
+       $.ajax({
+                type: "POST",
+                url: "{% url 'yvideo_like' %}",
+                data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: "json",
+                success: function(response) {
+                       
+                       like_count.innerText=response.likes_count;
+                       dislike_count.innerText=response.dislikes_count;
+                       
+                       if(response.liked==true){
+                         $(like_count).css("color","red");
+                         $(like).css("color","red");
+                       }
+                       else if(response.liked==false){
+                         $(like_count).css("color","blue");
+                         $(like).css("color","blue");
+                       }
+                       if(response.disliked==true){
+                         $(dislike_count).css("color","red");
+                         $(dislike).css("color","red");
+                       }
+                       else if(response.disliked==false){
+                         $(dislike_count).css("color","blue");
+                         $(dislike).css("color","blue");
+                       }
+                 },
+                 error: function(rs, e) {
+                        alert(rs.responseText);
+                 }
+           }); 
+     })
+ </script>
+ <script>
+     var like_count = document.getElementById('like_count');
+     var dislike_count = document.getElementById('dislike_count');
+     var like=document.getElementById('like');
+     var dislike=document.getElementById('dislike');
+ $('#dislike').click(function(){
+       $.ajax({
+                type: "POST",
+                url: "{% url 'yvideo_dislike' %}",
+                data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: "json",
+                success: function(response) {
+                       
+                       dislike_count.innerText=response.dislikes_count;
+                       like_count.innerText=response.likes_count;
+ 
+                       if(response.disliked==true){
+                         $(dislike_count).css("color","red");
+                         $(dislike).css("color","red");
+                       }
+                       else if(response.disliked==false){
+                         $(dislike_count).css("color","blue");
+                         $(dislike).css("color","blue");
+                       }
+                       if(response.liked==true){
+                         $(like_count).css("color","red");
+                         $(like).css("color","red");
+                       }
+                       else if(response.liked==false){
+                         $(like_count).css("color","blue");
+                         $(like).css("color","blue");
+                       }
+                 },
+                 error: function(rs, e) {
+                        alert(rs.responseText);
+                 }
+           }); 
+     })
+ </script>
+            {% render_comments item request %}  {# Render all the comments belong to the passed object "obj" #}
+
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+
+
+
