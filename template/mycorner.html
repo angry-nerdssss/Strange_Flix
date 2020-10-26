@@ -1,0 +1,103 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mycorner.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <section class="mycorner_section">
+      <h2>Liked videos<a class="link-to-all" href="{% url 'liked_videos_page' %}">    SEE ALL</a></h2><br>
+      <div class="row">
+        {% for video in user.likes.all|slice:":6" %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="poster">
+              <img id="sl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
+            </div>
+            <div class="info">
+              <a href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+              <p>{{video.views}} views | publishdate </p>
+            </div>
+          </div>
+          <script>
+            document.getElementById("sl{{video.id}}").setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+          </script>
+        {% endfor %}
+      </div>
+      <br><br><br>
+      
+      <h2>Liked Youtube Videos</h2><br>
+      <div class="row">
+        {% for video in user.ylikes.all|slice:":6" %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="poster">
+              <img id="yl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
+            </div>
+            <div class="info">
+              <a href="{% url 'play_yvideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+              <p>{{video.views}} views | publishdate </p>
+            </div>
+          </div></a>
+          <script>
+            function youtube_parser(url){
+              var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+              var match = url.match(regExp);
+              return (match&&match[7].length==11)? match[7] : false;
+            }
+            document.getElementById('yl{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/default.jpg');
+          </script>
+        {% endfor %}
+      </div>
+      <br><br><br>
+
+      <h2>Favourite videos</h2><br>
+      <div class="row">
+        {% for video in user.fav_svideos.all|slice:":6" %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="poster">
+              <img id="sf{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
+            </div>
+            <div class="info">
+              <a href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+              <p>{{video.views}} views | publishdate </p>
+            </div>
+          </div>
+          <script>
+            document.getElementById("sf{{video.id}}").setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+          </script>
+        {% endfor %}
+      </div>
+      <br><br><br>
+      
+      <h2>Favourite Youtube Videos</h2><br>
+      <div class="row">
+        {% for video in user.ylikes.all|slice:":6" %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="poster">
+              <img id="yf{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
+            </div>
+            <div class="info">
+              <a href="{% url 'play_yvideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+              <p>{{video.views}} views | publishdate </p>
+            </div>
+          </div></a>
+          <script>
+            function youtube_parser(url){
+              var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+              var match = url.match(regExp);
+              return (match&&match[7].length==11)? match[7] : false;
+            }
+            document.getElementById('yf{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/default.jpg');
+          </script>
+        {% endfor %}
+      </div>
+
+      <!-- TODO:Need to add playlist if implemented -->
+    </section>
+
+{% endblock %}
+
+{% block javascript %}
+    alkjfsd
+{% endblock %}

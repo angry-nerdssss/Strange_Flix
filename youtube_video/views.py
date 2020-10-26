@@ -198,3 +198,17 @@ def flag_yvideo(request):
         item.flag.add(request.user)
     ctx = {'added': added, }
     return HttpResponse(json.dumps(ctx), content_type='application/json')
+
+
+def increase_yviews(request):
+    title = request.GET.get('title', None)
+    try:
+        current_user = User.objects.get(username=request.user.username)
+    except:
+        return redirect('login')
+    video = Item.objects.get(title=title)
+    video.views = video.views+1
+    print(video.views)
+    video.save()
+    ctx = {}
+    return HttpResponse(json.dumps(ctx), content_type='application/json')

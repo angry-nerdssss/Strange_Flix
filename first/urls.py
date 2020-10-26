@@ -18,4 +18,7 @@ urlpatterns = [
          views.validate_username, name='validate_username'),
     path('notification_panel', views.notification_panel, name='notification_panel'),
     path('all_svideos/<str:type>/', views.all_svideos, name='all_svideos'),
+    path('mycorner', views.mycorner, name='mycorner'),
+    path('mycorner/liked_videos_page',
+         views.liked_videos_page, name='liked_videos_page'),
 ]

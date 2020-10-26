@@ -1,0 +1,46 @@
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.mycorner_section {
+  color: white;
+  margin-top: 5.5rem;
+  padding: 5%;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h2 {
+  color: white;
+  font-weight: 800;
+}
+
+.video-title {
+  color: white;
+}
+
+.video-title:hover {
+  color: white;
+}
+
+.info {
+  background-color: black;
+  padding: 3% 10% 0.1%;
+}
+
+#footer {
+  display: none;
+}
+
+.link-to-all {
+  font-size: small;
+  color: firebrick;
+  margin: 1rem;
+}
+
+.link-to-all:hover {
+  color: red;
+}

@@ -78,7 +78,7 @@
 
 
 
-    
+      
     <!-- Recommended -->
     <div class="carousel-movies">
         <h3 class="carousel-heading">Recommended</h1>
@@ -103,22 +103,27 @@
                            
                         {% endfor %}
                         
+                    
                     </div>
                     
                 </div>
                 <div class="carousel-item">
                     <div class="row movie-row">                        
                       
-                        {% for video in videos|slice:"6:12" %}
+                        {% for i in recommended_items|slice:":6" %}
                         <div class="col-sm-4 col-lg-2 col">
                             <div class="movie-img-container">
-                                <a href="{% url 'play_svideo' video.id %}">
-                                <img class="movie-icon" id="r{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
-                                </a>
+                                <a href="{% url 'play_yvideo' i.id %}">
+                                <img class="movie-icon" id="r{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
+                                <script type="text/javascript">
+                                    function youtube_parser(url){
+                                        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+                                        var match = url.match(regExp);
+                                        return (match&&match[7].length==11)? match[7] : false;
+                                    }
+                                    document.getElementById('r{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+                                </script></a>
                             </div>
-                            <script type="text/javascript">
-                                document.getElementById('r{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
-                            </script>
                         </div>
                       
                            
@@ -128,7 +133,6 @@
                        
                     </div>
                 </div>
-                
             </div>
             <a class="carousel-control-prev" href="#recommended" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -141,8 +145,7 @@
         </div>
     </div>
 
-
-
+    
 
 
 
@@ -159,7 +162,7 @@
                     <div class="row movie-row">
                        
                         {% for video in videos|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -181,7 +184,7 @@
                     <div class="row movie-row">                        
                       
                         {% for video in videos|slice:"6:" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="p{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -223,7 +226,7 @@
                     <div class="row movie-row">
                        
                         {% for video in user.fav_svideos.all|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_svideo' video.id %}">
                                 <img class="movie-icon" id="fav_svideo{{video.id}}" src="{% static 'images/loading.gif' %}" alt="avenger image">
@@ -261,7 +264,7 @@
                 <div class="carousel-item active">
                     <div class="row movie-row">
                         {% for i in items|slice:":6" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
                                 <img class="movie-icon" id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -282,7 +285,7 @@
                     <div class="row movie-row">                        
                       
                         {% for i in items|slice:"6:" %}
-                        <div class="col-sm-4 col-lg-2 col">
+                        <div class="col-4 col-lg-2 col">
                             <div class="movie-img-container">
                                 <a href="{% url 'play_yvideo' i.id %}">
                                 <img class="movie-icon" id="{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -329,7 +332,7 @@
                     <div class="carousel-item active">
                         <div class="row movie-row">
                             {% for i in user.fav_yvideos.all|slice:":6" %}
-                            <div class="col-sm-4 col-lg-2 col">
+                            <div class="col-4 col-lg-2 col">
                                 <div class="movie-img-container">
                                     <a href="{% url 'play_yvideo' i.id %}">
                                         <img class="movie-icon" id="fav_yvideos{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="avenger image" >
@@ -363,7 +366,7 @@
         {% endif %}
     
 
-    <!-- genre 1 -->
+    <!-- genres -->
     {% for  genre in genres %}
     <div class="carousel-movies">
 
