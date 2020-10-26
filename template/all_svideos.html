@@ -24,6 +24,26 @@
           document.getElementById("sl{{video.id}}").setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
         </script>
       {% endfor %}
+      {% for i in items %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="poster">
+          <img  id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="poster" >
+        </div>
+        <div class="info">
+          <a href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
+          <p>{{i.views}} views | publishdate </p>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function youtube_parser(url){
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var match = url.match(regExp);
+            return (match&&match[7].length==11)? match[7] : false;
+        }
+        document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/default.jpg');
+    </script> 
+   
+    {% endfor %}
     </div>
 
   </section>

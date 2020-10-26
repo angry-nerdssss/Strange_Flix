@@ -52,6 +52,7 @@ def index(request):
     videos = Video.objects.all()
     showRegister = False
     showLogin = False
+    count = 0
 
     recommended_videos1 = Video.objects.order_by('-publish_date')[:6]
     # recommended_videos=recommended_videos.order_by('-publish_date')
@@ -76,7 +77,7 @@ def index(request):
             'recommended_videos': recommended_videos,
             'recommended_items': recommended_items,
             'paid': paid,
-
+            'count': count,
         }
         return render(request, "index.html", context)
 
@@ -92,6 +93,8 @@ def index(request):
         'recommended_items': recommended_items,
         'recommended_videos': recommended_videos,
         'paid': paid,
+        'count': count,
+
     }
     """
     for i in range(12) :
@@ -277,9 +280,10 @@ def notification_panel(request):
 
 def all_svideos(request, type):
     videos = Video.objects.filter(genre=type)
+    items = Item.objects.filter(genre=type)
     context = {
         'videos': videos,
-
+        'items': items,
     }
     return render(request, "all_svideos.html", context)
 
@@ -301,3 +305,10 @@ def liked_videos_page(request):
         'heading': "Liked Videos",
     }
     return render(request, 'allVideos.html', context)
+
+
+def update_variable(value):
+
+    count = value
+
+    return count
