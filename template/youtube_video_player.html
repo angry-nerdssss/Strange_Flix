@@ -48,7 +48,7 @@
                     <i id="like" name="{{ item.slug }}"
                        data-toggle="tooltip" data-placement="bottom" title="i like this"
                        class="like fas fa-thumbs-up pr-2"
-                       style="color:blue">
+                       style="color:grey">
                     <span id="like_count">{{item.total_likes}}</span>
                     
                     </i>
@@ -63,7 +63,7 @@
               {% else %}
                     <i id="dislike" name="{{ item.slug }}"
                     data-toggle="tooltip" data-placement="bottom" title="i dislike this "
-                    class="default-icon fas fa-thumbs-down pr-2"  style="color:blue">
+                    class="default-icon fas fa-thumbs-down pr-2"  style="color:grey">
                  <span id="dislike_count">{{item.total_dislikes}}</span>
                  </i>
                  {% endif %}
@@ -76,7 +76,7 @@
                  {% if request.user in item.favourite.all %}
                  style="color:red"
                  {% else %}
-                 style="color:blue"
+                 style="color:grey"
                  {% endif %}
                  ></i>
 
@@ -86,7 +86,7 @@
                  {% if request.user in item.flag.all %}
                  style="color:red"
                  {% else %}
-                 style="color:blue"
+                 style="color:grey"
                  {% endif %}
                  ></i>
 
@@ -105,7 +105,7 @@
                                     $(flag_id).css("color","red");
                                   }
                                   else
-                                  $(flag_id).css("color","blue");
+                                  $(flag_id).css("color","grey");
                                   console.log("ajax started 2");
                             },
                             error: function(rs, e) {
@@ -114,6 +114,8 @@
                           }); 
                     })
                  </script>
+
+                  <span  id="like_count" style="margin-left:1rem;font-style:italic;">{{item.views}} views</span>
                     
                  </span>
               </div>
@@ -137,7 +139,7 @@
                         $(favourite_id).css("color","red");
                       }
                       else
-                      $(favourite_id).css("color","blue");
+                      $(favourite_id).css("color","grey");
                       console.log("ajax started 2");
                 },
                 error: function(rs, e) {
@@ -169,16 +171,16 @@
                          $(like).css("color","red");
                        }
                        else if(response.liked==false){
-                         $(like_count).css("color","blue");
-                         $(like).css("color","blue");
+                         $(like_count).css("color","grey");
+                         $(like).css("color","grey");
                        }
                        if(response.disliked==true){
                          $(dislike_count).css("color","red");
                          $(dislike).css("color","red");
                        }
                        else if(response.disliked==false){
-                         $(dislike_count).css("color","blue");
-                         $(dislike).css("color","blue");
+                         $(dislike_count).css("color","grey");
+                         $(dislike).css("color","grey");
                        }
                  },
                  error: function(rs, e) {
@@ -208,16 +210,16 @@
                          $(dislike).css("color","red");
                        }
                        else if(response.disliked==false){
-                         $(dislike_count).css("color","blue");
-                         $(dislike).css("color","blue");
+                         $(dislike_count).css("color","grey");
+                         $(dislike).css("color","grey");
                        }
                        if(response.liked==true){
                          $(like_count).css("color","red");
                          $(like).css("color","red");
                        }
                        else if(response.liked==false){
-                         $(like_count).css("color","blue");
-                         $(like).css("color","blue");
+                         $(like_count).css("color","grey");
+                         $(like).css("color","grey");
                        }
                  },
                  error: function(rs, e) {
@@ -231,7 +233,24 @@
         </div>
     </section>
 
-
+<script>
+  setTimeout(function(){
+    console.log("timeout function called")
+      $.ajax({
+        type: "GET",
+        url: "{% url 'increase_yviews' %}",
+        data: {'title':"{{item.title}}"},
+        dataType: "json",
+        success: function(response) {
+                console.log(response);
+                console.log("timeout function called 2");
+          },
+          error: function(rs, e) {
+                alert(rs.responseText);
+      }
+    });
+  },10*1000)
+</script>
 
 {% endblock %}
 

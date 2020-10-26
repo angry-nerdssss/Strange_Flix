@@ -56,7 +56,7 @@ class Item(models.Model):
         (WAR, 'War'),
     ]
     video = models.URLField(max_length=200)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=500)
     description = models.TextField()
     category = models.CharField(
         max_length=20, choices=CATEGORY_CHOICES, default=MOVIES,)
@@ -70,6 +70,7 @@ class Item(models.Model):
     dislikes = models.ManyToManyField(User, related_name='ydislikes')
     favourite = models.ManyToManyField(
         User, related_name="fav_yvideos", blank=True)
+    views = models.IntegerField(default=0)
     flag = models.ManyToManyField(
         User, related_name="flag_yvideos", blank=True)
 

@@ -18,6 +18,7 @@ urlpatterns = [
     path('deleteyvideo/<int:id>/', views.delete_yvideo, name='delete_yvideo'),
     path('flag_yvideo/',
          views.flag_yvideo, name='flag_yvideo'),
-
+    path('favourite_yvideo', views.favourite_yvideo, name='favourite_yvideo'),
+    path('increase_yviews/', views.increase_yviews, name="increase_yviews"),
 
 ]

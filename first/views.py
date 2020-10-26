@@ -52,12 +52,16 @@ def index(request):
     videos = Video.objects.all()
     showRegister = False
     showLogin = False
+    count = 0
 
-    recommended_videos1 = Video.objects.order_by('-publish_date')[:12]
+    recommended_videos1 = Video.objects.order_by('-publish_date')[:6]
     # recommended_videos=recommended_videos.order_by('-publish_date')
 
     recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
     recommended_videos = reversed(recommended_videos2)
+    recommended_items1 = Item.objects.order_by('-publish_date')[:6]
+    recommended_items2 = sorted(recommended_items1, key=lambda o: o.views)
+    recommended_items = reversed(recommended_items2)
 
     paid = False
     try:
@@ -71,7 +75,9 @@ def index(request):
             'genres': GENRE_CHOICES,
 
             'recommended_videos': recommended_videos,
+            'recommended_items': recommended_items,
             'paid': paid,
+            'count': count,
         }
         return render(request, "index.html", context)
 
@@ -84,9 +90,11 @@ def index(request):
         'items': items,
         'videos': videos,
         'genres': GENRE_CHOICES,
-
+        'recommended_items': recommended_items,
         'recommended_videos': recommended_videos,
         'paid': paid,
+        'count': count,
+
     }
     """
     for i in range(12) :
@@ -272,9 +280,10 @@ def notification_panel(request):
 
 def all_svideos(request, type):
     videos = Video.objects.filter(genre=type)
+    items = Item.objects.filter(genre=type)
     context = {
         'videos': videos,
-
+        'items': items,
     }
     return render(request, "all_svideos.html", context)
 
@@ -285,3 +294,21 @@ def all_yvideos(request, type):
         'videos': videos,
     }
     return render(request, "all_svideos.html", context)
+
+
+def mycorner(request):
+    return render(request, 'mycorner.html')
+
+
+def liked_videos_page(request):
+    context = {
+        'heading': "Liked Videos",
+    }
+    return render(request, 'allVideos.html', context)
+
+
+def update_variable(value):
+
+    count = value
+
+    return count

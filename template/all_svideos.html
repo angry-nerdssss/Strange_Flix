@@ -1,10 +1,52 @@
-{% extends 'base.html' %}
+{% include 'base.html' %}
 {% load static %}
 
 {% block css %}
-
-    <link rel="stylesheet" href="{% static 'css/all_svideos.css' %}">
-
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/mycorner.css' %}">
+{% endblock css %}
 
 {% block content %}
+    
+  <section class="mycorner_section">
+    <h2>{{heading}}</h2><br>
+    <div class="row">
+      {% for video in videos %}
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="poster">
+            <a href="{% url 'play_svideo' video.id %}"><img id="sl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster"></a>
+          </div>
+          <div class="info">
+            <a style="text-decoration: none;"  href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+            <p>{{video.views}} views | publishdate </p>
+          </div>
+        </div>
+        <script>
+          document.getElementById("sl{{video.id}}").setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
+        </script>
+      {% endfor %}
+      {% for i in items %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="poster">
+          <a href="{% url 'play_yvideo' i.id %}"><img  id="y{{i.video}}" src="{% static 'images/loading.gif' %}"  alt="poster" ></a>
+        </div>
+        <div class="info">
+          <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
+          <p>{{i.views}} views | publishdate </p>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function youtube_parser(url){
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var match = url.match(regExp);
+            return (match&&match[7].length==11)? match[7] : false;
+        }
+        document.getElementById('y{{i.video}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{i.video}}")+'/maxresdefault.jpg');
+    </script> 
+   
+    {% endfor %}
+    </div>
+
+  </section>
+
+
+{% endblock content %}

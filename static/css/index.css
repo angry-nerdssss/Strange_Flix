@@ -1,165 +1,181 @@
-.top-carousel-div{
-    width: 100%;
-    margin-top: 7rem;
-    padding: 0 5%;
-    margin-bottom: 5%;
+.top-carousel-div {
+  width: 100%;
+  margin-top: 7rem;
+  padding: 0 5%;
+  margin-bottom: 5%;
 }
 
-.slide{
-    width: 100%;
+.slide {
+  width: 100%;
 }
 
-#top-carousel .carousel-item,#top-carousel  .carousel-inner{
-    width: 100%;
-    border-radius: 0.5rem;
-    background-color: rgb(17, 16, 16);
+#top-carousel .carousel-item,
+#top-carousel .carousel-inner {
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: rgb(17, 16, 16);
 }
 
-
-.image-div{
-    width: fit-content;
+.image-div {
+  width: fit-content;
 }
 
-.carousel-img{
-    width: 100%;
+.carousel-img {
+  width: 100%;
 }
 
-.carousel-indicators{
-    z-index: 2;
+.carousel-indicators {
+  z-index: 2;
 }
-
-
-
-
 
 /* Movies */
 
-.carousel-movies{
-    margin-bottom: 3%;
+.carousel-movies {
+  margin-bottom: 0.5rem;
+  background-color: black;
+  padding: 3% 0;
 }
 
-.small-carousel-heading{
-    color: aliceblue;
-    margin-left: 7%;
+.small-carousel-heading {
+  color: aliceblue;
+  margin-left: 7%;
 }
 
-.movie-row{
-    margin: 0 5%;
+.movie-row {
+  margin: 0 5%;
+  /* background-color: black; */
 }
 
-.movie-img-container{
-    width: 100%;
+.thumbnail {
+  width: 100%;
+  /* height: 100%; */
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  margin: 5% 0;
 }
 
-.movie-icon{
-    height: 100%;
-    width: 100%;
-    border-radius: 1rem;
-    -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    -ms-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+movie-icon-container {
+  height: 70%;
+  width: 100%;
 }
 
-.movie-icon:hover{
-    transform: scale(1.1);
-    border-radius: 1rem;
-    cursor: pointer;
+.movie-icon {
+  height: 100%;
+  width: 100%;
+  /* border-radius: 0.5rem; */
 }
 
-.carousel-movies .carousel-control-prev, .carousel-movies .carousel-control-next{
-    width: 5rem;
+.thumbnail:hover {
+  transform: scale(1.1);
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
-.col{
-    padding: 1%;
+.info {
+  background-color: #252525;
+  color: white;
+  height: 30%;
+  padding: 3% 10% 0.1%;
 }
 
-.carousel-heading{
-    margin: 1% 6%;
-    color: white;
-    text-align: left;
+.video-title {
+  margin-bottom: 0;
+  color: white;
+}
+
+.video-info {
+  font-size: small;
+}
+
+.carousel-movies .carousel-control-prev,
+.carousel-movies .carousel-control-next {
+  width: 5rem;
+}
+
+.col {
+  padding: 1%;
+}
+
+.carousel-heading {
+  margin: 1% 6%;
+  color: white;
+  text-align: left;
 }
 
 /* css for features */
 
-.feature{
-    color: aliceblue;
-    width: 100%;
+.feature {
+  color: aliceblue;
+  width: 100%;
 }
 
-.feature-row{
-    background-color: black;
-    margin: 0.5rem 0;
-    padding: 7% 15%;
+.feature-row {
+  background-color: black;
+  margin: 0.5rem 0;
+  padding: 7% 15%;
 }
 
-.feature-image-box{
-    overflow: hidden;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100%;
-    width: 100%;
+.feature-image-box {
+  overflow: hidden;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  width: 100%;
 }
 
-
-.feature-info{
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 40% 0;
+.feature-info {
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 40% 0;
 }
 
-.faqs{
-    background-color: black;
-    margin: 0.5rem 0;
-    padding: 7% 20%;
-    color: aliceblue;
+.faqs {
+  background-color: black;
+  margin: 0.5rem 0;
+  padding: 7% 20%;
+  color: aliceblue;
 }
 
-.faq-heading{
-    font-size: 3rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 5%;
+.faq-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 5%;
 }
 
-.collapse-btn{
-    margin-top:10px;
-    color: aliceblue;
-    text-align: left;
-    width: 100%;
-    background-color: #252525;
-    padding: 0.5rem 0 0.5rem 1rem;
-    border-radius: 0;
+.collapse-btn {
+  margin-top: 10px;
+  color: aliceblue;
+  text-align: left;
+  width: 100%;
+  background-color: #252525;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-radius: 0;
 }
 
-.collapse-btn:hover{
-    margin-top:10px;
-    color: aliceblue;
-    text-align: left;
-    width: 100%;
-    background-color: #252525;
-    padding: 0.5rem 0 0.5rem 1rem;
-    border-radius: 0;
+.collapse-btn:hover {
+  margin-top: 10px;
+  color: aliceblue;
+  text-align: left;
+  width: 100%;
+  background-color: #252525;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-radius: 0;
 }
 
-.ques{
-    display: inline-block;
-    width: 90%;
+.ques {
+  display: inline-block;
+  width: 90%;
 }
-/* 
-.add-icon{
-    text-align: right;
-    display: inline;
-    margin-right: 0;
-} */
 
-.faq-ans{
-    color: aliceblue;
-    padding: 5%;
-    margin-top: 2px;
-    background-color: #252525;
+.faq-ans {
+  color: aliceblue;
+  padding: 5%;
+  margin-top: 2px;
+  background-color: #252525;
 }

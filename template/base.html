@@ -56,29 +56,32 @@
                   <a class="nav-link" href="{% url 'add_storage_video' %}"  >add svideo</a>
                 </li>
               
-              {%elif user.is_authenticated %}
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'subscription' %}">Subscription <span class="sr-only">(current)</span></a>
-              </li>
-              {% endif %}
-            </ul>
-              <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-dark" type="submit">Search</button><br>
-              </form>
-              {% if  user.is_authenticated %}
+                {%elif user.is_authenticated %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'subscription' %}">Subscription <span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                  <button class="btn btn-outline-dark" type="submit">Search</button><br>
+                </form>
+                {% if  user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" href="/">Hello! {{user.username}}<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mycorner' %}">My Corner<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">LOGOUT<span class="sr-only">(current)</span></a>
                   </li>
-                  
+                  {% else %}
+                    <button id="sign-in-button" class="btn btn-outline-danger" onclick="showLoginForm()">Sign In</button>
+                  {%endif%}
+              </ul>
+              
                 
-                        
-              {% else %}
-                <button id="sign-in-button" class="btn btn-outline-danger" onclick="showLoginForm()">Sign In</button>
-              {%endif%}
+                  
             </div>
           </nav>
 
@@ -173,10 +176,10 @@
 
 
 
-{% block content %}
+      {% block content %}
 
 
-{% endblock %}
+      {% endblock %}
 
       
       <section id="footer">
@@ -205,14 +208,14 @@
               <a href=""><i class="footer-icon fab fa-facebook-f" aria-hidden="true"></i></a>
               <a href=""><i class="footer-icon fab fa-instagram" aria-hidden="true"></i></a>
               <a href=""><i class="footer-icon fas fa-envelope" aria-hidden="true"></i></a><br>
-              © Copyright {% now "Y" %} Strangeflix
-              <a href="about_us" class="btn btn-outline-danger btn-lg contact-us-btn">About Us</a>
+              © Copyright {% now "Y" %} Strangeflix <br>
+              <a href="about_us" id="about-us-link">About Us</a>
             </div>
         </div>
       </section>
       <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f89628a5309216c"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f89628a5309216c"></script>
 
 
     </body>
