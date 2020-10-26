@@ -21,5 +21,4 @@ urlpatterns = [
     path('favourite_yvideo', views.favourite_yvideo, name='favourite_yvideo'),
     path('increase_yviews/', views.increase_yviews, name="increase_yviews"),
 
-
 ]

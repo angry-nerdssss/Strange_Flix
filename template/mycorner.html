@@ -8,7 +8,7 @@
 {% block content %}
 
     <section class="mycorner_section">
-      <h2>Liked videos</h2><br>
+      <h2>Liked videos<a class="link-to-all" href="{% url 'liked_videos_page' %}">    SEE ALL</a></h2><br>
       <div class="row">
         {% for video in user.likes.all|slice:":6" %}
           <div class="col-6 col-md-4 col-lg-3">

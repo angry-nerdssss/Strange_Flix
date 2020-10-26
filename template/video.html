@@ -75,7 +75,7 @@
                    <i id="like" name="{{ video.slug }}"
                       data-toggle="tooltip" data-placement="bottom" title="i like this"
                       class="like fas fa-thumbs-up pr-2"
-                      style="color:blue">
+                      style="color:grey">
                    <span id="like_count">{{video.total_likes}}</span>
                    
                    </i>
@@ -90,7 +90,7 @@
              {% else %}
                    <i id="dislike" name="{{ video.slug }}"
                    data-toggle="tooltip" data-placement="bottom" title="i dislike this "
-                   class="default-icon fas fa-thumbs-down pr-2"  style="color:blue">
+                   class="default-icon fas fa-thumbs-down pr-2"  style="color:grey">
                 <span id="dislike_count">{{video.total_dislikes}}</span>
                 </i>
                 {% endif %}
@@ -104,7 +104,7 @@
                 {% if request.user in video.favourite.all %}
                 style="color:red"
                 {% else %}
-                style="color:blue"
+                style="color:grey"
                 {% endif %}
                 ></i>
 
@@ -114,7 +114,7 @@
                 {% if request.user in video.flag.all %}
                 style="color:red"
                 {% else %}
-                style="color:blue"
+                style="color:grey"
                 {% endif %}
                 ></i>
                 
@@ -132,7 +132,7 @@
                           $(flag_id).css("color","red");
                         }
                         else
-                          $(flag_id).css("color","blue");
+                          $(flag_id).css("color","grey");
                       },
                       error: function(rs, e) {
                             alert(rs.responseText);
@@ -179,7 +179,7 @@ $('#favourite_id').click(function(){
                       $(favourite_id).css("color","red");
                     }
                     else
-                      $(favourite_id).css("color","blue");
+                      $(favourite_id).css("color","grey");
               },
               error: function(rs, e) {
                      alert(rs.responseText);
@@ -211,16 +211,16 @@ $('#like').click(function(){
                         $(like).css("color","red");
                       }
                       else if(response.liked==false){
-                        $(like_count).css("color","blue");
-                        $(like).css("color","blue");
+                        $(like_count).css("color","grey");
+                        $(like).css("color","grey");
                       }
                       if(response.disliked==true){
                         $(dislike_count).css("color","red");
                         $(dislike).css("color","red");
                       }
                       else if(response.disliked==false){
-                        $(dislike_count).css("color","blue");
-                        $(dislike).css("color","blue");
+                        $(dislike_count).css("color","grey");
+                        $(dislike).css("color","grey");
                       }
                 },
                 error: function(rs, e) {
@@ -250,16 +250,16 @@ $('#dislike').click(function(){
                         $(dislike).css("color","red");
                       }
                       else if(response.disliked==false){
-                        $(dislike_count).css("color","blue");
-                        $(dislike).css("color","blue");
+                        $(dislike_count).css("color","grey");
+                        $(dislike).css("color","grey");
                       }
                       if(response.liked==true){
                         $(like_count).css("color","red");
                         $(like).css("color","red");
                       }
                       else if(response.liked==false){
-                        $(like_count).css("color","blue");
-                        $(like).css("color","blue");
+                        $(like_count).css("color","grey");
+                        $(like).css("color","grey");
                       }
                 },
                 error: function(rs, e) {

@@ -17,4 +17,6 @@ urlpatterns = [
     path('ajax/validate_username/$',
          views.validate_username, name='validate_username'),
     path('mycorner', views.mycorner, name='mycorner'),
+    path('mycorner/liked_videos_page',
+         views.liked_videos_page, name='liked_videos_page'),
 ]

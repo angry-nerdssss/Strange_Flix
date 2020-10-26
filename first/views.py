@@ -224,3 +224,10 @@ def validate_username(request):
 
 def mycorner(request):
     return render(request, 'mycorner.html')
+
+
+def liked_videos_page(request):
+    context = {
+        'heading': "Liked Videos",
+    }
+    return render(request, 'allVideos.html', context)

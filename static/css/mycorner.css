@@ -14,7 +14,7 @@ a:hover {
 }
 
 h2 {
-  color: black;
+  color: white;
   font-weight: 800;
 }
 
@@ -33,4 +33,14 @@ h2 {
 
 #footer {
   display: none;
+}
+
+.link-to-all {
+  font-size: small;
+  color: firebrick;
+  margin: 1rem;
+}
+
+.link-to-all:hover {
+  color: red;
 }
