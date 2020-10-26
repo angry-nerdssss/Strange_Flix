@@ -10,10 +10,17 @@
 {% block content %}
 
         <section class="notification_section">
-            <h1>Flagged Videos Till now are :</h1>
-            <ol>
+            <h1 >Flagged Videos Till now are  :</h1>
+           
+            <ol type="1" >
                 {% for video in videos %}
-                <li> <h3 class="my-1"><a href="{% url 's_detail' video.slug %}">{{video.title}}</a></h3></li>
+           
+                    {% if video.total_flag > 0 %}
+                    <li>
+                     <a class="video-link"  href="{% url 's_detail' video.slug %}">{{video.title}} [{{ video.total_flag}}]</a>
+                    </li>
+                    {% endif %}
+                 
                 {% endfor %}
             </ol>
 

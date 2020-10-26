@@ -15,6 +15,39 @@ from .models import Feedback, Subscription
 
 
 def index(request):
+
+    # genre
+    FICTION = 'Fiction'
+    MYSTERY = 'Mystery'
+    THRILLER = 'Thriller'
+    HORROR = 'Horror'
+    HISTORICAL = 'Historical'
+    ROMANCE = 'Romance'
+    WESTERN = 'Western'
+    FANTASY = 'Fantasy'
+    ACTION = 'Action'
+    COMEDY = 'Comedy'
+    CRIME = 'Crime'
+    ADVENTURE = 'Adventure'
+    ANIMATION = 'Animation'
+    WAR = 'War'
+    GENRE_CHOICES = [
+
+        (FICTION, 'Fiction'),
+        (MYSTERY, 'Mystery'),
+        (THRILLER, 'Thriller'),
+        (HORROR, 'Horror'),
+        (HISTORICAL, 'Historical'),
+        (ROMANCE, 'Romance'),
+        (WESTERN, 'Western'),
+        (FANTASY, 'Fantasy'),
+        (ACTION, 'Action'),
+        (COMEDY, 'Comedy'),
+        (CRIME, 'Crime'),
+        (ADVENTURE, 'Adventure'),
+        (ANIMATION, 'Animation'),
+        (WAR, 'War'),
+    ]
     items = Item.objects.all()
     videos = Video.objects.all()
     showRegister = False
@@ -35,6 +68,7 @@ def index(request):
             'showLogin': showLogin,
             'items': items,
             'videos': videos,
+            'genres': GENRE_CHOICES,
 
             'recommended_videos': recommended_videos,
             'paid': paid,
@@ -49,10 +83,15 @@ def index(request):
         'showLogin': showLogin,
         'items': items,
         'videos': videos,
+        'genres': GENRE_CHOICES,
 
         'recommended_videos': recommended_videos,
         'paid': paid,
     }
+    """
+    for i in range(12) :
+        videos[i]=
+    """
     return render(request, "index.html", context)
 
 # this function is to set login conditions and functionality
@@ -223,7 +262,26 @@ def validate_username(request):
 
 
 def notification_panel(request):
-    videos = Video.objects.order_by('-publish_date')
-    context = {'videos': videos,
-               }
+    videos = Video.objects.all()
+    context = {
+        'videos': videos,
+
+    }
     return render(request, "notification_panel.html", context)
+
+
+def all_svideos(request, type):
+    videos = Video.objects.filter(genre=type)
+    context = {
+        'videos': videos,
+
+    }
+    return render(request, "all_svideos.html", context)
+
+
+def all_yvideos(request, type):
+    videos = Item.objects.filter(genre=type)
+    context = {
+        'videos': videos,
+    }
+    return render(request, "all_svideos.html", context)

@@ -71,18 +71,13 @@ class Video(models.Model):
     dislikes = models.ManyToManyField(User, related_name='dislikes')
     favourite = models.ManyToManyField(
         User, related_name="fav_svideos", blank=True)
-    views=models.IntegerField(default=0)
-    
-    
-    
-    """ def get_total_likes(self):
-    
+    views = models.IntegerField(default=0)
+    flag = models.ManyToManyField(
+        User, related_name="flag_svideos", blank=True)
 
-    def get_total_likes(self):
-        return self.likes.users.count()
+    def total_flag(self):
+        return self.flag.count()
 
-    def get_total_dis_likes(self):
-        return self.dis_likes.users.count() """
     @property
     def total_likes(self):
         """
@@ -90,6 +85,7 @@ class Video(models.Model):
         :return: Integer: Likes for the company
         """
         return self.likes.count()
+
     @property
     def total_dislikes(self):
         """
@@ -97,6 +93,7 @@ class Video(models.Model):
         :return: Integer: Likes for the company
         """
         return self.dislikes.count()
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Video, self).save(*args, **kwargs)
@@ -105,10 +102,10 @@ class Video(models.Model):
         return self.title
 
 
-
 class Time(models.Model):
-    username=models.CharField(max_length=200)
+    username = models.CharField(max_length=200)
     video_title = models.CharField(max_length=100)
-    currentTime=models.FloatField(default=0.0)
+    currentTime = models.FloatField(default=0.0)
+
     def __str__(self):
         return str(self.username)

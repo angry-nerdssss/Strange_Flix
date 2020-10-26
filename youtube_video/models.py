@@ -8,6 +8,8 @@ from comment.models import Comment
 from django.template.defaultfilters import slugify
 
 # this model is to save all the details of the uploaded youtube video embed links from the admin
+
+
 class Item(models.Model):
     # categories
     MOVIES = 'movie'
@@ -68,6 +70,8 @@ class Item(models.Model):
     dislikes = models.ManyToManyField(User, related_name='ydislikes')
     favourite = models.ManyToManyField(
         User, related_name="fav_yvideos", blank=True)
+    flag = models.ManyToManyField(
+        User, related_name="flag_yvideos", blank=True)
 
     @property
     def total_likes(self):
@@ -76,6 +80,7 @@ class Item(models.Model):
         :return: Integer: Likes for the company
         """
         return self.likes.count()
+
     @property
     def total_dislikes(self):
         """

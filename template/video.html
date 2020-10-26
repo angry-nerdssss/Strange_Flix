@@ -49,11 +49,18 @@
             //your jQuery ajax code
           }, 1000 * 10); // where X is your every X minutes
           </script>
-        <div class="video-actions-div">
+          <div class="video-actions-div">
+            <div style="display:flex">
+              {% for tag in video.tags.all %}
+              <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+              {% endfor %}
+          </div>
             <h3 class="video-title">{{video.title}}</h3>
             <h6 class="video-info">{{video.category}} | Language | {{video.publish_date}} | Rating</h6>
             <h6 class="video-content">{{video.description}}</h6>
-            <br><br>
+                   
+          
+
 
             <!-- <input type="button" id="like" name="{{ video.slug }}" value="Like" /> -->
 
@@ -96,19 +103,53 @@
                 {% endif %}
 
                 
-<i id="favourite_id" name="{{ video.slug }}"
+                <i id="favourite_id" name="{{ video.slug }}"
 
-data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+                data-toggle="tooltip" data-placement="bottom" title="i dislike this"
 
-class="dislike fas fa-heart pr-2"  
-{% if request.user in video.favourite.all %}
-style="color:red"
-{% else %}
-style="color:blue"
-{% endif %}
-></i>
+                class="dislike fas fa-heart pr-2"  
+                {% if request.user in video.favourite.all %}
+                style="color:red"
+                {% else %}
+                style="color:blue"
+                {% endif %}
+                ></i>
 
-<span  id="like_count" style="margin-left:1rem;font-style:italic;">{{video.views}} views</span>
+                <i id="flag_id" name="{{ video.slug }}"
+                data-toggle="tooltip" data-placement="bottom" title="this is inappropriate"
+                class="dislike fas fa-flag pr-2"  
+                {% if request.user in video.flag.all %}
+                style="color:red"
+                {% else %}
+                style="color:blue"
+                {% endif %}
+                ></i>
+                
+                <script>
+                  $("#flag_id").click(function(){
+                    console.log("flag script called");
+                    $.ajax({
+                      type : "GET",
+                      url : "{% url 'flag_svideo' %}",
+                      data: {'title':"{{video.title}}"},
+                      dataType: "json",
+                      success: function(response) {
+                        if(response.added == true)
+                        {
+                          $(flag_id).css("color","red");
+                        }
+                        else
+                          $(flag_id).css("color","blue");
+                      },
+                      error: function(rs, e) {
+                            alert(rs.responseText);
+                      }
+                    });
+                  })
+                </script>
+
+
+                <span  id="like_count" style="margin-left:1rem;font-style:italic;">{{video.views}} views</span>
 
 <script>
   setTimeout(function(){
@@ -145,7 +186,7 @@ $('#favourite_id').click(function(){
                       $(favourite_id).css("color","red");
                     }
                     else
-                    $(favourite_id).css("color","blue");
+                      $(favourite_id).css("color","blue");
               },
               error: function(rs, e) {
                      alert(rs.responseText);

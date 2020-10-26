@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
 from django.template.defaultfilters import slugify
 from .forms import ItemForm
@@ -68,11 +68,9 @@ def yvideo_tagged(request, slug):
     return render(request, 'yvideo_upload.html', context)
 
 
-
-
 def favourite_yvideo(request):
     print("views 0")
-    title = request.GET.get('title',None)
+    title = request.GET.get('title', None)
     print("views 1")
     print(title)
     try:
@@ -82,19 +80,18 @@ def favourite_yvideo(request):
         return redirect('login')
     currentUser = User.objects.get(username=request.user.username)
     print("views 3")
-    added=True
-    item=Item.objects.get(title=title)
+    added = True
+    item = Item.objects.get(title=title)
     print(item.title)
     print(" ")
     print(item.description)
     if item.favourite.filter(id=currentUser.id).exists():
         item.favourite.remove(request.user)
-        added=False
+        added = False
     else:
         item.favourite.add(request.user)
-    ctx={'added':added,}
+    ctx = {'added': added, }
     return HttpResponse(json.dumps(ctx), content_type='application/json')
-
 
 
 @require_POST
@@ -103,14 +100,14 @@ def yvideo_like(request):
         user = request.user
         slug = request.POST.get('slug', None)
         item = get_object_or_404(Item, slug=slug)
-        liked=True
-        disliked=False
+        liked = True
+        disliked = False
         if item.likes.filter(id=user.id).exists():
             # user has already liked this video
             # remove like/user
             item.likes.remove(user)
             message = 'You disliked this'
-            liked=False
+            liked = False
         else:
             # add a new like for a video
             item.likes.add(user)
@@ -119,7 +116,8 @@ def yvideo_like(request):
 
             message = 'You liked this'
 
-    ctx = {'likes_count': item.total_likes, 'message': message,'dislikes_count': item.total_dislikes,'liked':liked,'disliked':disliked}
+    ctx = {'likes_count': item.total_likes, 'message': message,
+           'dislikes_count': item.total_dislikes, 'liked': liked, 'disliked': disliked}
     # use mimetype instead of content_type if django < 5
     return HttpResponse(json.dumps(ctx), content_type='application/json')
     return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))
@@ -131,13 +129,13 @@ def yvideo_dislike(request):
         user = request.user
         slug = request.POST.get('slug', None)
         item = get_object_or_404(Item, slug=slug)
-        liked=False
-        disliked=True
+        liked = False
+        disliked = True
         if item.dislikes.filter(id=user.id).exists():
             # user has already liked this video
             # remove like/user
             item.dislikes.remove(user)
-            disliked=False
+            disliked = False
             message = 'You disliked this'
         else:
             # add a new like for a video
@@ -146,7 +144,8 @@ def yvideo_dislike(request):
                 item.likes.remove(user)
             message = 'You liked this'
 
-    ctx = {'dislikes_count': item.total_dislikes, 'message': message,'likes_count': item.total_likes,'liked':liked,'disliked':disliked}
+    ctx = {'dislikes_count': item.total_dislikes, 'message': message,
+           'likes_count': item.total_likes, 'liked': liked, 'disliked': disliked}
     # use mimetype instead of content_type if django < 5
     return HttpResponse(json.dumps(ctx), content_type='application/json')
     return HttpResponseRedirect(reverse('play_yvideo', args=[str(item.id)]))
@@ -156,9 +155,8 @@ def yvideo_dislike(request):
 
 def delete_yvideo(request, id):
 
-
     # dictionary for initial data with
-    
+
     # field names as keys​​
 
     # fetch the object related to passed id
@@ -175,3 +173,28 @@ def delete_yvideo(request, id):
 
     return HttpResponseRedirect("/")
 
+
+def flag_yvideo(request):
+    print("views 0")
+    title = request.GET.get('title', None)
+    print("views 1")
+    print(title)
+    try:
+        currentUser = User.objects.get(username=request.user.username)
+    except:
+        print("y")
+        return redirect('login')
+    currentUser = User.objects.get(username=request.user.username)
+    print("views 3")
+    added = True
+    item = Item.objects.get(title=title)
+    print(item.title)
+    print(" ")
+    print(item.description)
+    if item.flag.filter(id=currentUser.id).exists():
+        item.flag.remove(request.user)
+        added = False
+    else:
+        item.flag.add(request.user)
+    ctx = {'added': added, }
+    return HttpResponse(json.dumps(ctx), content_type='application/json')

@@ -10,3 +10,7 @@ iframe {
   position: relative;
   padding-bottom: 40%;
 }
+
+#footer {
+  display: none;
+}
