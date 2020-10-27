@@ -8,8 +8,7 @@
 {% block content %}
 
     <section class="mycorner_section">
-      {% for new_video in videos  %}
-        {% if user in new_video.likes.all  %}
+      {% if show1 == True %}
         
         <h2>Liked videos<a class="link-to-all" href="{% url 'liked_videos_page' %}">    SEE ALL</a></h2><br>
       <div class="row">
@@ -30,10 +29,9 @@
       </div>
       <br><br><br>
         {% endif %}
-      {% endfor %}
+     
       
-      {% for item in items  %}
-        {% if user in item.likes.all  %}
+      {% if show2 == True %}
       <h2>Liked Youtube Videos</h2><br>
       <div class="row">
         {% for video in user.ylikes.all|slice:":6" %}
@@ -57,11 +55,10 @@
         {% endfor %}
       </div><br><br><br>
       {% endif %}
-      {% endfor %}
       
       
-      {% for new_video in videos  %}
-        {% if user in new_video.favourite.all  %}
+      
+     {% if show3 == True %}
       <h2>Favourite videos</h2><br>
       <div class="row">
         {% for video in user.fav_svideos.all|slice:":6" %}
@@ -80,11 +77,10 @@
         {% endfor %}
       </div><br><br><br>
       {% endif %}
-      {% endfor %}
       
       
-      {% for item in items  %}
-        {% if user in item.favourite.all  %}
+      
+      {% if show4 == True %}
       <h2>Favourite Youtube Videos</h2><br>
       <div class="row">
         {% for video in user.ylikes.all|slice:":6" %}
@@ -108,7 +104,7 @@
         {% endfor %}
       </div>
       {% endif %}
-      {% endfor %}
+      
       <!-- TODO:Need to add playlist if implemented -->
     </section>
 

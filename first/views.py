@@ -316,29 +316,49 @@ def notification_panel(request):
 def all_svideos(request, type):
     videos = Video.objects.filter(genre=type)
     items = Item.objects.filter(genre=type)
+    
+    
     context = {
         'videos': videos,
         'items': items,
+        'show1':show1,
+        'show2':show2,
+        'show3':show3,
+        'show4':show4,
     }
     return render(request, "all_svideos.html", context)
 
-
-def all_yvideos(request, type):
-    videos = Item.objects.filter(genre=type)
-    context = {
-        'videos': videos,
-    }
-    return render(request, "all_svideos.html", context)
-
-
+@login_required(login_url='login')
 def mycorner(request):
     videos=Video.objects.all()
     items=Item.objects.all()
-    show=True
+    show1=False
+    show2=False
+    show3=False
+    show4=False
+    for video in videos:
+        if video.likes.filter(id=request.user.id).exists():
+            show1=True
+    
+    for item in items:
+        if item.likes.filter(id=request.user.id).exists():
+            show2=True
+    
+    for video in videos:
+        if video.favourite.filter(id=request.user.id).exists():
+            show3=True
+
+    for item in items:
+        if item.favourite.filter(id=request.user.id).exists():
+            show4=True
     context={
         'videos':videos,
         'items':items,
-        'show':show
+        
+        'show1':show1,
+        'show2':show2,
+        'show3':show3,
+        'show4':show4,
     }
     return render(request, 'mycorner.html',context)
 
@@ -350,9 +370,9 @@ def liked_videos_page(request):
     return render(request, 'allVideos.html', context)
 
 
-strings = []
+
 def subString(Str,n):
-    
+    strings = []
     for l in range(1,n + 1):
         for i in range(n - l + 1):
             j = i + l - 1
@@ -364,7 +384,7 @@ def subString(Str,n):
             x=x//2
             if len(util_string)>x :
                 strings.append(util_string)
-                print(util_string)
+    return strings
             
 
 def search(request):
@@ -373,31 +393,26 @@ def search(request):
 
         #main_video=Video.objects.get(title__iexact=video_name) 
         #related_video=Video.objects.filter(title__istartswith=video_name)
-        subString(video_name,len(video_name))
-        queryset = Video.objects.none()
-
+        strings=subString(video_name,len(video_name))
+        queryset1 = Video.objects.none()
+        print(queryset1.count())
         for string in strings :
-            queryset |=Video.objects.filter(title__icontains=string)
-        recommended_video = reversed(queryset)
+            print(string)
+            queryset1 |=Video.objects.filter(title__icontains=string)
+        recommended_video = reversed(queryset1)
 
-        queryset = Item.objects.none()
+        queryset2 = Item.objects.none()
+        print(queryset2.count())
         for string in strings :
-            queryset |=Item.objects.filter(title__icontains=string)
-        queryset.distinct()
-        recommended_item = reversed(queryset)
-        """
-        for obj in recommended_video:
-            print(obj.title)
-
-        print(" and ")
-        for obj in recommended_item:
-            print(obj.title)
-        """
+            queryset2 |=Item.objects.filter(title__icontains=string)
+        print(queryset1.count())
+        print(queryset2.count())
+        recommended_item = reversed(queryset2)
         ctx={
             'videos':recommended_video,
             'items':recommended_item
         }
-        
+        strings = []
         return render(request,'all_svideos.html',ctx)
         """
         main_item=Item.objects.get(title__iexact=video_name) 
