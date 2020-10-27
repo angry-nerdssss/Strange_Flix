@@ -18,5 +18,6 @@ class Feedback(models.Model) :
 class Subscription(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     paid = models.CharField(max_length=20,default=False)
+    deadline=models.DateField(default=datetime.today)
     def __str__(self):
         return self.paid

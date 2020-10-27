@@ -22,13 +22,17 @@
                         <li>All premium movies/tv shows</li>
                         <li>Ad free entertainment</li>
                         <li>Subtitles Availability</li>
+                        <li>{{paid}}</li>
+                        <li>{{days}}</li>
                     </ul>
                 </div>
                 <button class="btn btn-outline-danger sub-btn">Subscribe</button>
                 <div id="paypal-button-container"></div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"type="text/javascript"></script>
                 <script src="https://www.paypal.com/sdk/js?client-id=AWbxQPbRkjrmAqYUDegrLZ_CiOy3H0-mTAJBIAzCgaM913ZttWPtYGpxBZRv2I_CiKuZ7PswSSbH4yj6&currency=USD"></script>
 
                 <script>
+                    
                     function getCookie(name) {
                         var cookieValue = null;
                         if (document.cookie && document.cookie !== '') {
@@ -68,11 +72,14 @@
                             return actions.order.capture().then(function(details) {
                                 // Show a success message to the buyer
                                 var csrftoken = getCookie('csrftoken');
-                                $ajax({
+                                console.log("above ajax")
+                                $.ajax({
                                     type: "POST",
                                     url: "{% url 'subscribed_user' %}",   /* Call python function in this script */
                                     data: { csrfmiddlewaretoken: csrftoken, text: "you are subscribed" },  /* Passing the text data */
-                                    success: callback
+                                    success: function(){console.log("payment successfull");
+                                    window.location.href = "{% url 'index' %}";
+                                }
                                 });
                             });
                         }

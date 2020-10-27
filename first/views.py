@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,reverse
 from django.contrib import messages
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse,HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,7 @@ from storage_video.models import Video
 from youtube_video.models import Item
 from .models import Feedback, Subscription
 from taggit.models import Tag
+from datetime import datetime, timedelta
 # this function is to render to the main page when the user first searches for the site
 
 
@@ -192,7 +193,52 @@ def register(request):
 
 # this function will simply reder you to subscription page
 def subscription(request):
-    return render(request, "subscription.html")
+    try:
+        Subscription.objects.get(user=request.user)
+
+    except:
+        return redirect('index')
+    
+    subscription = Subscription.objects.get(user=request.user)
+    paid = subscription.paid
+    delta = datetime.now().date()
+    b=datetime.now().date()
+    days = delta-b
+    print(days)
+    if paid == 'True' :
+        if subscription.deadline >= delta :
+            days =  subscription.deadline-delta
+            print(days.days)
+        else :
+            subscription.paid=False
+            paid=False
+            subscription.save()
+    context={
+        'paid':paid,
+        'days':days.days
+    }
+    return render(request, "subscription.html",context)
+
+def subscribed_user(request):
+    print("workon subscribed_user0")
+    try:
+        Subscription.objects.get(user=request.user)
+
+    except:
+        return redirect('index')
+
+    subscription = Subscription.objects.get(user=request.user)
+    if subscription.paid == 'True':
+        
+        subscription.deadline=subscription.deadline + timedelta(days=30)
+        
+    else:
+        subscription.deadline=datetime.now().date() + timedelta(days=30)
+        subscription.paid = True
+    print("workon subscribed_user1")
+    subscription.save()
+    return render(request, "about.html")
+
 
 
 def show_feedback(request):
@@ -213,8 +259,8 @@ def get_feedback(request):
     feed = Feedback(name=name, email=email, subject=subject, message=message)
     # by writing this only we are hitting the database to store the information
     feed.save()
-
-    return redirect('show_feedback')
+    return HttpResponseRedirect(reverse('index'))
+    #return HttpResponseRedirect(reverse(request.path_info))
 
 # this function is to take user to about.html page
 
@@ -223,17 +269,6 @@ def about(request):
     return render(request, "about.html")
 
 
-def subscribed_user(request):
-    try:
-        Subscription.objects.get(user=request.user)
-
-    except:
-        return redirect('index')
-
-    subscription = Subscription.objects.get(user=request.user)
-    subscription.paid = True
-    subscription.save()
-    return redirect('index')
 
 # Email validation function
 
@@ -297,7 +332,15 @@ def all_yvideos(request, type):
 
 
 def mycorner(request):
-    return render(request, 'mycorner.html')
+    videos=Video.objects.all()
+    items=Item.objects.all()
+    show=True
+    context={
+        'videos':videos,
+        'items':items,
+        'show':show
+    }
+    return render(request, 'mycorner.html',context)
 
 
 def liked_videos_page(request):
@@ -317,8 +360,9 @@ def subString(Str,n):
             for k in range(i,j + 1):
                 util_string=util_string+Str[k]
                 
-                
-            if len(util_string)>1 :
+            x=len(Str)
+            x=x//2
+            if len(util_string)>x :
                 strings.append(util_string)
                 print(util_string)
             
@@ -341,11 +385,19 @@ def search(request):
             queryset |=Item.objects.filter(title__icontains=string)
         queryset.distinct()
         recommended_item = reversed(queryset)
+        """
+        for obj in recommended_video:
+            print(obj.title)
 
+        print(" and ")
+        for obj in recommended_item:
+            print(obj.title)
+        """
         ctx={
             'videos':recommended_video,
             'items':recommended_item
         }
+        
         return render(request,'all_svideos.html',ctx)
         """
         main_item=Item.objects.get(title__iexact=video_name) 

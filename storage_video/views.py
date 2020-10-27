@@ -102,48 +102,6 @@ def video(request, id):
     return render(request, 'video.html', context)
 
 
-""" class UpdateVideoVote(LoginRequiredMixin, View):
-    
-    
-    def get(self, request, *args, **kwargs):
-
-        video_id = self.kwargs.get('video_id', None)
-        # like or dislike button clicked
-        opition = self.kwargs.get('opition', None)
-
-        video = get_object_or_404(Video, id=video_id)
-
-        try:
-            # If child DisLike model doesnot exit then create
-            video.dis_likes
-        except Video.dis_likes.RelatedObjectDoesNotExist as identifier:
-            Dislike.objects.create(video=video)
-
-        try:
-            # If child Like model doesnot exit then create
-            video.likes
-        except Video.likes.RelatedObjectDoesNotExist as identifier:
-            Like.objects.create(video=video)
-
-        if opition.lower() == 'like':
-
-            if request.user in video.likes.users.all():
-                video.likes.users.remove(request.user)
-            else:
-                video.likes.users.add(request.user)
-                video.dis_likes.users.remove(request.user)
-
-        elif opition.lower() == 'dis_like':
-
-            if request.user in video.dis_likes.users.all():
-                video.dis_likes.users.remove(request.user)
-            else:
-                video.dis_likes.users.add(request.user)
-                video.likes.users.remove(request.user)
-        else:
-            return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
-        return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)])) """
-
 
 @require_POST
 def svideo_like(request):
