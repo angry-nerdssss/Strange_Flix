@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,8 @@ from django_email_verification import sendConfirm
 from storage_video.models import Video
 from youtube_video.models import Item
 from .models import Feedback, Subscription
-
+from taggit.models import Tag
+from datetime import datetime, timedelta
 # this function is to render to the main page when the user first searches for the site
 
 
@@ -50,9 +51,13 @@ def index(request):
     ]
     items = Item.objects.all()
     videos = Video.objects.all()
+    count = items.count()
+    r_items = reversed(items)
+
+    for obj in r_items:
+        print(obj.title)
     showRegister = False
     showLogin = False
-    count = 0
 
     recommended_videos1 = Video.objects.order_by('-publish_date')[:6]
     # recommended_videos=recommended_videos.order_by('-publish_date')
@@ -78,6 +83,7 @@ def index(request):
             'recommended_items': recommended_items,
             'paid': paid,
             'count': count,
+            'r_items': r_items,
         }
         return render(request, "index.html", context)
 
@@ -94,6 +100,7 @@ def index(request):
         'recommended_videos': recommended_videos,
         'paid': paid,
         'count': count,
+        'r_items': r_items,
 
     }
     """
@@ -192,7 +199,52 @@ def register(request):
 
 # this function will simply reder you to subscription page
 def subscription(request):
-    return render(request, "subscription.html")
+    try:
+        Subscription.objects.get(user=request.user)
+
+    except:
+        return redirect('index')
+
+    subscription = Subscription.objects.get(user=request.user)
+    paid = subscription.paid
+    delta = datetime.now().date()
+    b = datetime.now().date()
+    days = delta-b
+    print(days)
+    if paid == 'True':
+        if subscription.deadline >= delta:
+            days = subscription.deadline-delta
+            print(days.days)
+        else:
+            subscription.paid = False
+            paid = False
+            subscription.save()
+    context = {
+        'paid': paid,
+        'days': days.days
+    }
+    return render(request, "subscription.html", context)
+
+
+def subscribed_user(request):
+    print("workon subscribed_user0")
+    try:
+        Subscription.objects.get(user=request.user)
+
+    except:
+        return redirect('index')
+
+    subscription = Subscription.objects.get(user=request.user)
+    if subscription.paid == 'True':
+
+        subscription.deadline = subscription.deadline + timedelta(days=30)
+
+    else:
+        subscription.deadline = datetime.now().date() + timedelta(days=30)
+        subscription.paid = True
+    print("workon subscribed_user1")
+    subscription.save()
+    return render(request, "about.html")
 
 
 def show_feedback(request):
@@ -213,8 +265,8 @@ def get_feedback(request):
     feed = Feedback(name=name, email=email, subject=subject, message=message)
     # by writing this only we are hitting the database to store the information
     feed.save()
-
-    return redirect('show_feedback')
+    return HttpResponseRedirect(reverse('index'))
+    # return HttpResponseRedirect(reverse(request.path_info))
 
 # this function is to take user to about.html page
 
@@ -222,18 +274,6 @@ def get_feedback(request):
 def about(request):
     return render(request, "about.html")
 
-
-def subscribed_user(request):
-    try:
-        Subscription.objects.get(user=request.user)
-
-    except:
-        return redirect('index')
-
-    subscription = Subscription.objects.get(user=request.user)
-    subscription.paid = True
-    subscription.save()
-    return redirect('index')
 
 # Email validation function
 
@@ -281,23 +321,48 @@ def notification_panel(request):
 def all_svideos(request, type):
     videos = Video.objects.filter(genre=type)
     items = Item.objects.filter(genre=type)
+
     context = {
         'videos': videos,
         'items': items,
+
     }
     return render(request, "all_svideos.html", context)
 
 
-def all_yvideos(request, type):
-    videos = Item.objects.filter(genre=type)
+@login_required(login_url='login')
+def mycorner(request):
+    videos = Video.objects.all()
+    items = Item.objects.all()
+    show1 = False
+    show2 = False
+    show3 = False
+    show4 = False
+    for video in videos:
+        if video.likes.filter(id=request.user.id).exists():
+            show1 = True
+
+    for item in items:
+        if item.likes.filter(id=request.user.id).exists():
+            show2 = True
+
+    for video in videos:
+        if video.favourite.filter(id=request.user.id).exists():
+            show3 = True
+
+    for item in items:
+        if item.favourite.filter(id=request.user.id).exists():
+            show4 = True
     context = {
         'videos': videos,
+        'items': items,
+
+        'show1': show1,
+        'show2': show2,
+        'show3': show3,
+        'show4': show4,
     }
-    return render(request, "all_svideos.html", context)
-
-
-def mycorner(request):
-    return render(request, 'mycorner.html')
+    return render(request, 'mycorner.html', context)
 
 
 def liked_videos_page(request):
@@ -307,8 +372,86 @@ def liked_videos_page(request):
     return render(request, 'allVideos.html', context)
 
 
-def update_variable(value):
+def subString(Str, n):
+    strings = []
+    for l in range(1, n + 1):
+        for i in range(n - l + 1):
+            j = i + l - 1
+            util_string = ""
+            for k in range(i, j + 1):
+                util_string = util_string+Str[k]
 
-    count = value
+            x = len(Str)
+            x = x//2
+            if len(util_string) > x:
+                strings.append(util_string)
+    return strings
 
-    return count
+
+def search(request):
+    if request.method == 'POST':
+        video_name = request.POST['video_name']
+
+        # main_video=Video.objects.get(title__iexact=video_name)
+        # related_video=Video.objects.filter(title__istartswith=video_name)
+        strings = subString(video_name, len(video_name))
+        queryset1 = Video.objects.none()
+        print(queryset1.count())
+        for string in strings:
+            print(string)
+            queryset1 |= Video.objects.filter(title__icontains=string)
+        recommended_video = reversed(queryset1)
+
+        queryset2 = Item.objects.none()
+        print(queryset2.count())
+        for string in strings:
+            queryset2 |= Item.objects.filter(title__icontains=string)
+        print(queryset1.count())
+        print(queryset2.count())
+        recommended_item = reversed(queryset2)
+        ctx = {
+            'videos': recommended_video,
+            'items': recommended_item
+        }
+        strings = []
+        return render(request, 'all_svideos.html', ctx)
+        """
+        main_item=Item.objects.get(title__iexact=video_name) 
+        recommends_item=Item.objects.filter(title__istartswith=video_name)
+        """
+
+
+def search_tag(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    print(tag.name)
+    videos = Video.objects.filter(tags=tag)
+    items = Item.objects.filter(tags=tag)
+    context = {
+        'tag': tag,
+        'videos': videos,
+        'items': items,
+    }
+    return render(request, 'all_svideos.html', context)
+
+
+def search_tagbyname(request):
+    tag = request.POST['tag_name']
+    all_videos = Video.objects.all()
+    queryset = Video.objects.none()
+    for video in all_videos:
+        if video.tags.filter(name=tag).exists():
+            queryset |= Video.objects.filter(id=video.id)
+    videos = queryset
+
+    all_items = Item.objects.all()
+    queryset = Item.objects.none()
+    for item in all_items:
+        if item.tags.filter(name=tag).exists():
+            queryset |= Item.objects.filter(id=item.id)
+    items = queryset
+    context = {
+        'tag': tag,
+        'videos': videos,
+        'items': items,
+    }
+    return render(request, 'all_svideos.html', context)

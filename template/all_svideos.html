@@ -6,8 +6,19 @@
 {% endblock css %}
 
 {% block content %}
-    
+
   <section class="mycorner_section">
+    <form class="form-inline" action="/search_tagbyname" method="POST">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search by tags" name="tag_name">
+      <button class="btn btn-outline-danger" type="submit">Search</button><br>
+    </form>
+    <br>
+    <p style="color:red;">Searched Tag: 
+  
+      <a href="#" class="badge badge-danger">{{tag}}</p></a>
+  
+  </p>
     <h2>{{heading}}</h2><br>
     <div class="row">
       {% for video in videos %}
@@ -17,7 +28,7 @@
           </div>
           <div class="info">
             <a style="text-decoration: none;"  href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
-            <p>{{video.views}} views | publishdate </p>
+            <p>{{video.views}} views | {{video.publish_date}}  </p>
           </div>
         </div>
         <script>
@@ -31,7 +42,7 @@
         </div>
         <div class="info">
           <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
-          <p>{{i.views}} views | publishdate </p>
+          <p>{{i.views}} views | {{i.publish_date}} </p>
         </div>
       </div>
       <script type="text/javascript">

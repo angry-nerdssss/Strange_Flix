@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block content %}
-    
+
   <section class="mycorner_section">
     <h2>{{heading}}</h2><br>
     <div class="row">
@@ -17,7 +17,7 @@
           </div>
           <div class="info">
             <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
-            <p>{{video.views}} views | publishdate </p>
+            <p>{{video.views}} views | {{video.publish_date}}  </p>
           </div>
         </div>
         <script>

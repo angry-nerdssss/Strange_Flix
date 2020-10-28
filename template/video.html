@@ -52,7 +52,7 @@
           <div class="video-actions-div">
             <div style="display:flex">
               {% for tag in video.tags.all %}
-              <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+              <a href="{% url 'search_tag' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
               {% endfor %}
           </div>
             <h3 class="video-title">{{video.title}}</h3>

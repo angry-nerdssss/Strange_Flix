@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_email_verification',
     'static',
 
+
     # allauth
     'allauth',
     'allauth.account',
@@ -89,7 +90,10 @@ TEMPLATES = [
                 'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
                 'django.template.context_processors.media',
+
             ],
+
+
         },
     },
 ]
@@ -116,7 +120,6 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '995687',
         'HOST': 'localhost',
-
     }
 }
 
