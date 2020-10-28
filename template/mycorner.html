@@ -34,7 +34,7 @@
       {% if show2 == True %}
       <h2>Liked Youtube Videos</h2><br>
       <div class="row">
-        {% for video in user.ylikes.all|slice:":6" %}
+        {% for video in user.ylikes.all|slice:":4" %}
           <div class="col-6 col-md-4 col-lg-3">
             <div class="poster">
               <img id="yll{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
@@ -61,7 +61,7 @@
      {% if show3 == True %}
       <h2>Favourite videos</h2><br>
       <div class="row">
-        {% for video in user.fav_svideos.all|slice:":6" %}
+        {% for video in user.fav_svideos.all|slice:":4" %}
           <div class="col-6 col-md-4 col-lg-3">
             <div class="poster">
               <img id="sf{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">
@@ -83,7 +83,7 @@
       {% if show4 == True %}
       <h2>Favourite Youtube Videos</h2><br>
       <div class="row">
-        {% for video in user.ylikes.all|slice:":6" %}
+        {% for video in user.ylikes.all|slice:":4" %}
           <div class="col-6 col-md-4 col-lg-3">
             <div class="poster">
               <img id="yf{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster">

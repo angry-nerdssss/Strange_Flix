@@ -13,3 +13,6 @@ player.ready(function() {
 });
 
 player.controlBar.addChild('QualitySelector');
+
+//script for autoplaying next video
+

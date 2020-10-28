@@ -33,7 +33,7 @@
 
         {% endblock %}
 
-        <title>Document</title>
+        <title>Strangeflix – Watch TV Shows Online, Watch Movies Online</title>
     </head>
     <body>
 
@@ -51,12 +51,12 @@
                 
                 {% if user.is_superuser %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'add_youtube_video' %}"  >add yvideo</a>
+                  <a class="nav-link" href="{% url 'add_youtube_video' %}"  >Add Video through link</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'add_storage_video' %}"  >add svideo</a>
+                  <a class="nav-link" href="{% url 'add_storage_video' %}"  >Add Video from storage</a>
                 </li>
-              
+                
                 {%elif user.is_authenticated %}
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'subscription' %}">Subscription <span class="sr-only">(current)</span></a>
