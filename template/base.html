@@ -45,17 +45,19 @@
           
             <div class="collapse navbar-collapse" id="main-nav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'subscribed_user' %}">Home <span class="sr-only">(current)</span></a>
-                </li>
+              
                 
                 {% if user.is_superuser %}
-                <li class="nav-item">
+               <!--  <li class="nav-item">
                   <a class="nav-link" href="{% url 'add_youtube_video' %}"  >Add Video through link</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'add_storage_video' %}"  >Add Video from storage</a>
-                </li>
+                </li> -->
+              
+             
+                
+               
                 
                 {%elif user.is_authenticated %}
                 <li class="nav-item active">
@@ -65,17 +67,36 @@
                 <form class="form-inline" action="/search" method="POST">
                   {% csrf_token %}
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" name="video_name">
-                  <button class="btn btn-outline-danger" type="submit">Search</button><br>
+                  <button class="btn btn-outline-danger" type="submit"><i class="fas fa-search"></i></button><br>
                 </form>
                 {% if  user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" href="/">Hello! {{user.username}}<span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'mycorner' %}">My Corner<span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'subscribed_user' %}"><i title="Home" class="fas fa-lg fa-home"></i><span class="sr-only">(current)</span></a>
                   </li>
+                  {% if user.is_superuser %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-lg fa-plus-square"></i>
+                    </a>
+                    <div  class="dropdown-menu dark" aria-labelledby="navbarDropdown">
+                      <a style="color:white;"  class="dropdown-item" href="{% url 'add_youtube_video' %}">Add Video through link</a>
+                      <a style="color:white;" class="dropdown-item" href="{% url 'add_storage_video' %}">Add Video from storage</a>
+                    </div>
+                  </li>
+                  {% endif %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'mycorner' %}"><i title="Library" class="far fa-lg fa-play-circle"></i><span class="sr-only">(current)</span></a>
+                  </li>
+                  {% if user.is_superuser %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'notification_panel' %}"><i title="Notifications"  class="fas fa-lg fa-bell"></i><span class="badge badge-light">4</span><span class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"><i title="Logout"  class="fas fa-lg fa-sign-out-alt"></i><span class="sr-only">(current)</span></a>
                   </li>
                   {% else %}
                     <button id="sign-in-button" class="btn btn-outline-danger" onclick="showLoginForm()">Sign In</button>

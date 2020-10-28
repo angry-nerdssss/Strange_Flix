@@ -325,7 +325,6 @@ def all_svideos(request, type):
     context = {
         'videos': videos,
         'items': items,
-
     }
     return render(request, "all_svideos.html", context)
 

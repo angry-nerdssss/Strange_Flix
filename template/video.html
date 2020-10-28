@@ -23,7 +23,7 @@
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "720P" selected="true">
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "366P">
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "144P">
-
+                  <track kind="captions" src="{{ MEDIA_URL }}{{video.captions}}" srclang="en" label="English" default>
             </video>
             
         </div>
