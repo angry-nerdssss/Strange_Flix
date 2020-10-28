@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'strangeFlix.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'StrangeFlix',
+        'NAME': 'StrangeFlix2',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',

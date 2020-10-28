@@ -57,6 +57,7 @@ class Video(models.Model):
     videofile = models.FileField(
         upload_to='videos/', null=True, verbose_name="")
     poster = models.FileField(upload_to='images/', null=True, verbose_name="")
+    captions = models.FileField(upload_to='captions/', null=True, verbose_name="")
     title = models.CharField(max_length=500)
     description = models.TextField(max_length=500)
     category = models.CharField(

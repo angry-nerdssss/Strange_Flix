@@ -11,5 +11,9 @@ player.ready(function() {
     enableModifiersForNumbers: false
   });
 });
-
+/*
 player.controlBar.addChild('QualitySelector');
+var tracks=player.textTracks();
+var track=tracks[0];
+track.mode = 'showing';
+*/
