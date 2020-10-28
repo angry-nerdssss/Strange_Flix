@@ -15,7 +15,6 @@
 {% endblock %}
 
 {% block content %}
-
     <!-- video player -->
     <section class="video-section">
         <div class="video-div">
@@ -28,6 +27,16 @@
             </video>
             
         </div>
+        <script>
+          var player = $("#videoPlayer");
+
+          setInterval(function(){
+            if(player.duration() - player.currentTime() <= 1)
+            {
+              window.location.href = "{% url 'next_video' video.id %}";
+            }
+          },1000);
+        </script>
         <script>
             var videoPlayer=document.getElementById('videoPlayer');
             
@@ -55,6 +64,7 @@
               <a href="{% url 'search_tag' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
               {% endfor %}
           </div>
+          
             <h3 class="video-title">{{video.title}}</h3>
             <h6 class="video-info">{{video.category}} | Language | {{video.publish_date}} | Rating</h6>
             <h6 class="video-content">{{video.description}}</h6>
