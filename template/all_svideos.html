@@ -28,7 +28,7 @@
           </div>
           <div class="info">
             <a style="text-decoration: none;"  href="{% url 'play_svideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
-            <p>{{video.views}} views | publishdate </p>
+            <p>{{video.views}} views | {{video.publish_date}}  </p>
           </div>
         </div>
         <script>
@@ -42,7 +42,7 @@
         </div>
         <div class="info">
           <a  style="text-decoration: none;" href="{% url 'play_yvideo' i.id %}"><h4 class="video-title">{{i.title}}</h4></a>
-          <p>{{i.views}} views | publishdate </p>
+          <p>{{i.views}} views | {{i.publish_date}} </p>
         </div>
       </div>
       <script type="text/javascript">

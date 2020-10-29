@@ -41,14 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'storage_video',
-    # third party add
+    'comment',
     'youtube_video',
+    # third party add
+    
     'embed_video',
     'social_django',
     'taggit',
-    'comment',
     'django_email_verification',
     'static',
+
 
     # allauth
     'allauth',
@@ -89,7 +91,10 @@ TEMPLATES = [
                 'social_django.context_processors.backends',  # <-- Here
                 'social_django.context_processors.login_redirect',
                 'django.template.context_processors.media',
+
             ],
+
+
         },
     },
 ]
@@ -116,7 +121,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '54324'
+        'PORT':'54324'
     }
 }
 

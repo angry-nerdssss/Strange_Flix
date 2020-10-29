@@ -89,6 +89,14 @@ def video(request, id):
         return redirect('subscription')
 
     video = get_object_or_404(Video, pk=id)
+    # allVideos = Video.objects.all()
+    # count_videos = allVideos.count()
+    # # oldvideo = get_object_or_404(Video, pk=id)
+    # # newid = oldvideo.id + 1
+    # nextid = Video.objects.order_by('-id').first().id + 1
+    # nextvideo = Video.objects.get(id=nextid)
+    # video2 = get_object_or_404(Video, pk=id)
+    # print(video2)
     current_time = 0.0
     if Time.objects.filter(username=current_user.username).filter(video_title=video.title).exists():
         obj = Time.objects.filter(username=current_user.username).filter(
@@ -98,9 +106,33 @@ def video(request, id):
     context = {
         'video': video,
         'current_time': current_time,
+        # 'nvideo': allVideos,
     }
     return render(request, 'video.html', context)
 
+
+#!!!!!!!!!!!!this is very very wrong but it is working!!!!!!!!!!!!!!!
+
+
+def next_video(request, id):
+    allVideos = Video.objects.all()
+    last_video = Video.objects.last()
+    count_videos = last_video.id
+    print(count_videos)
+    nextid = (id + 1) % (count_videos+1)
+    # if nextid == 0:
+    #     nextid = 1
+
+    if not Video.objects.filter(id=nextid).exists():
+        nextid = (nextid + 1) % (count_videos+1)
+
+    # try:
+    #     video = Video.objects.get(id=nextid)
+    # except:
+    #     return next_video(request, nextid)
+
+    print(nextid)
+    return video(request, nextid)  # !this is weird
 
 
 @require_POST

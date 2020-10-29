@@ -37,7 +37,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="image-div">
-                        <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                          <img class="carousel-img"  src="{% static 'images/load3.png' %}"  alt="video thumbnail" >
                     </div>
                     <div class="side-content">
                         <!-- to be filled with lines -->
@@ -46,7 +46,7 @@
                 <div class="carousel-item">
                     <div class="image-div">
                         <div class="image-div">
-                            <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                            <img class="carousel-img"  src="{% static 'images/load4.png' %}"  alt="video thumbnail" >
                         </div>
                         <div class="side-content">
                             <!-- to be filled with lines -->
@@ -56,7 +56,7 @@
                 <div class="carousel-item">
                     <div class="image-div">
                         <div class="image-div">
-                            <img class="carousel-img" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/8321/788321-h" alt="ipl image">
+                            <img class="carousel-img"  src="{% static 'images/load.png' %}"  alt="video thumbnail" >
                         </div>
                         <div class="side-content">
                             <!-- to be filled with lines -->
@@ -81,7 +81,7 @@
       
     <!-- Recommended -->
     <div class="carousel-movies">
-        <h3 class="carousel-heading">Recommended</h1>
+        <h3 class="carousel-heading">Recommended Videos For You</h1>
         <div id="recommended"  data-interval="false" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -166,7 +166,7 @@
 
     <!-- Popular movies carousel -->
     <div class="carousel-movies">
-        <h3 class="carousel-heading">Popular movies</h1>
+        <h3 class="carousel-heading">Popular Premium Movies</h1>
         <div id="movie-carousel1"   data-interval="false" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -239,61 +239,19 @@
     </div>
 
 
-    <!-- Favourite S-videos carousel -->
-    {% if user.is_authenticated %}
-    <div class="carousel-movies">
-        <h3 class="carousel-heading">favourite storage videos</h1>
-        <div id="favourite_svideo" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-
-                    <div class="row movie-row">
-                       
-                        {% for video in user.fav_svideos.all|slice:":6" %}
-                        <div class="col-6 col-lg-2 col">
-                            <div class="thumbnail">
-                                <div class="movie-icon-container">
-                                    <a href="{% url 'play_svideo' video.id %}">
-                                    <img class="movie-icon" id="fav_svideo{{video.id}}" src="{% static 'images/loading.gif' %}" alt="video thumbnail">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a  style="text-decoration: none;" href="{% url 'play_svideo' video.id %}"><h6 class="video-title">{{video.title}}</h6></a>
-                                    <p class="video-info">{{video.views}} views | {{video.publish_date}} </p>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                document.getElementById('fav_svideo{{video.id}}').setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
-                            </script>
-                        </div>
-                        {% endfor %}
-                        
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#favourite_svideo" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#favourite_svideo" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-    {% endif %}
 
 
 
     <!-- YOutube carousel -->
 
     <div class="carousel-movies">
-        <h3 class="carousel-heading">Popular Youtube Videos</h1>
+        <h3 class="carousel-heading">Popular Movies </h1>
         <div id="movie-carousel2"    data-interval="false" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row movie-row">
-                        {% for i in items|slice:":6" %}
+                        {% for i in items %}
+                    
                         <div class="col-6 col-lg-2 col">
                             <div class="thumbnail">
                                 <div class="movie-icon-container">
@@ -402,14 +360,7 @@
                     </div> 
                 </div>
             </div>
-            <a class="carousel-control-prev" href="{{genre.0}}" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="{{genre.0}}" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        
         </div>
     </div>
     {% endfor %}
@@ -426,7 +377,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="feature-image">
+                <div class="feature-image-box">
                     <img src="{% static 'images/mobile.jpg' %}" alt="">
                 </div>
             </div>

@@ -23,7 +23,7 @@ body {
   background-color: black;
   position: fixed;
   top: 0;
-  overflow: hidden;
+  /*  overflow: hidden; */
   z-index: 4;
   width: 100%;
 }
@@ -219,4 +219,20 @@ h3 {
 
 #about-us-link:hover {
   color: white;
+}
+
+.dropdown-item {
+  color: grey;
+  background-color: black;
+}
+
+.dropdown-item:hover {
+  color: white;
+  background-color: black;
+}
+
+.dark {
+  background-color: black;
+  border-color: #252525;
+  border-width: 1px;
 }
