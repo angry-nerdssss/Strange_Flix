@@ -92,7 +92,12 @@
                   </li>
                   {% if user.is_superuser %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'notification_panel' %}"><i title="Notifications"  class="fas fa-lg fa-bell"></i><span class="badge badge-light">4</span><span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'notification_panel' %}"><i title="Notifications"  class="fas fa-lg fa-bell"></i><span class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  {% if user.is_superuser %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'show_feedback' %}"><i title="Feedbacks" class="fas fa-lg fa-comment-dots"></i><span class="sr-only">(current)</span></a>
                   </li>
                   {% endif %}
                   <li class="nav-item">
