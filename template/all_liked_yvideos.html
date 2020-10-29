@@ -1,0 +1,37 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mycorner.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+  <section class="mycorner_section">
+    <h2>{{heading}}</h2><br>
+    <div class="row">
+        {% for video in user.ylikes.all %}
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="poster">
+            <a href="{% url 'play_yvideo' video.id %}"><img id="yl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster"></a>
+          </div>
+          <div class="info">
+            <a href="{% url 'play_yvideo' video.id %}"><h4 class="video-title">{{video.title}}</h4></a>
+            <p>{{video.views}} views | {{video.publish_date}} </p>
+          </div>
+        </div></a>
+        <script>
+          function youtube_parser(url){
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var match = url.match(regExp);
+            return (match&&match[7].length==11)? match[7] : false;
+          }
+          document.getElementById('yl{{video.id}}').setAttribute('src', 'http://i1.ytimg.com/vi/'+youtube_parser("{{video.video}}")+'/maxresdefault.jpg');
+        </script>
+      {% endfor %}
+    </div>
+
+  </section>
+
+
+{% endblock content %}

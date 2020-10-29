@@ -25,4 +25,10 @@ urlpatterns = [
     path('search_tag/<slug:slug>/', views.search_tag, name='search_tag'),
     path('search_tagbyname', views.search_tagbyname, name='search_tagbyname'),
     #path('search_tag2/<slug:slug>/', views.search_tag2, name='search_tag2'),
+       path('mycorner/allfav_videos',
+         views.allfav_videos, name='allfav_videos'),
+            path('mycorner/all_liked_yvideos',
+         views.all_liked_yvideos, name='all_liked_yvideos'),
+            path('mycorner/all_fav_yvideos',
+         views.all_fav_yvideos, name='all_fav_yvideos'),
 ]

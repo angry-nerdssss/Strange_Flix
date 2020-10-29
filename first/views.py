@@ -366,10 +366,27 @@ def mycorner(request):
 
 def liked_videos_page(request):
     context = {
-        'heading': "Liked Videos",
+        'heading': "Liked Premium Videos",
     }
-    return render(request, 'allVideos.html', context)
+    return render(request, 'allfav_videos.html', context)
 
+def allfav_videos(request):
+    context = {
+        'heading': "Favourite Premium Videos",
+    }
+    return render(request, 'allfav_videos.html', context)
+
+def all_liked_yvideos(request):
+    context = {
+        'heading': "Liked Free Videos",
+    }
+    return render(request, 'all_liked_yvideos.html', context)
+
+def all_fav_yvideos(request):
+    context = {
+        'heading': "Favourite Free Videos",
+    }
+    return render(request, 'all_fav_yvideos.html', context)
 
 def subString(Str, n):
     strings = []

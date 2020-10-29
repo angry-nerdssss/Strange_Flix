@@ -11,10 +11,10 @@ try:
     from django.utils import simplejson as json
 except ImportError:
     import json
+
 from django.views.decorators.http import require_POST
+
 # this function is to play the selected video
-
-
 def play_this_youtube(request, id):
     item = get_object_or_404(Item, pk=id)
     context = {
@@ -23,8 +23,6 @@ def play_this_youtube(request, id):
     return render(request, 'youtube_video_player.html', context)
 
 # this function is to upload the svideo_upload.html file when the user fills the form to upload video
-
-
 def yvideo_upload_view(request):
     items = Item.objects.order_by('-publish_date')
     common_tags = Item.tags.most_common()[:4]
@@ -43,8 +41,6 @@ def yvideo_upload_view(request):
     return render(request, 'yvideo_upload.html', context)
 
 # this function is to redirect the admin to the page to the page where he can see details of the selected video from the list
-
-
 def yvideo_detail_view(request, slug):
     item = get_object_or_404(Item, slug=slug)
     context = {
@@ -53,8 +49,6 @@ def yvideo_detail_view(request, slug):
     return render(request, 'yvideo_detail.html', context)
 
 # this function is to show videos as per the selected common tags
-
-
 def yvideo_tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     common_tags = Item.tags.most_common()[:4]
@@ -113,9 +107,7 @@ def yvideo_like(request):
             item.likes.add(user)
             if item.dislikes.filter(id=user.id).exists():
                 item.dislikes.remove(user)
-
             message = 'You liked this'
-
     ctx = {'likes_count': item.total_likes, 'message': message,
            'dislikes_count': item.total_dislikes, 'liked': liked, 'disliked': disliked}
     # use mimetype instead of content_type if django < 5
@@ -152,28 +144,20 @@ def yvideo_dislike(request):
 
 
 # delete view for details
-
 def delete_yvideo(request, id):
-
     # dictionary for initial data with
-
     # field names as keys​​
-
     # fetch the object related to passed id
     context = {}
     obj = get_object_or_404(Item, id=id)
-
     # delete object
-
     obj.delete()
-
     # after deleting redirect to
-
     # home page
-
     return HttpResponseRedirect("/")
 
 
+#to flag a video
 def flag_yvideo(request):
     print("views 0")
     title = request.GET.get('title', None)
@@ -199,7 +183,7 @@ def flag_yvideo(request):
     ctx = {'added': added, }
     return HttpResponse(json.dumps(ctx), content_type='application/json')
 
-
+#to keep record of no of views
 def increase_yviews(request):
     title = request.GET.get('title', None)
     try:
