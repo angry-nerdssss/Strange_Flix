@@ -252,7 +252,7 @@ def subscribed_user(request):
         subscription.paid = True
     print("workon subscribed_user1")
     subscription.save()
-    return render(request, "about.html")
+    return redirect('/')
 
 #this function is to show feedbacks from users to the admin
 def show_feedback(request):

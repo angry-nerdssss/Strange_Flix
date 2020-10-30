@@ -39,12 +39,17 @@ body {
 }
 
 .btn-outline-danger {
+  margin-top: 1rem;
   color: red;
   border-color: red;
   width: 50%;
 }
 
 @media only screen and (max-width: 1000px) {
+  body {
+    background-color: #252525;
+    padding: 7% 10%;
+  }
   .btn-outline-danger {
     width: 100%;
   }
