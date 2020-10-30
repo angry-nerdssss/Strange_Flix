@@ -1,3 +1,4 @@
+#importing all the required keywords and methods and models
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
@@ -12,12 +13,12 @@ from youtube_video.models import Item
 from .models import Feedback, Subscription
 from taggit.models import Tag
 from datetime import datetime, timedelta
+
+
 # this function is to render to the main page when the user first searches for the site
-
-
 def index(request):
 
-    # genre
+    # defining genre for movies
     FICTION = 'Fiction'
     MYSTERY = 'Mystery'
     THRILLER = 'Thriller'
@@ -49,26 +50,33 @@ def index(request):
         (ANIMATION, 'Animation'),
         (WAR, 'War'),
     ]
+
     items = Item.objects.all()
     videos = Video.objects.all()
     count = items.count()
-    r_items = reversed(items)
+    r_items = reversed(items)#reversing the queryset
 
     for obj in r_items:
         print(obj.title)
+
+    #this will 
     showRegister = False
     showLogin = False
 
-    recommended_videos1 = Video.objects.order_by('-publish_date')[:6]
+    recommended_videos1 = Video.objects.order_by('-publish_date')[:6]#slicing 6 videos
     # recommended_videos=recommended_videos.order_by('-publish_date')
 
+
+    #here we are sending the recommended videos
     recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
     recommended_videos = reversed(recommended_videos2)
     recommended_items1 = Item.objects.order_by('-publish_date')[:6]
     recommended_items2 = sorted(recommended_items1, key=lambda o: o.views)
     recommended_items = reversed(recommended_items2)
 
+
     paid = False
+    #if the user is not logged in
     try:
         current_user = User.objects.get(username=request.user.username)
     except:
@@ -87,6 +95,8 @@ def index(request):
         }
         return render(request, "index.html", context)
 
+
+    #if the user is logged in
     if Subscription.objects.filter(user=request.user).exists():
         subscription = Subscription.objects.get(user=request.user)
         paid = subscription.paid
@@ -109,9 +119,9 @@ def index(request):
     """
     return render(request, "index.html", context)
 
+
+
 # this function is to set login conditions and functionality
-
-
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -142,9 +152,8 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+
 # this function is to set register conditions and functionality
-
-
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -197,11 +206,10 @@ def register(request):
         return render(request, 'reg.html')
 
 
-# this function will simply reder you to subscription page
+# this function will simply reder you to subscription page after checking the user's subscription 
 def subscription(request):
     try:
         Subscription.objects.get(user=request.user)
-
     except:
         return redirect('index')
 
@@ -225,7 +233,7 @@ def subscription(request):
     }
     return render(request, "subscription.html", context)
 
-
+#this function will update the payment status and subscription of the user
 def subscribed_user(request):
     print("workon subscribed_user0")
     try:
@@ -246,7 +254,7 @@ def subscribed_user(request):
     subscription.save()
     return render(request, "about.html")
 
-
+#this function is to show feedbacks from users to the admin
 def show_feedback(request):
     feedbacks = Feedback.objects.order_by('-publish_date')
     context = {
@@ -255,8 +263,6 @@ def show_feedback(request):
     return render(request, 'feedback.html', context)
 
 # this function is to take feedback
-
-
 def get_feedback(request):
     name = request.POST['name']
     email = request.POST['email']
@@ -269,15 +275,11 @@ def get_feedback(request):
     # return HttpResponseRedirect(reverse(request.path_info))
 
 # this function is to take user to about.html page
-
-
 def about(request):
     return render(request, "about.html")
 
 
 # Email validation function
-
-
 def validateEmail(email):
     from django.core.validators import validate_email
     from django.core.exceptions import ValidationError
@@ -287,7 +289,7 @@ def validateEmail(email):
     except ValidationError:
         return False
 
-
+#user validation function
 def validate_username(request):
     username = request.GET.get('username', None)
     email = request.GET.get('email', None)
@@ -308,7 +310,7 @@ def validate_username(request):
 
     return JsonResponse(data)
 
-
+#this function is for the notification page for the admin
 def notification_panel(request):
     videos = Video.objects.all()
     context = {
@@ -317,7 +319,7 @@ def notification_panel(request):
     }
     return render(request, "notification_panel.html", context)
 
-
+#this function will show the videos according to the selected genre
 def all_svideos(request, type):
     videos = Video.objects.filter(genre=type)
     items = Item.objects.filter(genre=type)
@@ -328,7 +330,7 @@ def all_svideos(request, type):
     }
     return render(request, "all_svideos.html", context)
 
-
+#this function is for the favourite and liked videos of the user
 @login_required(login_url='login')
 def mycorner(request):
     videos = Video.objects.all()
@@ -363,31 +365,14 @@ def mycorner(request):
     }
     return render(request, 'mycorner.html', context)
 
-
+#this function is to just pass the liked videos to the page
 def liked_videos_page(request):
     context = {
-        'heading': "Liked Premium Videos",
+        'heading': "Liked Videos",
     }
-    return render(request, 'allfav_videos.html', context)
+    return render(request, 'allVideos.html', context)
 
-def allfav_videos(request):
-    context = {
-        'heading': "Favourite Premium Videos",
-    }
-    return render(request, 'allfav_videos.html', context)
-
-def all_liked_yvideos(request):
-    context = {
-        'heading': "Liked Free Videos",
-    }
-    return render(request, 'all_liked_yvideos.html', context)
-
-def all_fav_yvideos(request):
-    context = {
-        'heading': "Favourite Free Videos",
-    }
-    return render(request, 'all_fav_yvideos.html', context)
-
+#this function is to make substrings of the the searched keyword for movies in the search bar
 def subString(Str, n):
     strings = []
     for l in range(1, n + 1):
@@ -403,7 +388,7 @@ def subString(Str, n):
                 strings.append(util_string)
     return strings
 
-
+#this function will show the appropiate results according to the searches
 def search(request):
     if request.method == 'POST':
         video_name = request.POST['video_name']
@@ -436,7 +421,7 @@ def search(request):
         recommends_item=Item.objects.filter(title__istartswith=video_name)
         """
 
-
+#this function is to search acoording to the tags by clicking on them from any video
 def search_tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     print(tag.name)
@@ -449,7 +434,7 @@ def search_tag(request, slug):
     }
     return render(request, 'all_svideos.html', context)
 
-
+#this function is to search the according to the user given tags
 def search_tagbyname(request):
     tag = request.POST['tag_name']
     all_videos = Video.objects.all()
@@ -471,3 +456,22 @@ def search_tagbyname(request):
         'items': items,
     }
     return render(request, 'all_svideos.html', context)
+
+
+def allfav_videos(request):
+    context = {
+        'heading': "Favourite Premium Videos",
+    }
+    return render(request, 'allfav_videos.html', context)
+
+def all_liked_yvideos(request):
+    context = {
+        'heading': "Liked Free Videos",
+    }
+    return render(request, 'all_liked_yvideos.html', context)
+
+def all_fav_yvideos(request):
+    context = {
+        'heading': "Favourite Free Videos",
+    }
+    return render(request, 'all_fav_yvideos.html', context)
