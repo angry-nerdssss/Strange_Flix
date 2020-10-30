@@ -1,24 +1,24 @@
-.about-us{
-    margin-top: 7rem;
-    padding: 5% 15%;
+.about-us {
+  margin-top: 7rem;
+  padding: 5% 10%;
 }
 
-.card{
-    width: 100%;
-    height: 100%;
-    padding: 5%;
-    background-color: black;
-    color: aliceblue;
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  background-color: black;
+  color: aliceblue;
 }
 
-.col-lg-4{
-    padding: 2% 1%;
+.col-lg-4 {
+  padding: 2% 1%;
 }
 
-.card-img-top{
-    border-radius: 10%;
+.card-img-top {
+  border-radius: 10%;
 }
 
-.fa{
-    margin-right: 1rem;
+.fa {
+  margin-right: 1rem;
 }
