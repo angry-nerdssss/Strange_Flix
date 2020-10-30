@@ -231,8 +231,32 @@ h3 {
   background-color: black;
 }
 
+.dropdown-divider {
+  border-color: #252525;
+  color: #252525;
+}
+
 .dark {
   background-color: black;
   border-color: #252525;
   border-width: 1px;
+}
+
+#sign-in-button {
+  margin-left: 1rem;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+.small-screen {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .small-screen {
+    display: inline;
+    margin-left: 2rem;
+  }
 }
