@@ -13,9 +13,9 @@ from youtube_video.models import Item
 from .models import Feedback, Subscription
 from taggit.models import Tag
 from datetime import datetime, timedelta
+
+
 # this function is to render to the main page when the user first searches for the site
-
-
 def index(request):
 
     # defining genre for movies
@@ -231,6 +231,7 @@ def subscription(request):
         'paid': paid,
         'days': days.days
     }
+    print(paid)
     return render(request, "subscription.html", context)
 
 #this function will update the payment status and subscription of the user
@@ -252,7 +253,7 @@ def subscribed_user(request):
         subscription.paid = True
     print("workon subscribed_user1")
     subscription.save()
-    return render(request, "about.html")
+    return redirect('/')
 
 #this function is to show feedbacks from users to the admin
 def show_feedback(request):
@@ -456,3 +457,22 @@ def search_tagbyname(request):
         'items': items,
     }
     return render(request, 'all_svideos.html', context)
+
+
+def allfav_videos(request):
+    context = {
+        'heading': "Favourite Premium Videos",
+    }
+    return render(request, 'allfav_videos.html', context)
+
+def all_liked_yvideos(request):
+    context = {
+        'heading': "Liked Free Videos",
+    }
+    return render(request, 'all_liked_yvideos.html', context)
+
+def all_fav_yvideos(request):
+    context = {
+        'heading': "Favourite Free Videos",
+    }
+    return render(request, 'all_fav_yvideos.html', context)

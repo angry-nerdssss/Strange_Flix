@@ -29,6 +29,7 @@ def svideo_upload_view(request):
         newvideo = form.save(commit=False)
         newvideo.slug = slugify(newvideo.title)
         newvideo.save()
+        #we are using save_m2m() instead of save() as we have to take input of multiple tags at a time
         form.save_m2m()
     context = {'videos': videos,
                'common_tags': common_tags,
@@ -46,11 +47,10 @@ def svideo_detail_view(request, slug):
     return render(request, 'svideo_detail.html', context)
 
 # this function is to show videos as per the selected common tags
-
-
 def svideo_tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     common_tags = Video.tags.most_common()[:4]
+    #we are filtering the videos through tags
     videos = Video.objects.filter(tags=tag)
     context = {
         'tag': tag,
@@ -60,11 +60,12 @@ def svideo_tagged(request, slug):
     }
     return render(request, 'svideo_upload.html', context)
 
-# this function is to play the selected video
+
 
 
 # this function is to play the selected video
 def video(request, id):
+    #handling the exception user is authenticated or not
     try:
         current_user = User.objects.get(username=request.user.username)
     except:
@@ -111,9 +112,10 @@ def video(request, id):
     return render(request, 'video.html', context)
 
 
-#!!!!!!!!!!!!this is very very wrong but it is working!!!!!!!!!!!!!!!
 
 
+
+# this function is to implement autoplay
 def next_video(request, id):
     allVideos = Video.objects.all()
     last_video = Video.objects.last()
@@ -122,19 +124,16 @@ def next_video(request, id):
     nextid = (id + 1) % (count_videos+1)
     # if nextid == 0:
     #     nextid = 1
-
     if not Video.objects.filter(id=nextid).exists():
         nextid = (nextid + 1) % (count_videos+1)
-
     # try:
     #     video = Video.objects.get(id=nextid)
     # except:
     #     return next_video(request, nextid)
-
     print(nextid)
-    return video(request, nextid)  # !this is weird
+    return video(request, nextid)  
 
-
+#this is to implement like feature
 @require_POST
 def svideo_like(request):
     if request.method == 'POST':
@@ -164,6 +163,7 @@ def svideo_like(request):
     return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
 
 
+#this is to implement dislike feature
 @require_POST
 def svideo_dislike(request):
     if request.method == 'POST':
@@ -191,7 +191,7 @@ def svideo_dislike(request):
     return HttpResponse(json.dumps(ctx), content_type='application/json')
     return HttpResponseRedirect(reverse('play_svideo', args=[str(video.id)]))
 
-
+#to add a storage video to your favourites
 def favourite_svideo(request):
     title = request.GET.get('title', None)
     try:
@@ -214,7 +214,7 @@ def favourite_svideo(request):
     ctx = {'added': added, }
     return HttpResponse(json.dumps(ctx), content_type='application/json')
 
-
+#to replay the video from where the user has left when he again visits that video
 def getCurrentTime(request):
     current_time = request.GET.get('currentTime', None)
     title = request.GET.get('title', None)
@@ -234,7 +234,7 @@ def getCurrentTime(request):
     ctx = {}
     return HttpResponse(json.dumps(ctx), content_type='application/json')
 
-
+#to keep the record the no of views and to show it to the users also
 def increase_views(request):
     title = request.GET.get('title', None)
     try:
@@ -252,24 +252,17 @@ def increase_views(request):
 # delete view for details
 def delete_svideo(request, id):
     # dictionary for initial data with
-
     # field names as keys
-
     # fetch the object related to passed id
     context = {}
     obj = get_object_or_404(Video, id=id)
-
     # delete object
-
     obj.delete()
-
     # after deleting redirect to
-
     # home page
-
     return HttpResponseRedirect("/")
 
-
+#to flag a video
 def flag_svideo(request):
     title = request.GET.get('title', None)
     try:

@@ -5,10 +5,9 @@ from taggit.managers import TaggableManager
 from datetime import date
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
-# this model is to save all the details of the uploaded video from the admin
 from django.template.defaultfilters import slugify
 
-
+# this model is to save all the details of the uploaded video from the admin
 class Video(models.Model):
     # categories
     MOVIES = 'movie'
@@ -102,7 +101,7 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
-
+# this model is to save all the details of the current time of all the videos which user has visited till now
 class Time(models.Model):
     username = models.CharField(max_length=200)
     video_title = models.CharField(max_length=100)
