@@ -1,0 +1,20 @@
+.notification_section {
+  margin-top: 5.5rem;
+  padding: 5% 14%;
+}
+
+h1 {
+  color: red;
+}
+#footer {
+  display: none;
+}
+
+ol {
+  color: white;
+  margin-left: 0;
+}
+
+.video-link {
+  color: white;
+}

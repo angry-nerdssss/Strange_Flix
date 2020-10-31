@@ -1,0 +1,265 @@
+/* background = #e3e3e3 */
+/* danger = red */
+/* secondary = #af0404 */
+/* third = #fafafa */
+
+/* $background : #fafafa;  */
+
+/* ------------------tags */
+
+body {
+  background-color: #e3e3e3;
+  /* background-image: url(''); */
+  color: black;
+}
+
+/* ---------------custom bootstrap */
+
+.dark-bar {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  /*  overflow: hidden; */
+  z-index: 4;
+  width: 100%;
+}
+
+.nav-link {
+  color: rgb(211, 203, 203);
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+.navbar-brand {
+  color: red;
+  font-size: 2.5rem;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 2px;
+}
+
+.navbar-brand:hover {
+  color: red;
+}
+
+.badge {
+  background-color: red;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.btn-outline-danger {
+  color: red;
+  border-color: red;
+}
+
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.pressed-danger {
+  color: #af0404;
+  border-color: red;
+}
+
+.btn-outline-dark {
+  margin-right: 1rem;
+}
+
+.btn-outline-dark:hover {
+  background-color: #fafafa;
+}
+
+.navbar-toggler {
+  color: red;
+  align-content: center;
+  padding-top: 5px;
+}
+
+.navbar-toggler:active {
+  border-color: red;
+  color: white;
+  align-content: center;
+  padding-top: 5px;
+}
+
+/* form-styles */
+
+.login-form-container {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  visibility: hidden;
+  background-color: white;
+  backdrop-filter: blur(1.5px);
+}
+
+.registration-form-container {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  visibility: hidden;
+  background-color: white;
+  backdrop-filter: blur(1.5px);
+}
+
+.form-div {
+  padding: 5% 10%;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  width: 70%;
+  /* color: light; */
+  /* !Keep watch here */
+  border-radius: 1%;
+  position: relative;
+}
+
+.form-control {
+  background-color: #fafafa;
+  /* color: light; */
+  /* !Keep watch here */
+}
+
+.form-control:focus {
+  color: black;
+  background-color: #e3e3e3;
+  border-color: white;
+}
+
+.form-heading {
+  color: red;
+}
+
+.cancel-btn,
+.change-btn,
+.submit-btn {
+  width: 5rem;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+}
+
+.social-btn {
+  margin-left: 0;
+  margin-top: 1rem;
+  padding: 0 16px;
+}
+
+.msg {
+  color: red;
+}
+
+/* footer */
+
+.touch {
+  padding: 7% 15% 0 15%;
+  background-color: white;
+}
+
+h3 {
+  color: white;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.contact-us-btn {
+  display: block;
+  margin: auto;
+  margin-top: 5%;
+}
+
+.container-fluid {
+  text-align: center;
+  padding: 3%;
+}
+
+.footer-icon {
+  margin: 3% 5%;
+  color: #fafafa;
+}
+
+.footer-icon:hover {
+  color: #af0404;
+  transform: scale(1.2);
+}
+
+.col-lg-4 {
+  padding: 10px;
+  margin: 0;
+}
+
+.col-lg-12 {
+  padding: 10px;
+}
+
+#about-us-link {
+  color: grey;
+}
+
+#about-us-link:hover {
+  color: white;
+}
+
+.dropdown-item {
+  color: grey;
+  background-color: white;
+}
+
+.dropdown-item:hover {
+  color: white;
+  background-color: white;
+}
+
+.dropdown-divider {
+  border-color: #e3e3e3;
+  color: #e3e3e3;
+}
+
+.dark {
+  background-color: white;
+  border-color: #e3e3e3;
+  border-width: 1px;
+}
+
+#sign-in-button {
+  margin-left: 1rem;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+.small-screen {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .small-screen {
+    display: inline;
+    margin-left: 2rem;
+  }
+}

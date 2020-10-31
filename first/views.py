@@ -1,4 +1,4 @@
-#importing all the required keywords and methods and models
+# importing all the required keywords and methods and models
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 from django_email_verification import sendConfirm
 from storage_video.models import Video
 from youtube_video.models import Item
-from .models import Feedback, Subscription
+from .models import Feedback, Subscription, Theme
 from taggit.models import Tag
 from datetime import datetime, timedelta
 import math
@@ -53,26 +53,25 @@ def index(request):
     items = Item.objects.all()
     videos = Video.objects.all()
     count = items.count()
-    r_items = reversed(items)#reversing the queryset
+    r_items = reversed(items)  # reversing the queryset
 
     
     showRegister = False
     showLogin = False
 
-    recommended_videos1 = Video.objects.order_by('-publish_date')[:6]#slicing 6 videos
+    recommended_videos1 = Video.objects.order_by(
+        '-publish_date')[:6]  # slicing 6 videos
     # recommended_videos=recommended_videos.order_by('-publish_date')
 
-
-    #here we are sending the recommended videos
+    # here we are sending the recommended videos
     recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
     recommended_videos = reversed(recommended_videos2)
     recommended_items1 = Item.objects.order_by('-publish_date')[:6]
     recommended_items2 = sorted(recommended_items1, key=lambda o: o.views)
     recommended_items = reversed(recommended_items2)
 
-
     paid = False
-    #if the user is not logged in
+    # if the user is not logged in
     try:
         current_user = User.objects.get(username=request.user.username)
     except:
@@ -91,8 +90,7 @@ def index(request):
         }
         return render(request, "index.html", context)
 
-
-    #if the user is logged in
+    # if the user is logged in
     if Subscription.objects.filter(user=request.user).exists():
         subscription = Subscription.objects.get(user=request.user)
         paid = subscription.paid
@@ -114,7 +112,6 @@ def index(request):
         videos[i]=
     """
     return render(request, "index.html", context)
-
 
 
 # this function is to set login conditions and functionality
@@ -180,6 +177,8 @@ def register(request):
                 # by writing this only we are hitting the database to store the information
                 user.save()
                 subscription = Subscription.objects.create(user=user)
+                theme = Theme.objects.create(user=user)
+                theme.save()
                 subscription.save()
                 sendConfirm(user)
                 
@@ -202,7 +201,7 @@ def register(request):
         return render(request, 'reg.html')
 
 
-# this function will simply reder you to subscription page after checking the user's subscription 
+# this function will simply reder you to subscription page after checking the user's subscription
 def subscription(request):
     try:
         Subscription.objects.get(user=request.user)
@@ -228,7 +227,9 @@ def subscription(request):
     }
     return render(request, "subscription.html", context)
 
-#this function will update the payment status and subscription of the user
+# this function will update the payment status and subscription of the user
+
+
 def subscribed_user(request):
     try:
         Subscription.objects.get(user=request.user)
@@ -248,7 +249,9 @@ def subscribed_user(request):
     subscription.save()
     return redirect('/')
 
-#this function is to show feedbacks from users to the admin
+# this function is to show feedbacks from users to the admin
+
+
 def show_feedback(request):
     feedbacks = Feedback.objects.order_by('-publish_date')
     context = {
@@ -257,6 +260,8 @@ def show_feedback(request):
     return render(request, 'feedback.html', context)
 
 # this function is to take feedback
+
+
 def get_feedback(request):
     name = request.POST['name']
     email = request.POST['email']
@@ -265,10 +270,12 @@ def get_feedback(request):
     feed = Feedback(name=name, email=email, subject=subject, message=message)
     # by writing this only we are hitting the database to store the information
     feed.save()
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return HttpResponseRedirect(reverse(request.path_info))
 
 # this function is to take user to about.html page
+
+
 def about(request):
     return render(request, "about.html")
 
@@ -283,7 +290,9 @@ def validateEmail(email):
     except ValidationError:
         return False
 
-#user validation function
+# user validation function
+
+
 def validate_username(request):
     username = request.GET.get('username', None)
     email = request.GET.get('email', None)
@@ -302,7 +311,9 @@ def validate_username(request):
 
     return JsonResponse(data)
 
-#this function is for the notification page for the admin
+# this function is for the notification page for the admin
+
+
 def notification_panel(request):
     videos = Video.objects.all()
     context = {
@@ -389,11 +400,15 @@ def mycorner(request):
     }
     return render(request, 'mycorner.html', context)
 
-#this function is to just pass the liked videos to the page
+# this function is to just pass the liked videos to the page
+
+
 def liked_videos_page(request):
     return svideo_pagination(request,1)
 
-#this function is to make substrings of the the searched keyword for movies in the search bar
+# this function is to make substrings of the the searched keyword for movies in the search bar
+
+
 def subString(Str, n):
     strings = []
     for l in range(1, n + 1):
@@ -409,7 +424,9 @@ def subString(Str, n):
                 strings.append(util_string)
     return strings
 
-#this function will show the appropiate results according to the searches
+# this function will show the appropiate results according to the searches
+
+
 def search(request):
     if request.method == 'POST':
         video_name = request.POST['video_name']
@@ -440,7 +457,9 @@ def search(request):
         recommends_item=Item.objects.filter(title__istartswith=video_name)
         """
 
-#this function is to search acoording to the tags by clicking on them from any video
+# this function is to search acoording to the tags by clicking on them from any video
+
+
 def search_tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
    
@@ -453,7 +472,9 @@ def search_tag(request, slug):
     }
     return render(request, 'all_svideos_simple.html', context)
 
-#this function is to search the according to the user given tags
+# this function is to search the according to the user given tags
+
+
 def search_tagbyname(request):
     tag = request.POST['tag_name']
     all_videos = Video.objects.all()
@@ -480,8 +501,10 @@ def search_tagbyname(request):
 def allfav_videos(request):
     return svideo_fav_pagination(request,1)
 
+
 def all_liked_yvideos(request):
     return yvideo_pagination(request,1)
+
 
 def all_fav_yvideos(request):
     return yvideo_fav_pagination(request,1)
@@ -541,3 +564,21 @@ def yvideo_fav_pagination(request,page_no):
         'ranges':ranges,
     }
     return render(request,'all_fav_yvideos.html',context)
+    
+
+
+def change_theme(request):
+    try:
+        Theme.objects.get(user=request.user)
+    except:
+        Theme.objects.create(user=request.user)
+
+    theme = Theme.objects.get(user=request.user)
+    darkmode = theme.darkmode
+    if darkmode:
+        theme.darkmode = False
+    else:
+        theme.darkmode = True
+
+    theme.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

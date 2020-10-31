@@ -1,0 +1,108 @@
+body{
+    background-color: black;
+    color: whitesmoke;
+    padding: 0 15%;
+}
+
+h1{
+    color: red;
+    margin-bottom: 4rem;
+}
+
+input{
+    background-color: #414141;
+    color: rgb(211, 203, 203);
+}
+
+.badge{
+    background-color: red;
+    color: white;
+}
+
+
+.btn-outline-danger{
+    color: red;
+    border-color: red;
+}
+
+.btn-outline-danger:hover{
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
+
+.badge-dark:hover{
+    color: white;
+    background-color: red;
+}
+
+.badge-danger:hover{
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
+
+.pressed-danger{
+    color: #af0404;
+    border-color: red;
+}
+
+.bootstrap-tagsinput{
+    background-color: #414141;
+    color: rgb(211, 203, 203);
+    border-radius: 3px;
+}
+
+.form{
+    background-color: black;
+    color: aliceblue;
+    padding: 5%;
+}
+
+.form-control{
+    background-color: #414141;
+    color: rgb(211, 203, 203);
+}
+
+.form-control:focus{
+    color: black;
+    background-color: gray;
+    border-color: white;
+}
+
+.form-heading{
+    color: red;
+}
+
+.my-1 a{
+    color: white;
+}
+
+.my-1 a:hover{
+    color: red;
+}
+
+.cards{
+    background-color: #252525;
+}
+
+input[type='file']{
+    border: 1px solid white;
+    color:white;
+    font-size:20px;
+    width: 50%;
+    border-radius: 3px;
+}
+
+input[type='file']:hover{
+    cursor: pointer;
+    color:white;
+    font-size:20px;
+    border-radius: 3px;
+}
+
+@media only screen and (max-width: 1000px) {
+    input[type='file']{
+        width: 100%;
+    }
+}
