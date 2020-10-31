@@ -3,6 +3,10 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+      <link rel="stylesheet" href="{% static 'css_light/feedback.css' %}">
+    {% endif %}
 {% endblock css %}
 
 {% block content %}

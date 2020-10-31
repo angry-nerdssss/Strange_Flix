@@ -171,6 +171,8 @@ movie-icon-container {
 .ques {
   display: inline-block;
   width: 90%;
+  font-weight: 400;
+  font-size: large;
 }
 
 .faq-ans {

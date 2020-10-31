@@ -160,7 +160,7 @@ movie-icon-container {
 
 .collapse-btn:hover {
   margin-top: 10px;
-  color: aliceblue;
+  color: black;
   text-align: left;
   width: 100%;
   background-color: #e3e3e3;
@@ -171,6 +171,8 @@ movie-icon-container {
 .ques {
   display: inline-block;
   width: 90%;
+  font-weight: 400;
+  font-size: large;
 }
 
 .faq-ans {

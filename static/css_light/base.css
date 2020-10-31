@@ -30,7 +30,7 @@ body {
 }
 
 .nav-link {
-  color: rgb(211, 203, 203);
+  color: grey;
 }
 
 .nav-link:hover {
@@ -199,7 +199,7 @@ h3 {
 
 .footer-icon {
   margin: 3% 5%;
-  color: #fafafa;
+  color: grey;
 }
 
 .footer-icon:hover {
@@ -221,7 +221,7 @@ h3 {
 }
 
 #about-us-link:hover {
-  color: white;
+  color: black;
 }
 
 .dropdown-item {
@@ -230,7 +230,7 @@ h3 {
 }
 
 .dropdown-item:hover {
-  color: white;
+  color: black;
   background-color: white;
 }
 
@@ -262,4 +262,14 @@ h3 {
     display: inline;
     margin-left: 2rem;
   }
+}
+
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.copyright {
+  color: gray;
 }

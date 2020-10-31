@@ -14,7 +14,7 @@ a:hover {
 }
 
 h2 {
-  color: white;
+  color: black;
   font-weight: 400;
 }
 
@@ -22,12 +22,8 @@ h2 {
   color: white;
 }
 
-.video-title:hover {
-  color: white;
-}
-
 .info {
-  background-color: black;
+  background-color: e3e3e3;
   padding: 3% 10% 0.1%;
 }
 
@@ -52,16 +48,16 @@ h2 {
   align-items: center;
 } */
 
-.page-link {
-  background-color: black;
+/* .page-link {
+  background-color: e3e3e3;
   color: grey;
 }
 
 .page-link:hover {
   background-color: gray;
-  color: black;
+  color: #817878;
 }
 
 .page-item.disabled .page-link {
-  color: #252525;
-}
+  color: #e3e3e3;
+} */

@@ -73,9 +73,9 @@
                       <i title="Add Video" class="fas fa-lg fa-plus-square"></i><span class="small-screen">Add Video</span>
                     </a>
                     <div  class="dropdown-menu dark" aria-labelledby="navbarDropdown">
-                      <a style="color:white;"  class="dropdown-item" href="{% url 'add_youtube_video' %}">Add Video through link</a>
+                      <a   class="dropdown-item" href="{% url 'add_youtube_video' %}">Add Video through link</a>
                       <div class="dropdown-divider"></div>
-                      <a style="color:white;" class="dropdown-item" href="{% url 'add_storage_video' %}">Add Video from storage</a>
+                      <a class="dropdown-item" href="{% url 'add_storage_video' %}">Add Video from storage</a>
                     </div>
                   </li>
                   {% endif %}
@@ -236,8 +236,11 @@
               <a href=""><i class="footer-icon fab fa-facebook-f" aria-hidden="true"></i></a>
               <a href=""><i class="footer-icon fab fa-instagram" aria-hidden="true"></i></a>
               <a href=""><i class="footer-icon fas fa-envelope" aria-hidden="true"></i></a><br>
-              © Copyright {% now "Y" %} Strangeflix <br>
               <a href="about_us" id="about-us-link">About Us</a>
+              <br>
+              <span class="copyright">
+                © Copyright {% now "Y" %} Strangeflix <br>
+              </span>
             </div>
         </div>
       </section>

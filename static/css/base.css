@@ -260,3 +260,9 @@ h3 {
     margin-left: 2rem;
   }
 }
+
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
