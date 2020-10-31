@@ -19,6 +19,10 @@
         <!-- my css -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
+        {% if user.is_authenticated and not user.theme_user.darkmode %}
+          <link rel="stylesheet" href="{% static 'css_light/base.css' %}">
+        {% endif %}
+
         <!-- button css -->
         <link rel="stylesheet" href="{% static 'css/button.css' %}">
         
@@ -56,6 +60,9 @@
                 {% if  user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" href="/">Hello! {{user.username}}<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="{% url 'change_theme' %}">Darkmode {{user.theme_user.darkmode}}</a>
                   </li>
                   <li class="nav-item active">
                     <a class="nav-link" href="{% url 'subscribed_user' %}"><i title="Home" class="fas fa-lg fa-home"></i><span class="small-screen">Home</span><span class="sr-only">(current)</span></a>

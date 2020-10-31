@@ -1,0 +1,42 @@
+.video-section {
+  margin-top: 5.5rem;
+}
+
+.video-js,
+.vjs-big-play-centered {
+  width: 100%;
+  padding-top: 40%;
+}
+
+.video-actions-div {
+  background-color: black;
+  text-align: left;
+  color: aliceblue;
+  padding: 3% 3% 1%;
+  margin-bottom: 0.5rem;
+}
+
+.video-title {
+  text-align: left;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 3px;
+}
+
+.video-content {
+  margin-top: 1rem;
+}
+
+.reaction-icon {
+  margin: 1rem;
+  margin-right: 0.2rem;
+}
+
+.reaction-icon:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+#footer {
+  display: none;
+}

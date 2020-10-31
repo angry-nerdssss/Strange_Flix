@@ -5,7 +5,7 @@ window.addEventListener("scroll", function(event) {
     // console.log(scroll_y);
     
     if(scroll_y < 100){
-        document.querySelector(".dark-bar").style.backgroundColor = "black";
+        document.querySelector(".dark-bar").style.backgroundColor = "";
     }else{
         document.querySelector(".dark-bar").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
     }

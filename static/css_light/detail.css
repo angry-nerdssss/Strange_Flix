@@ -1,0 +1,62 @@
+body {
+  background-color: #252525;
+  padding: 7% 30%;
+}
+
+.badge-dark:hover {
+  color: white;
+  background-color: red;
+}
+
+.badge-danger:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.card {
+  border-color: black;
+  background-color: black;
+  color: rgb(211, 203, 203);
+  border-radius: 0.2rem;
+  align-self: auto;
+}
+
+.card-header {
+  height: 25%;
+  border-color: whitesmoke;
+  color: #af0404;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.btn-outline-danger {
+  margin-top: 1rem;
+  color: red;
+  border-color: red;
+  width: 50%;
+}
+
+@media only screen and (max-width: 1000px) {
+  body {
+    background-color: #252525;
+    padding: 7% 10%;
+  }
+  .btn-outline-danger {
+    width: 100%;
+  }
+}
+
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
