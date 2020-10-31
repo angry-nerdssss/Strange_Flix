@@ -351,6 +351,7 @@ def genre_pagination(request,page_no):
         'show1':show1,
         'show2':show2,
         'ranges':ranges,
+        'ranges3':ranges3,
     }
     return render(request,'all_svideos.html',context)
 #this function is for the favourite and liked videos of the user
