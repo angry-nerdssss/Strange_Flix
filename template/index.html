@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-
+{% load filters %}
 {% block css %}
 
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -334,10 +334,10 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row movie-row">
-                        {% for video in videos %}
+                        {% for video in videos|in_genre:genre.0 %}
                       
-                            {% if video.genre == genre.0 %}
-                          
+                            
+                            {% if forloop.counter < 7 %}
                    
                             <div class="col-6 col-lg-2 col">
                                     <div class="thumbnail">

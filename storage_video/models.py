@@ -98,8 +98,10 @@ class Video(models.Model):
         self.slug = slugify(self.title)
         super(Video, self).save(*args, **kwargs)
 
+
     def __str__(self):
         return self.title
+
 
 # this model is to save all the details of the current time of all the videos which user has visited till now
 class Time(models.Model):

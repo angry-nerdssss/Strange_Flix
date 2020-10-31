@@ -93,7 +93,10 @@ TEMPLATES = [
                 'django.template.context_processors.media',
 
             ],
+            'libraries':{
+            'filter': 'storage_video.templatetags.filters',
 
+            }
 
         },
     },
