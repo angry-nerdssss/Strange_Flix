@@ -15,6 +15,7 @@ class Feedback(models.Model) :
     def __str__(self):
         return self.name
 
+#this model is designed to make,update and renew the subscription of the use to the site
 class Subscription(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     paid = models.CharField(max_length=20,default=False)

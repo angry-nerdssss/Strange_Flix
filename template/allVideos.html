@@ -1,6 +1,6 @@
 {% include 'base.html' %}
 {% load static %}
-
+{% load mathfilters %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/mycorner.css' %}">
 {% endblock css %}
@@ -8,9 +8,10 @@
 {% block content %}
 
   <section class="mycorner_section">
-    <h2>{{heading}}</h2><br>
+
+    <h2>Liked Premium Videos</h2><br>
     <div class="row">
-      {% for video in user.likes.all %}
+      {% for video in videos %}
         <div class="col-6 col-md-4 col-lg-3">
           <div class="poster">
             <a   href="{% url 'play_svideo' video.id %}"> <img id="sl{{video.id}}" src="{% static 'images/loading.gif' %}" alt="poster"></a>
@@ -25,6 +26,51 @@
         </script>
       {% endfor %}
     </div>
+
+    <br>
+
+    <nav class="page-nav">
+      <ul class="pagination justify-content-end">
+        
+          {% if page_no is 1 %}
+          <li class="page-item disabled">
+            <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'-1' %}" >Previous</a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'-1' %}" >Previous</a>
+          </li>
+          {% endif %}
+          
+        
+        <!-- TODO:yha loop chala dena -->
+        {% for i in ranges %}
+        <li class="page-item"><a class="page-link" href="{% url 'svideo_pagination' forloop.counter %}">{{forloop.counter}}</a></li>
+        {% endfor %}
+        
+        {% if user.likes.count|div:'2' > user.likes.count|intdiv:'2' %}
+        {% if page_no is user.likes.count|intdiv:'2'|add:'1' %}
+        <li class="page-item disabled">
+          <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'1' %}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'1' %}">Next</a>
+        </li>
+        {% endif %}
+        {% else %}
+        {% if page_no is user.likes.count|intdiv:'2' %}
+        <li class="page-item disabled">
+          <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'1' %}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="{% url 'svideo_pagination' page_no|add:'1' %}">Next</a>
+        </li>
+        {% endif %}
+        {% endif %}
+      </ul>
+    </nav>
 
   </section>
 

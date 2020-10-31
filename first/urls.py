@@ -17,7 +17,8 @@ urlpatterns = [
     path('ajax/validate_username/$',
          views.validate_username, name='validate_username'),
     path('notification_panel', views.notification_panel, name='notification_panel'),
-    path('all_svideos/<str:type>/', views.all_svideos, name='all_svideos'),
+    path('all_svideos/<str:types>/', views.all_svideos, name='all_svideos'),
+   
     path('mycorner', views.mycorner, name='mycorner'),
     path('mycorner/liked_videos_page',
          views.liked_videos_page, name='liked_videos_page'),
@@ -31,4 +32,9 @@ urlpatterns = [
          views.all_liked_yvideos, name='all_liked_yvideos'),
             path('mycorner/all_fav_yvideos',
          views.all_fav_yvideos, name='all_fav_yvideos'),
+     path('svideo_pagination/<int:page_no>/',views.svideo_pagination,name='svideo_pagination'),
+     path('svideo_fav_pagination/<int:page_no>/',views.svideo_fav_pagination,name='svideo_fav_pagination'),
+     path('yvideo_pagination/<int:page_no>/',views.yvideo_pagination,name='yvideo_pagination'),
+     path('yvideo_fav_pagination/<int:page_no>/',views.yvideo_fav_pagination,name='yvideo_fav_pagination'),
+     path('genre_pagination/<int:page_no>/',views.genre_pagination,name='genre_pagination'),
 ]

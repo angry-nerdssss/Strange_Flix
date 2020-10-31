@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'taggit',
     'django_email_verification',
     'static',
-
+    'mathfilters',
 
     # allauth
     'allauth',

@@ -84,8 +84,11 @@ def video(request, id):
             'current_time': current_time,
         }
         return render(request, 'video.html', context)
-
-    subscription = Subscription.objects.get(user=request.user)
+    try:
+        Subscription.objects.get(user=request.user)
+    except:
+        Subscription.objects.create(user=request.user)
+    subscription=Subscription.objects.get(user=request.user)
     if subscription.paid == 'False':
         return redirect('subscription')
 
@@ -120,7 +123,6 @@ def next_video(request, id):
     allVideos = Video.objects.all()
     last_video = Video.objects.last()
     count_videos = last_video.id
-    print(count_videos)
     nextid = (id + 1) % (count_videos+1)
     # if nextid == 0:
     #     nextid = 1
@@ -130,7 +132,7 @@ def next_video(request, id):
     #     video = Video.objects.get(id=nextid)
     # except:
     #     return next_video(request, nextid)
-    print(nextid)
+    
     return video(request, nextid)  
 
 #this is to implement like feature
@@ -198,14 +200,10 @@ def favourite_svideo(request):
         currentUser = User.objects.get(username=request.user.username)
 
     except:
-        print("y")
         return redirect('login')
     currentUser = User.objects.get(username=request.user.username)
     added = True
     video = Video.objects.get(title=title)
-    print(video.title)
-    print(" ")
-    print(video.description)
     if video.favourite.filter(id=currentUser.id).exists():
         video.favourite.remove(request.user)
         added = False
@@ -243,7 +241,6 @@ def increase_views(request):
         return redirect('login')
     video = Video.objects.get(title=title)
     video.views = video.views+1
-    print(video.views)
     video.save()
     ctx = {}
     return HttpResponse(json.dumps(ctx), content_type='application/json')
@@ -269,14 +266,10 @@ def flag_svideo(request):
         currentUser = User.objects.get(username=request.user.username)
 
     except:
-        print("y")
         return redirect('login')
     currentUser = User.objects.get(username=request.user.username)
     added = True
     video = Video.objects.get(title=title)
-    print(video.title)
-    print(" ")
-    print(video.description)
     if video.flag.filter(id=currentUser.id).exists():
         video.flag.remove(request.user)
         added = False

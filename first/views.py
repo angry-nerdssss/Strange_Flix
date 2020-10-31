@@ -13,11 +13,10 @@ from youtube_video.models import Item
 from .models import Feedback, Subscription
 from taggit.models import Tag
 from datetime import datetime, timedelta
-
+import math
 
 # this function is to render to the main page when the user first searches for the site
 def index(request):
-
     # defining genre for movies
     FICTION = 'Fiction'
     MYSTERY = 'Mystery'
@@ -56,10 +55,7 @@ def index(request):
     count = items.count()
     r_items = reversed(items)#reversing the queryset
 
-    for obj in r_items:
-        print(obj.title)
-
-    #this will 
+    
     showRegister = False
     showLogin = False
 
@@ -186,7 +182,7 @@ def register(request):
                 subscription = Subscription.objects.create(user=user)
                 subscription.save()
                 sendConfirm(user)
-                print('user created')
+                
                 messages.info(request, 'Please check your e-mail')
                 context = {
                     'showRegister': True,
@@ -211,6 +207,7 @@ def subscription(request):
     try:
         Subscription.objects.get(user=request.user)
     except:
+        
         return redirect('index')
 
     subscription = Subscription.objects.get(user=request.user)
@@ -218,11 +215,9 @@ def subscription(request):
     delta = datetime.now().date()
     b = datetime.now().date()
     days = delta-b
-    print(days)
     if paid == 'True':
         if subscription.deadline >= delta:
             days = subscription.deadline-delta
-            print(days.days)
         else:
             subscription.paid = False
             paid = False
@@ -231,16 +226,15 @@ def subscription(request):
         'paid': paid,
         'days': days.days
     }
-    print(paid)
     return render(request, "subscription.html", context)
 
 #this function will update the payment status and subscription of the user
 def subscribed_user(request):
-    print("workon subscribed_user0")
     try:
         Subscription.objects.get(user=request.user)
 
     except:
+        Subscription.objects.create(user=request.user)
         return redirect('index')
 
     subscription = Subscription.objects.get(user=request.user)
@@ -251,7 +245,6 @@ def subscribed_user(request):
     else:
         subscription.deadline = datetime.now().date() + timedelta(days=30)
         subscription.paid = True
-    print("workon subscribed_user1")
     subscription.save()
     return redirect('/')
 
@@ -295,13 +288,11 @@ def validate_username(request):
     username = request.GET.get('username', None)
     email = request.GET.get('email', None)
     email_valid = validateEmail(email)
-    print(email_valid)
 
     data = {
         'is_username_taken': User.objects.filter(username__iexact=username).exists(),
         'is_email_taken': User.objects.filter(email=email).exists() or not email_valid
     }
-    print(data)
     if data['is_username_taken']:
         data['username_error_message'] = 'A user with this username already exists.'
     if data['is_email_taken']:
@@ -320,17 +311,48 @@ def notification_panel(request):
     }
     return render(request, "notification_panel.html", context)
 
+global_genre=[]
 #this function will show the videos according to the selected genre
-def all_svideos(request, type):
-    videos = Video.objects.filter(genre=type)
-    items = Item.objects.filter(genre=type)
+def all_svideos(request, types):
+    global_genre.append(types)
+    return genre_pagination(request,1)
 
-    context = {
-        'videos': videos,
-        'items': items,
+def genre_pagination(request,page_no):
+    videos = Video.objects.filter(genre=global_genre[-1])[(page_no-1)*2:page_no*2]
+    items = Item.objects.filter(genre=global_genre[-1])[(page_no-1)*2:page_no*2]
+
+    s_ranges1=Video.objects.filter(genre=global_genre[-1]).count()
+    show1=True
+    show2=True
+    if videos.count() == 0 :
+        show1=False
+    
+    s_ranges2=s_ranges1/2
+    s_ranges3=math.ceil(s_ranges2)
+
+    y_ranges1=Item.objects.filter(genre=global_genre[-1]).count()
+    if items.count() == 0 :
+        show2=False
+    y_ranges2=y_ranges1/2
+    y_ranges3=math.ceil(y_ranges2)
+    
+    
+    if s_ranges3 > y_ranges3 :
+        ranges3=s_ranges3
+    else :
+        ranges3=y_ranges3
+    ranges=range(ranges3)
+    types=global_genre[-1]
+    context={
+        'videos':videos,
+        'items':items,
+        'types':types,
+        'page_no':page_no,
+        'show1':show1,
+        'show2':show2,
+        'ranges':ranges,
     }
-    return render(request, "all_svideos.html", context)
-
+    return render(request,'all_svideos.html',context)
 #this function is for the favourite and liked videos of the user
 @login_required(login_url='login')
 def mycorner(request):
@@ -368,10 +390,7 @@ def mycorner(request):
 
 #this function is to just pass the liked videos to the page
 def liked_videos_page(request):
-    context = {
-        'heading': "Liked Videos",
-    }
-    return render(request, 'allVideos.html', context)
+    return svideo_pagination(request,1)
 
 #this function is to make substrings of the the searched keyword for movies in the search bar
 def subString(Str, n):
@@ -398,25 +417,23 @@ def search(request):
         # related_video=Video.objects.filter(title__istartswith=video_name)
         strings = subString(video_name, len(video_name))
         queryset1 = Video.objects.none()
-        print(queryset1.count())
         for string in strings:
-            print(string)
+            
             queryset1 |= Video.objects.filter(title__icontains=string)
         recommended_video = reversed(queryset1)
 
         queryset2 = Item.objects.none()
-        print(queryset2.count())
+        
         for string in strings:
             queryset2 |= Item.objects.filter(title__icontains=string)
-        print(queryset1.count())
-        print(queryset2.count())
+        
         recommended_item = reversed(queryset2)
         ctx = {
             'videos': recommended_video,
             'items': recommended_item
         }
         strings = []
-        return render(request, 'all_svideos.html', ctx)
+        return render(request, 'all_svideos_simple.html', ctx)
         """
         main_item=Item.objects.get(title__iexact=video_name) 
         recommends_item=Item.objects.filter(title__istartswith=video_name)
@@ -425,7 +442,7 @@ def search(request):
 #this function is to search acoording to the tags by clicking on them from any video
 def search_tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
-    print(tag.name)
+   
     videos = Video.objects.filter(tags=tag)
     items = Item.objects.filter(tags=tag)
     context = {
@@ -433,7 +450,7 @@ def search_tag(request, slug):
         'videos': videos,
         'items': items,
     }
-    return render(request, 'all_svideos.html', context)
+    return render(request, 'all_svideos_simple.html', context)
 
 #this function is to search the according to the user given tags
 def search_tagbyname(request):
@@ -456,23 +473,70 @@ def search_tagbyname(request):
         'videos': videos,
         'items': items,
     }
-    return render(request, 'all_svideos.html', context)
+    return render(request, 'all_svideos_simple.html', context)
 
 
 def allfav_videos(request):
-    context = {
-        'heading': "Favourite Premium Videos",
-    }
-    return render(request, 'allfav_videos.html', context)
+    return svideo_fav_pagination(request,1)
 
 def all_liked_yvideos(request):
-    context = {
-        'heading': "Liked Free Videos",
-    }
-    return render(request, 'all_liked_yvideos.html', context)
+    return yvideo_pagination(request,1)
 
 def all_fav_yvideos(request):
-    context = {
-        'heading': "Favourite Free Videos",
+    return yvideo_fav_pagination(request,1)
+
+def svideo_pagination(request,page_no):
+    videos=request.user.likes.all()[(page_no-1)*2:page_no*2]
+    ranges1=request.user.likes.count()
+    
+    ranges2=ranges1/2
+    ranges3=math.ceil(ranges2)
+    ranges=range(ranges3)
+    context={
+        'videos':videos,
+        'page_no':page_no,
+        'ranges':ranges,
     }
-    return render(request, 'all_fav_yvideos.html', context)
+    return render(request,'allVideos.html',context)
+
+def svideo_fav_pagination(request,page_no):
+    videos=request.user.fav_svideos.all()[(page_no-1)*2:page_no*2]
+    ranges1=request.user.fav_svideos.count()
+    
+    ranges2=ranges1/2
+    ranges3=math.ceil(ranges2)
+    ranges=range(ranges3)
+    context={
+        'videos':videos,
+        'page_no':page_no,
+        'ranges':ranges,
+    }
+    return render(request,'allfav_videos.html',context)
+
+def yvideo_pagination(request,page_no):
+    videos=request.user.ylikes.all()[(page_no-1)*2:page_no*2]
+    ranges1=request.user.ylikes.count()
+    
+    ranges2=ranges1/2
+    ranges3=math.ceil(ranges2)
+    ranges=range(ranges3)
+    context={
+        'videos':videos,
+        'page_no':page_no,
+        'ranges':ranges,
+    }
+    return render(request,'all_liked_yvideos.html',context)
+
+def yvideo_fav_pagination(request,page_no):
+    videos=request.user.fav_yvideos.all()[(page_no-1)*2:page_no*2]
+    ranges1=request.user.fav_yvideos.count()
+    
+    ranges2=ranges1/2
+    ranges3=math.ceil(ranges2)
+    ranges=range(ranges3)
+    context={
+        'videos':videos,
+        'page_no':page_no,
+        'ranges':ranges,
+    }
+    return render(request,'all_fav_yvideos.html',context)

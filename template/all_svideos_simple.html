@@ -1,6 +1,6 @@
 {% include 'base.html' %}
 {% load static %}
-{% load mathfilters %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/mycorner.css' %}">
 {% endblock css %}
@@ -19,8 +19,7 @@
       <a href="#" class="badge badge-danger">{{tag}}</p></a>
   
   </p>
-  {% if show1 == True %}
-    <h2>Premium {{types}} Videos</h2><br>
+    <h2>{{heading}}</h2><br>
     <div class="row">
       {% for video in videos %}
         <div class="col-6 col-md-4 col-lg-3">
@@ -36,14 +35,6 @@
           document.getElementById("sl{{video.id}}").setAttribute('src', '{{ MEDIA_URL }}{{video.poster}}');
         </script>
       {% endfor %}
-    </div>
-      <br>
-  {% endif %}
-      
-
-  {% if show2 == True %}
-  <h2>Free {{types}} Videos</h2><br>
-  <div class="row">
       {% for i in items %}
       <div class="col-6 col-md-4 col-lg-3">
         <div class="poster">
@@ -56,7 +47,7 @@
       </div>
       <script type="text/javascript">
         function youtube_parser(url){
-            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var regExp = /^.((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]).*/;
             var match = url.match(regExp);
             return (match&&match[7].length==11)? match[7] : false;
         }
@@ -65,42 +56,7 @@
    
     {% endfor %}
     </div>
-    <br>
-{% endif %}
 
-    <nav class="page-nav">
-      <ul class="pagination justify-content-end">
-        
-          {% if page_no is 1 %}
-          <li class="page-item disabled">
-            <a class="page-link" href="{% url 'genre_pagination' page_no|add:'-1' %}" >Previous</a>
-          </li>
-          {% else %}
-          <li class="page-item">
-            <a class="page-link" href="{% url 'genre_pagination' page_no|add:'-1' %}" >Previous</a>
-          </li>
-          {% endif %}
-          
-        
-        <!-- TODO:yha loop chala dena -->
-        {% for i in ranges %}
-        <li class="page-item"><a class="page-link" href="{% url 'genre_pagination' forloop.counter %}">{{forloop.counter}}</a></li>
-        {% endfor %}
-        
-        
-        {% if page_no is ranges3 %}
-        <li class="page-item disabled">
-          <a class="page-link" href="{% url 'genre_pagination' page_no|add:'1' %}">Next</a>
-        </li>
-        {% else %}
-        <li class="page-item">
-          <a class="page-link" href="{% url 'genre_pagination' page_no|add:'1' %}">Next</a>
-        </li>
-        {% endif %}
-        
-        
-      </ul>
-    </nav>
   </section>
 
 
