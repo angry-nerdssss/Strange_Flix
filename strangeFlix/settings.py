@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'comment',
     'youtube_video',
     # third party add
-    
+
     'embed_video',
     'social_django',
     'taggit',
@@ -94,7 +94,7 @@ TEMPLATES = [
 
             ],
             'libraries':{
-            'filter': 'storage_video.templatetags.filters',
+                'filter': 'storage_video.templatetags.filters',
 
             }
 
@@ -124,7 +124,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT':'54324'
+        'PORT': '5432'
     }
 }
 
