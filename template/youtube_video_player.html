@@ -7,6 +7,9 @@
 
     <!-- my css -->
     <link rel="stylesheet" href="{% static 'css/video.css' %}">
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+      <link rel="stylesheet" href="{% static 'css_light/video.css' %}">
+    {% endif %}
     <link rel="stylesheet" href="{% static 'css/youtube_video_player.css' %}">
 {% endblock %}
 

@@ -37,3 +37,13 @@
 .card-container {
   margin-bottom: 2rem;
 }
+
+.disabled {
+  cursor: default;
+}
+
+.disabled:hover {
+  cursor: default;
+  background-color: transparent;
+  color: red;
+}

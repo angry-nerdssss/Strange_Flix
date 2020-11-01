@@ -4,17 +4,33 @@
 }
 
 h1 {
-  color: red;
+  color: black;
+  margin-bottom: 4rem;
 }
 #footer {
   display: none;
 }
 
-ol {
-  color: white;
+.table {
+  color: black;
   margin-left: 0;
+  border-color: black;
+}
+
+.table thead th {
+  border-top: 0;
+  border-color: black;
+}
+
+.table tr td,
+.table tr th {
+  border-color: black;
 }
 
 .video-link {
-  color: white;
+  color: black;
+}
+
+.video-link:hover {
+  color: #af0404;
 }

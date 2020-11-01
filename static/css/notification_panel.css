@@ -5,16 +5,25 @@
 
 h1 {
   color: red;
+  margin-bottom: 4rem;
 }
 #footer {
   display: none;
 }
 
-ol {
+.table {
   color: white;
   margin-left: 0;
 }
 
+.table thead th {
+  border-top: 0;
+}
+
 .video-link {
   color: white;
+}
+
+.video-link:hover {
+  color: #af0404;
 }

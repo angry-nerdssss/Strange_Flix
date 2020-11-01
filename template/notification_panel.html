@@ -4,6 +4,9 @@
 {% block css %}
 
     <link rel="stylesheet" href="{% static 'css/notification_panel.css' %}">
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+        <link rel="stylesheet" href="{% static 'css_light/notification_panel.css' %}">
+    {% endif %}
 
 {% endblock %}
 
@@ -11,19 +14,28 @@
 
         <section class="notification_section">
             <h1 >Flagged Videos Till now are  :</h1>
-           
-            <ol type="1" >
-                {% for video in videos %}
-           
-                    {% if video.total_flag > 0 %}
-                    <li>
-                     <a class="video-link"  href="{% url 's_detail' video.slug %}">{{video.title}} [{{ video.total_flag}}]</a>
-                    </li>
-                    {% endif %}
-                 
-                {% endfor %}
-            </ol>
-
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Views</th>
+                    <th scope="col">No of Flags</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for video in videos %}
+                        {% if video.total_flag > 0 %}
+                          <tr>
+                            <th scope="row">1</th>
+                            <td><a class="video-link"  href="{% url 's_detail' video.slug %}">{{video.title}}</a></td>
+                            <td>{{ video.views}}</td>
+                            <td>{{ video.total_flag}}</td>
+                          </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+              </table>
         </section>
 
 

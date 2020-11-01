@@ -5,6 +5,10 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/subscription.css' %}">
+
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+        <link rel="stylesheet" href="{% static 'css_light/subscription.css' %}">
+    {% endif %}
 {% endblock %}
 
 {% block content %}

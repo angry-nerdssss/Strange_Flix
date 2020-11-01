@@ -62,7 +62,21 @@
                     <a class="nav-link" href="/">Hello! {{user.username}}<span class="sr-only">(current)</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="{% url 'change_theme' %}">Darkmode {{user.theme_user.darkmode}}</a>
+                    <a class="nav-link" href="{% url 'change_theme' %}">
+                      <i
+                        {% if user.theme_user.darkmode %}
+                          title="Darkmode On"
+                        {% else %}
+                          title="Darkmode Off"
+                        {% endif %} 
+                        class="fa fa-moon-o" aria-hidden="true">
+                      </i>
+                      {% if user.theme_user.darkmode %}
+                        <span class="small-screen">Darkmode On</span>
+                      {% else %}
+                        <span class="small-screen">Darkmode Off</span>
+                      {% endif %}
+                    </a>
                   </li>
                   <li class="nav-item active">
                     <a class="nav-link" href="{% url 'subscribed_user' %}"><i title="Home" class="fas fa-lg fa-home"></i><span class="small-screen">Home</span><span class="sr-only">(current)</span></a>

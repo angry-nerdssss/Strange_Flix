@@ -9,9 +9,9 @@
 }
 
 .video-actions-div {
-  background-color: black;
+  background-color: #e3e3e3;
   text-align: left;
-  color: aliceblue;
+  color: black;
   padding: 3% 3% 1%;
   margin-bottom: 0.5rem;
 }
@@ -19,7 +19,7 @@
 .video-title {
   text-align: left;
   font-weight: bold;
-  color: white;
+  color: black;
   margin-bottom: 3px;
 }
 

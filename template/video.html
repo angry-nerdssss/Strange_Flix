@@ -12,6 +12,11 @@
 
     <!-- my css -->
     <link rel="stylesheet" href="{% static 'css/video.css' %}">
+
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+        <link rel="stylesheet" href="{% static 'css_light/video.css' %}">
+    {% endif %}
+
     <link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
 {% endblock %}
 
