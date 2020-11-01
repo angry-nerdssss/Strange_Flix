@@ -1,108 +1,109 @@
-body{
-    background-color: black;
-    color: whitesmoke;
-    padding: 0 15%;
+body {
+  background-color: white;
+  color: black;
+  padding: 0 15%;
 }
 
-h1{
-    color: red;
-    margin-bottom: 4rem;
+h1 {
+  color: red;
+  margin-bottom: 4rem;
+}
+/* 
+input {
+  background-color: #e3e3e3;
+  color: rgb(211, 203, 203);
+} */
+
+.badge {
+  background-color: red;
+  /* color: black; */
 }
 
-input{
-    background-color: #414141;
-    color: rgb(211, 203, 203);
+.btn-outline-danger {
+  color: red;
+  border-color: red;
 }
 
-.badge{
-    background-color: red;
-    color: white;
+.btn-outline-danger:hover {
+  color: black;
+  background-color: red;
+  border-color: red;
 }
 
-
-.btn-outline-danger{
-    color: red;
-    border-color: red;
+.badge-dark:hover {
+  color: black;
+  background-color: red;
 }
 
-.btn-outline-danger:hover{
-    color: #fff;
-    background-color: red;
-    border-color: red;
+.badge-danger:hover {
+  color: black;
+  background-color: red;
+  border-color: red;
 }
 
-.badge-dark:hover{
-    color: white;
-    background-color: red;
+.pressed-danger {
+  color: #af0404;
+  border-color: red;
+}
+/* 
+.bootstrap-tagsinput {
+  background-color: #e3e3e3;
+  color: rgb(211, 203, 203);
+  border-radius: 3px;
+} */
+/* 
+.form {
+  background-color: #black;
+  color: aliceblue;
+  padding: 5%;
 }
 
-.badge-danger:hover{
-    color: #fff;
-    background-color: red;
-    border-color: red;
+.form-control {
+  background-color: #e3e3e3;
+  color: rgb(211, 203, 203);
+} */
+
+/* .form-control:focus {
+  color: #black;
+  background-color: gray;
+  border-color: black;
+} */
+
+.form-heading {
+  color: red;
 }
 
-.pressed-danger{
-    color: #af0404;
-    border-color: red;
+.my-1 a {
+  color: black;
 }
 
-.bootstrap-tagsinput{
-    background-color: #414141;
-    color: rgb(211, 203, 203);
-    border-radius: 3px;
+.my-1 a:hover {
+  color: red;
 }
 
-.form{
-    background-color: black;
-    color: aliceblue;
-    padding: 5%;
+.rounded {
+  background-color: #e3e3e3;
+  border-bottom: black;
+  border-width: 5px;
+}
+/* 
+input[type="file"] {
+  border: 1px solid black;
+  color: black;
+  font-size: 20px;
+  width: 50%;
+  border-radius: 3px;
 }
 
-.form-control{
-    background-color: #414141;
-    color: rgb(211, 203, 203);
-}
-
-.form-control:focus{
-    color: black;
-    background-color: gray;
-    border-color: white;
-}
-
-.form-heading{
-    color: red;
-}
-
-.my-1 a{
-    color: white;
-}
-
-.my-1 a:hover{
-    color: red;
-}
-
-.cards{
-    background-color: #252525;
-}
-
-input[type='file']{
-    border: 1px solid white;
-    color:white;
-    font-size:20px;
-    width: 50%;
-    border-radius: 3px;
-}
-
-input[type='file']:hover{
-    cursor: pointer;
-    color:white;
-    font-size:20px;
-    border-radius: 3px;
-}
+input[type="file"]:hover {
+  cursor: pointer;
+  color: black;
+  font-size: 20px;
+  border-radius: 3px;
+} */
 
 @media only screen and (max-width: 1000px) {
-    input[type='file']{
-        width: 100%;
-    }
+  input[type="file"] {
+    width: 100%;
+  }
 }

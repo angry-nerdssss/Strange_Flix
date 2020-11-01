@@ -1,5 +1,5 @@
 body {
-  background-color: #252525;
+  background-color: #e3e3e3;
   padding: 7% 30%;
 }
 
@@ -16,15 +16,15 @@ body {
 
 .card {
   border-color: black;
-  background-color: black;
-  color: rgb(211, 203, 203);
+  background-color: white;
+  color: black;
   border-radius: 0.2rem;
   align-self: auto;
 }
 
 .card-header {
   height: 25%;
-  border-color: whitesmoke;
+  border-color: black;
   color: #af0404;
 }
 
@@ -47,7 +47,7 @@ body {
 
 @media only screen and (max-width: 1000px) {
   body {
-    background-color: #252525;
+    background-color: #e3e3e3;
     padding: 7% 10%;
   }
   .btn-outline-danger {

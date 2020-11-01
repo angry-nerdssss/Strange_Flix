@@ -3,7 +3,12 @@
 
 {% block content %}
 
-    <link rel="stylesheet" href="{% static 'css/addvideo.css' %}">
+
+    {% if user.is_authenticated and not user.theme_user.darkmode %}
+        <link rel="stylesheet" href="{% static 'css_light/addvideo.css' %}">
+    {% elif user.is_authenticated and user.theme_user.darkmode %}
+        <link rel="stylesheet" href="{% static 'css/addvideo.css' %}">
+    {% endif %}
 
         <div class="container pt-5">
             <h1>STRANGEFLIX</h1>
@@ -27,21 +32,23 @@
                     <input type="text" class="form-control" name="title" placeholder="Add title">
                 </div>
 
-                
-                <div >
-                    <label for="mobile">Category</label>
-                    <div class="form-control">
-                  {{form.category}}
-                  </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="mobile">Category</label>
+                        <div class="form-group">
+                            {{form.category}}
+                        </div>
+                    </div>
+                    <!-- <br> -->
+                    <div class="col-sm-6">
+                        <label for="mobile">Genre</label>
+                        <div class="form-group">
+                            {{form.genre}}
+                            <!-- TODO:style this -->
+                        </div>
+                    </div>
                 </div>
                 <br>
-                <div>
-                  <label for="mobile">Genre</label>
-                  <div class="form-control">
-                    {{form.genre}}
-                    </div>
-                 </div>
-                 <br>
 
                 <div class="form-group">
                     <label>Tags</label>
