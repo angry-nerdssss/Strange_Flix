@@ -456,46 +456,53 @@ def search(request):
         main_item=Item.objects.get(title__iexact=video_name) 
         recommends_item=Item.objects.filter(title__istartswith=video_name)
         """
-
+    else:
+        return render(request, 'all_svideos_simple.html')
 # this function is to search acoording to the tags by clicking on them from any video
 
 
 def search_tag(request, slug):
-    tag = get_object_or_404(Tag, slug=slug)
-   
-    videos = Video.objects.filter(tags=tag)
-    items = Item.objects.filter(tags=tag)
-    context = {
-        'tag': tag,
-        'videos': videos,
-        'items': items,
-    }
-    return render(request, 'all_svideos_simple.html', context)
+    if request.method == 'POST':
+        tag = get_object_or_404(Tag, slug=slug)
+    
+        videos = Video.objects.filter(tags=tag)
+        items = Item.objects.filter(tags=tag)
+        context = {
+            'tag': tag,
+            'videos': videos,
+            'items': items,
+        }
+        return render(request, 'all_svideos_simple.html', context)
+    else :
+        return render(request, 'all_svideos_simple.html')
 
 # this function is to search the according to the user given tags
 
 
 def search_tagbyname(request):
-    tag = request.POST['tag_name']
-    all_videos = Video.objects.all()
-    queryset = Video.objects.none()
-    for video in all_videos:
-        if video.tags.filter(name=tag).exists():
-            queryset |= Video.objects.filter(id=video.id)
-    videos = queryset
+    if request.method == 'POST':
+        tag = request.POST['tag_name']
+        all_videos = Video.objects.all()
+        queryset = Video.objects.none()
+        for video in all_videos:
+            if video.tags.filter(name=tag).exists():
+                queryset |= Video.objects.filter(id=video.id)
+        videos = queryset
 
-    all_items = Item.objects.all()
-    queryset = Item.objects.none()
-    for item in all_items:
-        if item.tags.filter(name=tag).exists():
-            queryset |= Item.objects.filter(id=item.id)
-    items = queryset
-    context = {
-        'tag': tag,
-        'videos': videos,
-        'items': items,
-    }
-    return render(request, 'all_svideos_simple.html', context)
+        all_items = Item.objects.all()
+        queryset = Item.objects.none()
+        for item in all_items:
+            if item.tags.filter(name=tag).exists():
+                queryset |= Item.objects.filter(id=item.id)
+        items = queryset
+        context = {
+            'tag': tag,
+            'videos': videos,
+            'items': items,
+        }
+        return render(request, 'all_svideos_simple.html', context)
+    else :
+        return render(request, 'all_svideos_simple.html')
 
 
 def allfav_videos(request):

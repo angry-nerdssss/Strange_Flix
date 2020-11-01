@@ -22,9 +22,13 @@
 
 {% block content %}
     <!-- video player -->
+    
     <section class="video-section">
         <div class="video-div">
             <video id="videoPlayer" class="video-js vjs-big-play-centered" controls preload="auto" data-setup='{}'>
+            <script>videoPlayer.currentTime="{{current_time}}";
+                console.log("{{current_time}}");
+            </script>
                 <!-- <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'> -->
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "720P" selected="true">
                 <source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4' label = "360P">
@@ -62,7 +66,7 @@
                      }
                }); 
             //your jQuery ajax code
-          }, 1000 * 10); // where X is your every X minutes
+          }, 1000 * 1); // where X is your every X minutes
           </script>
           <div class="video-actions-div">
             <div style="display:flex">
@@ -308,9 +312,7 @@ $('#dislike').click(function(){
     <script src="{% static 'js/hotkeys.js' %}"></script>
     <script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
     <script type="text/javascript" src="{% static 'js/video.js' %}"></script>
-    <script>videoPlayer.currentTime="{{current_time}}";
-        console.log("{{current_time}}");
-    </script>
+    
 {% endblock javascript %}
 
 
