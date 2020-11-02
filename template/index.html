@@ -41,7 +41,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="image-div">
-                          <img class="carousel-img"  src="{% static 'images/load3.png' %}"  alt="video thumbnail" >
+                        <a href="http://localhost:8000/youtube_video/video/1/"> <img class="carousel-img"  src="{% static 'images/load3.png' %}"  alt="video thumbnail" ></a> 
                     </div>
                     <div class="side-content">
                         <!-- to be filled with lines -->
@@ -50,7 +50,7 @@
                 <div class="carousel-item">
                     <div class="image-div">
                         <div class="image-div">
-                            <img class="carousel-img"  src="{% static 'images/load4.png' %}"  alt="video thumbnail" >
+                            <a href="http://localhost:8000/youtube_video/video/2/">  <img class="carousel-img"  src="{% static 'images/load4.png' %}"  alt="video thumbnail" ></a>
                         </div>
                         <div class="side-content">
                             <!-- to be filled with lines -->
@@ -60,7 +60,7 @@
                 <div class="carousel-item">
                     <div class="image-div">
                         <div class="image-div">
-                            <img class="carousel-img"  src="{% static 'images/load.png' %}"  alt="video thumbnail" >
+                            <a href="http://localhost:8000/youtube_video/video/5/">   <img class="carousel-img"  src="{% static 'images/load.png' %}"  alt="video thumbnail" ></a>
                         </div>
                         <div class="side-content">
                             <!-- to be filled with lines -->
@@ -249,12 +249,12 @@
     <!-- YOutube carousel -->
 
     <div class="carousel-movies">
-        <h3 class="carousel-heading">Popular Movies </h1>
+        <h3 class="carousel-heading">Popular Free Movies </h1>
         <div id="movie-carousel2"    data-interval="false" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row movie-row">
-                        {% for i in items %}
+                        {% for i in items|slice:":6" %}
                     
                         <div class="col-6 col-lg-2 col">
                             <div class="thumbnail">
