@@ -33,5 +33,5 @@ now the site have different features and functionalities for users and admin.
     5)admin can also delete any comment of any user if he himself finds the comment inappropriate or flagged by the others.
     6)videos added by through youtube links don't need any poster ,site finds the poster of the video available on youtube through the link.
 
-THANK YOU!! 
+THANK YOU!!!
   
