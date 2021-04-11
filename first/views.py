@@ -58,10 +58,56 @@ def index(request):
     
     showRegister = False
     showLogin = False
+    if request.user.is_authenticated :
 
-    recommended_videos1 = Video.objects.order_by(
-        '-publish_date')[:6]  # slicing 6 videos
-    # recommended_videos=recommended_videos.order_by('-publish_date')
+        rec_video1=Video.objects.filter(likes=request.user)#videos liked by user
+
+        queryset_user1=User.objects.none()
+        for video in rec_video1:
+            queryset_user1 |= video.likes.all()
+        
+        rec_video2=Video.objects.none()
+        for users in queryset_user1:
+            rec_video2 |= Video.objects.filter(likes=users)
+
+        # int arr[14];
+        # for i upto 14:
+        #     for videos in rec_video1:
+        #         if choice[i]==videos.genre:
+        #             arr[i]++;
+        
+        # maxi is the max
+        # rec_video3=rec_video2.objects.filter(genre=maxi)
+
+        max_genre_videos=rec_video1.filter(genre=GENRE_CHOICES[0])
+        max_genre_videos_count=max_genre_videos.count()
+        ind=int(0)
+        for i in range(1,14):
+            video=rec_video1.filter(genre=GENRE_CHOICES[i])
+            if(max_genre_videos_count<video.count()):
+                max_genre_videos_count=video.count()
+                ind=i
+
+        rec_video3=Video.objects.filter(genre=GENRE_CHOICES[ind])
+
+        rec_video3 |=rec_video2
+        ### recommendation algorithm is we are clubing all the videos which are liked by those users who liked the same video as user liked,
+        # ##and then we are clubbing them with that genre videos which is most liked by user,
+        # and then we are slicing them according to the recent videos,
+        # and then we are sorting them according to the toatal views of videos
+
+        recommended_videos1 = rec_video3.order_by(
+            '-publish_date')[:6]  # slicing 6 videos
+        # recommended_videos=recommended_videos.order_by('-publish_date')
+    else :
+        recommended_videos1 = Video.objects.order_by('-publish_date')[:6]#slicing 6 videos
+        #here we are sending the recommended videos
+
+        recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
+
+        recommended_videos = reversed(recommended_videos2)
+
+        recommended_items1 = Item.objects.order_by('-publish_date')[:6]
 
     # here we are sending the recommended videos
     recommended_videos2 = sorted(recommended_videos1, key=lambda o: o.views)
@@ -94,6 +140,8 @@ def index(request):
     if Subscription.objects.filter(user=request.user).exists():
         subscription = Subscription.objects.get(user=request.user)
         paid = subscription.paid
+    
+    
     context = {
         'showRegister': showRegister,
         'showLogin': showLogin,
