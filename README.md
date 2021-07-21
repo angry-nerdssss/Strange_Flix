@@ -23,7 +23,11 @@ now the site have different features and functionalities for users and admin.
     11) users can send feedbacks to the admin regarding complain,appreciation,etc.
     12) user can search their videos according to video name and video tags also.
     13)user will get genrewise divisions in the front page only.
-    14)they will also get recommended videos which is based on the videos which are newly added and have highest views.
+    14)they will also get RECOMMENDED videos which is based on --->
+        # recommendation algorithm is we are clubing all the videos which are liked by those users who liked the same video as user liked,
+        # and then we are clubbing them with that genre videos which is most liked by  this user,
+        # and then we are slicing them according to the recent videos,
+        # and then we are sorting them according to the toatal views of videos
     15)
   admin->
     1) admin have all the features which are availabe to free users(but he don't need any kind of subscriptions).
