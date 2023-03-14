@@ -1,4 +1,4 @@
-# Strange_Flix
+#Strange_Flix
 
 this web applicaton have features of youtube hotstar and site like netflix into it.
 
